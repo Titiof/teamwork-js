@@ -1,0 +1,1 @@
+import allCategories from './js/allcategogies';
