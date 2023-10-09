@@ -13,15 +13,14 @@ async function onPageLoad() {
 onPageLoad();
 function createBookMarkup(book) {
   return `<li class="book-card">
-            <img class="book-card-img" src="${book.book_image}" alt="${book.description}" loading="lazy" />
+            <img class="book-card-img" src="${book.book_image}" alt="${book.description}" loading="lazy" width ="180" height ="256" />
             <h3 class="book-card-title">${book.title}</h3>
             <p class="book-card-text">${book.author}</p>
-          <button class="book-card-btn" type="button">See more</button>
         </li>`;
 }
 function createListMarkup(books) {
   const lists = [];
-  for (let i = 0; i < books.length; i++) {
+  for (let i = 0; i < books.length; i += 1) {
     const liMarkup = books[i].books
       .map((book, idx) => {
         if (idx < 5) {
@@ -31,8 +30,9 @@ function createListMarkup(books) {
       .join('');
     const markup = `<ul class="top-category-list">
     <h2 class="top-category-title">${books[i].list_name}</h2>
-    ${liMarkup}
-  </ul>`;
+    <div class="top-books-wrapper">${liMarkup}</div>
+  </ul>
+  <button class="book-card-btn" type="button">See more</button>`;
     lists.push(markup);
   }
   booksList.innerHTML = lists.join('');
