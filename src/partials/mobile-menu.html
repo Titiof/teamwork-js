@@ -1,16 +1,20 @@
 <div class="menu-container js-menu-container" id="mobile-menu">
   <div class="header-menu">
     <a href="" class="logo">
-      <svg
-        class="logo-icon menu-psn"
-        width="100"
-        height="16"
-        aria-label="logotype"
-      >
+      <svg class="logo-icon" width="24" height="24" aria-label="logotype">
         <use href="./logos/symbol-defs.svg#icon-logo"></use>
       </svg>
-      Bookshelf
+      <svg class="logo-icon" width="77" height="14" aria-label="logotype">
+        <use href="./logos/symbol-defs.svg#bookshelf"></use>
+      </svg>
     </a>
+    <div class="switcher">
+      <label id="switch" class="switch">
+        <input type="checkbox" onchange="toggleTheme()" id="slider" />
+        <span class="slider round"> </span>
+      </label>
+      <!-- <button id="switch" onclick="toggleTheme()">Switch</button> -->
+    </div>
     <button class="menu-toggle js-close-menu">
       <svg
         class="burger-icon"
@@ -24,11 +28,18 @@
   </div>
 
   <ul class="mobile-menu">
-    <li class="menu-item"><a href="" class="mob-link">About us</a></li>
-    <li class="menu-item"><a href="" class="mob-link">Our products</a></li>
-    <li class="menu-item"><a href="" class="mob-link">Pricess</a></li>
-    <li class="menu-item"><a href="" class="mob-link">Bestsellers</a></li>
-    <li class="menu-item"><a href="" class="mob-link">Reviews</a></li>
-    <li class="menu-item"><a href="" class="mob-link">Contacts</a></li>
+    <li class="menu-item"><a href="" class="mob-link">HOME</a></li>
+    <li class="menu-item">
+      <a href="" class="mob-link"
+        >SHOPPING LIST<svg
+          class="logo-icon"
+          width="100"
+          height="16"
+          aria-label="logotype"
+        >
+          <use href="./logos/symbol-defs.svg#icon-uil_cart"></use>
+        </svg>
+      </a>
+    </li>
   </ul>
 </div>
