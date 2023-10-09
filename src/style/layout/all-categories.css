@@ -1,0 +1,62 @@
+.vertical-menu {
+  width: 335px;
+  height: 228px;
+  overflow-y: auto;
+}
+
+@media only screen and (min-width: 768px) {
+ .vertical-menu{
+    width: 337px;
+    height: 472px;
+ } 
+}
+@media only screen and (min-width: 1440px) {
+    .vertical-menu{
+       width: 356px;
+    } 
+}
+.vertical-menu a {
+  text-decoration: none;
+  margin-bottom: 32px;
+  color: var(--color-black-transparent);
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.vertical-menu a:hover {
+  color: var(--color-blue);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.vertical-menu a.active {
+    color: var(--color-blue);
+    text-transform: uppercase;
+}
+.list_name {
+  color: var(--color-black-transparent);
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: var(--color-light-gray2);
+  width: 8px;
+  height: 167px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-black-transparent);
+}
