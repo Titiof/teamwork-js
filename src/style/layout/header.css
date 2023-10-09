@@ -1,0 +1,240 @@
+/* -----------------------Header ----------------------------------------*/
+.header {
+    background: var(--light-blue);
+}
+
+.container.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    padding-top: 34px;
+    padding-bottom: 34px;
+}
+
+.logo-icon {
+    fill: var(--blue-font);
+}
+
+.nav-list {
+    display: none;
+}
+
+/*----------------------   mobile menu   -----------------------*/
+
+.header-menu {
+    background: var(--light-blue);
+    padding-top: 34px;
+    padding-bottom: 34px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.menu-toggle {
+    min-height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767px) {
+    .menu {
+        display: none;
+    }
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+}
+
+.mob-link {
+    display: flex;
+    color: var(--blue-font);
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    /* 150% */
+}
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: var(--white);
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 250ms ease-in-out;
+}
+
+.menu-container.is-open {
+    transform: translateX(0);
+}
+
+.menu-container .menu-toggle {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    color: var(--color-black);
+}
+
+.burger-icon {
+    stroke: var(--color-black);
+}
+
+.mobile-menu {
+    display: flex;
+    margin-top: 114px;
+    padding: 0;
+    list-style: none;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.mobile-menu .mob-link {
+    display: block;
+
+    text-decoration: none;
+}
+
+.close-icon {
+    fill: var(--color-white);
+}
+
+/* ----------------------Tablet styles------------------------------ */
+@media screen and (min-width: 768px) {
+    .header {
+        margin-bottom: 61px;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    .header-menu {
+        padding-top: 37.5px;
+        padding-bottom: 37.5px;
+        padding-left: 32px;
+    }
+
+    .mobile-menu {
+        margin-top: 150px;
+        gap: 30px;
+    }
+
+    .mob-link {
+        font-size: 18px;
+    }
+
+    .menu-container .menu-toggle {
+        position: absolute;
+        top: 24px;
+        right: 32px;
+        color: var(--color-black);
+    }
+
+    .logo {
+        padding-top: 38px;
+        padding-bottom: 37px;
+    }
+
+    .burger-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-icon {
+        width: 127px;
+        height: 16px;
+    }
+
+    .logo {
+        padding-top: 37px;
+        padding-bottom: 36px;
+    }
+}
+
+/*------------------------------ Dasktop styles-------------------------------------- */
+@media screen and (min-width: 1440px) {
+    .header {
+        margin-bottom: 64px;
+    }
+
+    .container.nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-icon {
+        width: 128px;
+        height: 18px;
+    }
+
+    .logo-icon:hover,
+    .logo-icon:focus {
+        stroke: #2a4ff1;
+        fill: #2a4ff1;
+    }
+
+    .logo.mob-space {
+        padding: 0;
+    }
+
+    .main-nav {
+        display: flex;
+    }
+
+    .nav-list {
+        display: flex;
+
+        align-items: center;
+        gap: 30px;
+    }
+
+    /* <a> in section main-nav */
+    .nav-link {
+        color: var(--blue-font, #0a224a);
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+        /* 150% */
+        padding-top: 34px;
+        padding-bottom: 34px;
+        display: inline-block;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        color: #2a4ff1;
+    }
+
+    /*------------- Hiden features -------------------*/
+    .menu-toggle.js-open-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+}
