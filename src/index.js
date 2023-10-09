@@ -1,1 +1,2 @@
-import allCategories from './js/all_categories.js';
+import './js/main';
+import './js/all_categories.js';
