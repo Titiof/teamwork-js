@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
 import { BooksAPI } from './books-api';
+import createBookMarkup from './bookMarkupLi';
 const booksList = document.querySelector('.bestsellers-list');
 const booksApi = new BooksAPI();
 async function onPageLoad() {
