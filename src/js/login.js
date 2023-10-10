@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 
 const firebaseConfig = {
@@ -13,21 +17,50 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+let activeTab = 'signup';
+let error = '';
 
 const refs = {
+  signinBtn: document.querySelector('.login-sign-in'),
+  signupBtn: document.querySelector('.login-sign-up'),
   closeModalBtn: document.querySelector('.js-login-btn'),
   modal: document.querySelector('.js-backdrop'),
   form: document.querySelector('.js-login-form'),
+  inputName: document.querySelector('#user_name'),
+  email: document.querySelector('#user_email'),
+  password: document.querySelector('#user_password'),
+  loginSubmitBtn: document.querySelector('.login-submit-btn'),
+  containerNameInput: document.querySelector('#login-field-name')
+
 };
 
-// refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', onCloseModalClick);
 refs.form.addEventListener('submit', onFormSubmit);
+refs.signinBtn.addEventListener('click', onSigninClick);
+refs.signupBtn.addEventListener('click', onSignupClick);
 
-// change class is-hidden
-// function toggleModal() {
-//   refs.modal.classList.toggle('is-hidden');
-// }
+function onSigninClick() {
+  activeTab = 'signin';
+  changeActiveTab();
+}
+
+function onSignupClick() {
+  activeTab = 'signup';
+  changeActiveTab();
+}
+
+function changeActiveTab() {
+  refs.signupBtn.classList.toggle('active');
+  refs.signinBtn.classList.toggle('active');
+  if (activeTab === 'signin') {
+    refs.containerNameInput.classList.add('hidden');
+    refs.loginSubmitBtn.textContent = 'Sign in';
+  }
+  if (activeTab === 'signup') {
+    refs.containerNameInput.classList.remove('hidden');
+    refs.loginSubmitBtn.textContent = 'Sign up';
+  }
+}
 
 function onCloseModalClick() {
   window.history.back();
@@ -35,20 +68,52 @@ function onCloseModalClick() {
 
 async function onFormSubmit(e) {
   e.preventDefault();
-  const userName = e.target.elements['user_name'].value;
-  const email = e.target.elements['user_email'].value;
-  const password = e.target.elements['user_password'].value;
-
-  await createUserWithEmailAndPassword(auth, email, password)
+  activeTab === 'signup' ? signup() : signin();
+}
+async function signup() {
+  await createUserWithEmailAndPassword(
+    auth,
+    refs.email.value,
+    refs.password.value
+  )
     .then(userCredential => {
       const user = userCredential.user;
       console.log(user);
-      localStorage.setItem('user', JSON.stringify(user))
-      e.target.reset();
+      localStorage.setItem('user', JSON.stringify(user));
+      refs.form.reset();
+      error = '';
+      window.location.href = '/';
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
+      if (errorCode === 'auth/invalid-login-credentials') {
+        error = 'invalid user email or passsword';
+        alert(error);
+      }
     });
+}
+
+async function signin() {
+  console.log(321);
+  signInWithEmailAndPassword(auth, refs.email.value, refs.password.value)
+    .then(userCredential => {
+      const user = userCredential.user;
+      console.log(user);
+      localStorage.setItem('user', JSON.stringify(user));
+      refs.form.reset();
+      error = '';
+      window.location.href = '/';
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      if (errorCode === 'auth/invalid-login-credentials') {
+        error = 'invalid user email or passsword';
+        alert(error);
+      }
+    });
+  console.log(123);
 }
