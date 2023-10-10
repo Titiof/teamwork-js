@@ -18,11 +18,11 @@ export function createListMarkup(books) {
         }
       })
       .join('');
-    const markup = `<ul class="top-category-list">
-    <h2 class="top-category-title">${books[i].list_name}</h2>
-    <div class="top-books-wrapper">${liMarkup}</div>
-  </ul>
-  <button class="book-card-btn" type="button">See more</button>`;
+    const markup = `<h2 class="top-category-title">${books[i].list_name}</h2>
+    <ul class="top-category-list">
+    ${liMarkup}
+    </ul>
+    <button class="book-card-btn" type="button">See more</button>`;
     lists.push(markup);
   }
   booksList.innerHTML = lists.join('');

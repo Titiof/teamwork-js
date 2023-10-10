@@ -1,6 +1,4 @@
 .main-header {
-  color: #111;
-  font-family: DM Sans;
   font-size: 48px;
   font-weight: 700;
   line-height: 1.08;
@@ -10,7 +8,6 @@
 
 .main-header-accent {
   color: #4f2ee8;
-  font-family: DM Sans;
   font-size: 48px;
   font-weight: 700;
   line-height: 1.08;
@@ -19,6 +16,25 @@
 
 .book-card {
   max-width: 180px;
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .book-card:first-child {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .book-card:nth-child(-n + 3) {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .book-card {
+    display: block;
+  }
 }
 .book-card-img {
   border-radius: 8px;
@@ -30,8 +46,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #111;
-  font-family: DM Sans;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.12;
@@ -44,33 +58,50 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #b4afaf;
-  font-family: DM Sans;
   font-size: 12px;
   font-style: italic;
   font-weight: 400;
   line-height: 1.16; /* 116.667% */
   letter-spacing: -0.04em;
 }
+
 .book-card-btn {
+  display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  padding: 14px 28px;
+
+  min-width: 124px;
+  min-height: 46px;
+  background-color: var(--color-light-gray);
+  border: 2px solid var(--color-blue);
+  border-radius: 40px;
+  transition:
+    color 500ms ease-in-out,
+    background-color 500ms ease-in-out;
 }
+@media only screen and (min-width: 768px) {
+  .book-card-btn {
+    margin-bottom: 82px;
+  }
+}
+
+.book-card-btn:hover {
+  color: var(--color-white);
+  background-color: var(--color-blue);
+}
+
 .top-category-list {
   display: flex;
-  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 .top-category-title {
   color: #b4afaf;
-  font-family: DM Sans;
   font-size: 14px;
-  /* font-style: normal; */
   font-weight: 400;
   line-height: 1.71;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   margin-bottom: 18px;
-}
-
-.top-books-wrapper {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 32px;
 }
