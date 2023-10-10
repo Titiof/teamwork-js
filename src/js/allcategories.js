@@ -1,4 +1,5 @@
 import {BooksAPI} from "./books-api";
+import {menuTemplate} from "./allcategories/category_template";
 
 const listEl = document.querySelector('.vertical-menu');
 
@@ -6,15 +7,6 @@ const booksAPI = new BooksAPI();
 
 async function fetchBookCategoryList(){
     return booksListData = await booksAPI.getCategoriesList(); 
-}
-
-function menuTemplate(list){
-   // console.log(list);
-    return list.map(el => {
-       return `<li class='list_name'>
-                <a href="#" name='${el.list_name}'>${el.list_name}</a>
-            </li>`;
-    }).join('');
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -27,11 +19,13 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 listEl.addEventListener('click', onChangeCategoryPage);
 
-function onChangeCategoryPage(e){
+async function onChangeCategoryPage(e){
     e.preventDefault();
-    console.log(e.target.name);
+    
     if(e.target.nodeName === "A"){
-        return nameLink = e.target.name;
+        console.log(e.target.name);
+        const booksCategoryData = await booksAPI.getFullCategory(e.target.name);
+        console.log(booksCategoryData);
     }
 }
 
