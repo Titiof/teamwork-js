@@ -18,6 +18,7 @@ function createBookMarkup(book) {
             <p class="book-card-text">${book.author}</p>
         </li>`;
 }
+
 function createListMarkup(books) {
   const lists = [];
   for (let i = 0; i < books.length; i += 1) {
