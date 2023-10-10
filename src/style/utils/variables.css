@@ -18,4 +18,9 @@
     rgba(79, 46, 232, 1),
     rgba(255, 255, 255, 1)
   );
+  --custom-radial-gradient: radial-gradient(
+    189.32% 190.93% at 59.76% -23.42%,
+    #4f2ee8 18.03%,
+    #fff 100%
+  );
 }

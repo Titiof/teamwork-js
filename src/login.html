@@ -14,8 +14,7 @@
   </head>
 
   <body>
-    <button class="login-open js-login-open">Open Login</button>
-    <div class="backdrop js-backdrop is-hidden">
+    <div class="backdrop js-backdrop">
       <div class="login-modal">
         <button class="login-btn js-login-btn" type="button" data-login-close>
           <svg class="login-btn-icon" width="20" height="20">
@@ -23,13 +22,12 @@
           </svg>
         </button>
         <form class="login-form js-login-form">
-          <div class="login-field">
+          <div class="login-field" id="login-field-name">
             <input
               class="login-field-input"
               type="text"
               name="user_name"
               id="user_name"
-              required
               minlength="3"
               placeholder="Name"
             />
@@ -66,13 +64,14 @@
           </div>
           <button class="login-submit-btn" type="submit">Sign up</button>
           <div class="login-sign">
-            <a href="#" class="login-sign-up">sign up</a>
-            <a href="#" class="login-sign-in is-off">sign in</a>
+            <span class="login-sign-up active">sign up</span>
+            <span class="login-sign-in">sign in</span>
           </div>
         </form>
       </div>
     </div>
-    <script type="module" src="./js/login-js.js"></script>
-    <script type="module" src="./index.js"></script>
+    <!-- <script defer type="module" src="./js/login/firebase.js"></script> -->
+    <script type="module" src="./js/login.js"></script>
+    <!-- <script type="module" src="./index.js"></script> -->
   </body>
 </html>

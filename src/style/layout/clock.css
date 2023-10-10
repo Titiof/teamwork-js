@@ -1,0 +1,13 @@
+.clock {
+  display: none;
+  color: #4f2ee8;
+  font-size: 30px;
+  font-family: Orbitron;
+  letter-spacing: 7px;
+}
+
+@media only screen and (min-width: 1440px) {
+  .clock {
+    display: block;
+  }
+}
