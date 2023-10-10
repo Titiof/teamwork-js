@@ -136,11 +136,6 @@ button {
 .link {
   text-decoration: none;
 }
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .is-hidden {
   position: absolute;
   width: 1px;

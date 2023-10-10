@@ -1,10 +1,14 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 40px 20px 80px;
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 @media screen and (min-width: 375px) {
   .container {
     max-width: 375px;
@@ -14,15 +18,20 @@
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 40px 32px 100px;
+  }
+  .sidebar {
+    flex-direction: row;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
+    display: inline-block;
     max-width: 1440px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 40px 24px 72px;
+  }
+  .sidebar {
+    flex-direction: column;
   }
 }
