@@ -11,14 +11,13 @@
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
-  .login-open{
+.login-open{
     position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-  }
 
-
+}
 .backdrop {
   background-color: var(--color-blue);
   width: 100vw;
