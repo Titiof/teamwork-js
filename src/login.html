@@ -22,13 +22,12 @@
           </svg>
         </button>
         <form class="login-form js-login-form">
-          <div class="login-field">
+          <div class="login-field" id="login-field-name">
             <input
               class="login-field-input"
               type="text"
               name="user_name"
               id="user_name"
-              required
               minlength="3"
               placeholder="Name"
             />
@@ -65,8 +64,8 @@
           </div>
           <button class="login-submit-btn" type="submit">Sign up</button>
           <div class="login-sign">
-            <a href="#" class="login-sign-up">sign up</a>
-            <a href="#" class="login-sign-in is-off">sign in</a>
+            <span class="login-sign-up active">sign up</span>
+            <span class="login-sign-in">sign in</span>
           </div>
         </form>
       </div>
