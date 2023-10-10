@@ -20,9 +20,11 @@ function toggleModal() {
 
 function onFormSubmit(e){
     e.preventDefault();
-    console.log('hi');
-    refs.form.reset();
+    const userName = e.target.elements['user_name'].value;
+    const userEmail = e.target.elements['user_email'].value;
+    const userPass = e.target.elements['user_password'].value;
+    console.log(userName,userEmail,userPass);
 
+
+    e.target.reset();
 }
-
-q

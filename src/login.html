@@ -33,6 +33,7 @@
               minlength="3"
               placeholder="Name"
             />
+            <span class="modal-error-message">Enter minimum 3 symbols</span>
           </div>
           <div class="login-field">
             <input
@@ -43,6 +44,7 @@
               required
               placeholder="email"
             />
+            <span class="modal-error-message">Enter valid e-mail with '@'</span>
             <svg class="login-field-icon" width="18" height="18">
               <use href="./images/sprite.svg#mail"></use>
             </svg>
@@ -55,7 +57,9 @@
               id="user_password"
               required
               placeholder="password"
+              minlength="8"
             />
+            <span class="modal-error-message">Enter minimum 8 symbols</span>
             <svg class="login-field-icon" width="18" height="18">
               <use href="./images/sprite.svg#lock"></use>
             </svg>
