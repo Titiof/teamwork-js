@@ -22,7 +22,7 @@ export function createListMarkup(books) {
     <ul class="top-category-list">
     ${liMarkup}
     </ul>
-    <button class="book-card-btn" type="button">See more</button>`;
+    <button class="book-card-btn" name='${books[i].list_name}' type="button">See more</button>`;
     lists.push(markup);
   }
   booksList.innerHTML = lists.join('');
