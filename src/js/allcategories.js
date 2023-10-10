@@ -5,6 +5,8 @@ import { createListMarkup } from "./bookMarkupLi";
 
 const listEl = document.querySelector('.vertical-menu');
 const categoryTitle = document.querySelector('.main-header');
+const moreBtn = document.querySelector('.book-card-btn');
+
 const booksAPI = new BooksAPI();
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -19,6 +21,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 listEl.addEventListener('click', onChangeCategoryPage);
 
+moreBtn.addEventListener('click', (e) => {
+    console.log(e.target);
+})
 async function onChangeCategoryPage(e){
     e.preventDefault();
 
@@ -47,3 +52,4 @@ async function renderBooksFromCategory(category_name){
         Notiflix.Notify.failure('Sorry, there is no books in this category');
     }
 }
+
