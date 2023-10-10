@@ -14,14 +14,15 @@
   </head>
 
   <body>
-    <div class="backdrop">
+    <button class="login-open js-login-open">Open Login</button>
+    <div class="backdrop js-backdrop is-hidden">
       <div class="login-modal">
-        <button class="login-btn" type="button" data-login-close>
+        <button class="login-btn js-login-btn" type="button" data-login-close>
           <svg class="login-btn-icon" width="20" height="20">
             <use href="./images/sprite.svg#icon-x-close"></use>
           </svg>
         </button>
-        <form class="login-form">
+        <form class="login-form js-login-form">
           <div class="login-field">
             <input
               class="login-field-input"
@@ -67,6 +68,7 @@
         </form>
       </div>
     </div>
+    <script type="module" src="./js/login-js.js"></script>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
