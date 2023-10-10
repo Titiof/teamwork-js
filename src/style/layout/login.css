@@ -13,12 +13,12 @@
 #login-field-name {
   max-height: 200px;
   overflow: hidden;
-  transition: opacity 800ms ease-in-out, max-height 800ms ease-in-out;
+  transition: all 800ms ease-in-out;
 }
 #login-field-name.hidden {
   max-height: 0;
   opacity: 0;
-}
+margin: 0;}
 
 .login-open {
   position: absolute;
@@ -40,7 +40,7 @@
   padding: 40px 20px;
   min-width: 320px;
   max-width: 335px;
-  min-height: 384px;
+  /* min-height: 300px; */
   border-radius: 18px;
   border: 2px solid var(--color-black);
   background-color: var(--color-light-gray);
@@ -50,7 +50,7 @@
   .login-modal {
     padding: 80px 40px 40px;
     max-width: 580px;
-    min-height: 516px;
+    max-height: 516px;
   }
 }
 

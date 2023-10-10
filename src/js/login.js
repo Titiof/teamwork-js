@@ -30,8 +30,7 @@ const refs = {
   email: document.querySelector('#user_email'),
   password: document.querySelector('#user_password'),
   loginSubmitBtn: document.querySelector('.login-submit-btn'),
-  containerNameInput: document.querySelector('#login-field-name')
-
+  containerNameInput: document.querySelector('#login-field-name'),
 };
 
 refs.closeModalBtn.addEventListener('click', onCloseModalClick);
@@ -40,11 +39,15 @@ refs.signinBtn.addEventListener('click', onSigninClick);
 refs.signupBtn.addEventListener('click', onSignupClick);
 
 function onSigninClick() {
+  refs.form.reset();
+
   activeTab = 'signin';
   changeActiveTab();
 }
 
 function onSignupClick() {
+  refs.form.reset();
+
   activeTab = 'signup';
   changeActiveTab();
 }
@@ -82,7 +85,7 @@ async function signup() {
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/';
+      window.location.href = '/teamwork-js/';
     })
     .catch(error => {
       const errorCode = error.code;
@@ -104,7 +107,7 @@ async function signin() {
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/';
+      window.location.href = '/teamwork-js/';
     })
     .catch(error => {
       const errorCode = error.code;
