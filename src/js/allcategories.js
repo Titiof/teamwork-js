@@ -5,9 +5,16 @@ import { createListMarkup } from "./bookMarkupLi";
 
 const listEl = document.querySelector('.vertical-menu');
 const categoryTitle = document.querySelector('.main-header');
+const bestsellersList = document.querySelector('.bestsellers-list');
+const items = listEl.querySelectorAll('a');
+
+
 const booksAPI = new BooksAPI();
 
+
 window.addEventListener("DOMContentLoaded", async () => {
+    items[0].classList.add('active');
+
     try{
         const listData =  await booksAPI.getCategoriesList();
         const markup = menuTemplate(listData);
@@ -19,23 +26,44 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 listEl.addEventListener('click', onChangeCategoryPage);
 
+
+bestsellersList.addEventListener('click', (e) => {
+    if(e.target.nodeName === 'BUTTON'){
+        categoryTitle.style.display = "none";
+        renderBooksFromCategory(e.target.name)
+    }
+});
+
+
 async function onChangeCategoryPage(e){
     e.preventDefault();
 
-    if(e.target.name === 'allcategories'){
-        try {
-            const response = await booksAPI.getBooks();
-            createListMarkup(response);
+    if(e.target.nodeName === 'A'){
 
-            categoryTitle.style.display = "block";
+            listEl.querySelectorAll('a').forEach(item => {
+                item.classList.remove('active');
+            });
+    
+            e.target.classList.add('active');
+    
+        if(e.target.name === 'allcategories'){
+            try {
+                const response = await booksAPI.getBooks();
+                createListMarkup(response);
+    
+                categoryTitle.style.display = "block";
+                
+              } catch (error) {
+                Notiflix.Notify.failure('Oops, something went wrong!');
+              }
+        }else {
+            categoryTitle.style.display = "none";
+            renderBooksFromCategory(e.target.name);
             
-          } catch (error) {
-            Notiflix.Notify.failure('Oops, something went wrong!');
-          }
-    }else {
-        categoryTitle.style.display = "none";
-        renderBooksFromCategory(e.target.name);
-    }    
+        }    
+    } else{
+        return;
+    }
 }
 
 async function renderBooksFromCategory(category_name){
@@ -47,3 +75,4 @@ async function renderBooksFromCategory(category_name){
         Notiflix.Notify.failure('Sorry, there is no books in this category');
     }
 }
+
