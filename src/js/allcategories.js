@@ -1,15 +1,15 @@
 import { BooksAPI } from "./books-api";
 import { menuTemplate } from "./allcategories/category_template";
-import createBookMarkup from "./bookMarkupLi";
+import { markupCategoryBook } from "./allcategories/category_template";
+import { createListMarkup } from "./bookMarkupLi";
 
 const listEl = document.querySelector('.vertical-menu');
-
+const categoryTitle = document.querySelector('.main-header');
 const booksAPI = new BooksAPI();
 
 window.addEventListener("DOMContentLoaded", async () => {
     try{
         const listData =  await booksAPI.getCategoriesList();
-        //console.log(listData);
         const markup = menuTemplate(listData);
         listEl.insertAdjacentHTML("beforeend", markup);
     }catch(error) {
@@ -21,18 +21,29 @@ listEl.addEventListener('click', onChangeCategoryPage);
 
 async function onChangeCategoryPage(e){
     e.preventDefault();
-    
-    if(e.target.nodeName === "A"){
-        const booksCategoryData = await booksAPI.getFullCategory(e.target.name);
 
-        const bookLiEl = booksCategoryData.map(book =>{
-            const markup = createBookMarkup(book);
-            return markup;
-        }).join('');
+    if(e.target.name === 'allcategories'){
+        try {
+            const response = await booksAPI.getBooks();
+            createListMarkup(response);
 
-        const bookCategoryElements = `<ul class="top-books-wrapper">
-        ${bookLiEl}
-        </ul>`;
-        document.querySelector('.bestsellers').innerHTML = bookCategoryElements;
+            categoryTitle.style.display = "block";
+            
+          } catch (error) {
+            Notiflix.Notify.failure('Oops, something went wrong!');
+          }
+    }else {
+        categoryTitle.style.display = "none";
+        renderBooksFromCategory(e.target.name);
+    }    
+}
+
+async function renderBooksFromCategory(category_name){
+    try{
+        const booksCategoryData = await booksAPI.getFullCategory(category_name);
+
+        markupCategoryBook(booksCategoryData, category_name);
+    }catch(error){
+        Notiflix.Notify.failure('Sorry, there is no books in this category');
     }
 }
