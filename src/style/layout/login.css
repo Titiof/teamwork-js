@@ -5,11 +5,19 @@
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+#login-field-name {
+  max-height: 200px;
+  overflow: hidden;
+  transition: opacity 800ms ease-in-out, max-height 800ms ease-in-out;
+}
+#login-field-name.hidden {
+  max-height: 0;
+  opacity: 0;
 }
 
 .login-open {
@@ -55,6 +63,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.5s ease-in-out;
+}
+.login-btn:hover,
+.login-btn:focus {
+  transform: rotate(360deg);
 }
 
 @media screen and (min-width: 768px) {
@@ -176,7 +189,15 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   margin-bottom: 14px;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  border: 2px solid var(--color-black);
 }
+.login-submit-btn:hover,
+.login-submit-btn:focus {
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
 @media screen and (min-width: 768px) {
   .login-submit-btn {
     max-width: 500px;
@@ -208,12 +229,14 @@
 }
 
 .login-sign-up {
-  color: var(--color-blue);
+  color: var(--color-black-transparent);
+  cursor: pointer;
 }
 .login-sign-in {
-  color: var(--color-blue);
-}
-.is-off {
   color: var(--color-black-transparent);
-  text-decoration: none;
+  cursor: pointer;
+}
+.active {
+  color: var(--color-blue);
+  text-decoration: underline;
 }

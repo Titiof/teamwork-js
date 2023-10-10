@@ -1,0 +1,545 @@
+/* body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Light Theme */
+/*.theme-light {
+  --background-color: var(--color-white);
+  --text-color: var(--color-black);
+}
+
+/* Dark Theme */
+/*.theme-dark {
+  --background-color: var(--color-black);
+  --text-color: var(--color-white);
+} */
+/* Add additional styling for dark theme here */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('https://i.ibb.co/FxzBYR9/night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Add this CSS to your existing styles */
+.theme-switch .background-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switch .background-icon {
+  cursor: pointer;
+}
+
+.theme-switch .background-icon:hover {
+  transform: scale(1.1);
+}
+/* -----------------------Header ----------------------------------------*/
+.header {
+  background: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-radius: 0px 0px 8px 8px;
+  border: 2px solid #111;
+  background: #fff;
+}
+.container.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 320px) {
+  .logo {
+    margin-right: 60px;
+  }
+  .header {
+    min-width: 322px;
+  }
+}
+@media (min-width: 335px) {
+  .logo {
+    margin-right: 110px;
+  }
+}
+.nav-list {
+  display: none;
+}
+
+@media (min-width: 425px) {
+  .logo {
+    margin-right: 162px;
+  }
+}
+/*----------------------   mobile menu   -----------------------*/
+
+.header-menu {
+  background: var(--color-white);
+  border-radius: 0px 0px 8px 8px;
+  border: 2px solid #111;
+  display: flex;
+  align-items: center;
+
+  padding: 21px 16px;
+}
+.menu-toggle {
+  min-height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+}
+.menu-toggle:hover,
+.menu-toggle:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 767px) {
+  .menu {
+    display: none;
+  }
+}
+
+.mob-link {
+  display: flex;
+  align-items: center;
+  color: var(--color-white);
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5; /* 150% */
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-color: var(--white);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 250ms ease-in-out;
+}
+
+.menu-container.is-open {
+  transform: translateX(0);
+}
+
+.menu-container .menu-toggle {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  color: var(--color-black);
+}
+.burger-icon {
+  stroke: var(--color-black);
+}
+.mobile-menu {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  flex-direction: column;
+  gap: 17px;
+
+  flex-wrap: wrap;
+  align-content: center;
+  margin-top: 100px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+  color: var(--color-white);
+  font-family: DM Sans;
+  font-size: 14px;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.56px;
+  text-transform: uppercase;
+}
+
+.mobile-menu .mob-link {
+  text-decoration: none;
+  color: var(--color-white); /* Default text color */
+  padding: 8px 16px; /* Add padding for better click area */
+  border-radius: 36px;
+  transition: color 0.2s, background-color 0.2s;
+}
+.mob-link:hover {
+  background-color: var(--color-gold); /* Change background color on hover */
+  font-weight: 700;
+}
+
+.mob-link:active {
+  color: var(--color-black);
+  background-color: var(--color-gold);
+  font-weight: 700;
+}
+.mob-link.active {
+  color: var(--color-black);
+  background-color: var(--color-gold);
+  font-weight: 700;
+}
+
+.mob-link .logo-icon {
+  margin-left: 4px; /* Add left margin to create a gap between text and icon */
+  fill: var(--color-white);
+}
+
+.close-icon {
+  fill: var(--color-white);
+}
+
+.menu-container {
+  background-image: url('../../images/mobile-menu-bg/group-6.webp'),
+    var(--custom-radial-gradient); /* 1x image */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+}
+
+/* For high-resolution screens (x2 or 2x) */
+@media only screen and (min-resolution: 144dpi),
+  only screen and (min-resolution: 1.5dppx) {
+  .menu-container {
+    background-image: url('../../images/mobile-menu-bg/group-6@2x.webp'),
+      var(--custom-radial-gradient);
+    background-size: contain;
+    background-position: center bottom;
+  }
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 20px 20px;
+}
+
+.profile-text {
+  color: var(--color-white);
+  font-family: DM Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.44px;
+}
+
+/* Style the container for the bottom-left link */
+.mobile-logoutbtn-container {
+  position: fixed;
+  margin-top: 270px;
+  left: 20px;
+}
+@media (max-width: 320px) {
+  .mobile-logoutbtn-container {
+    margin-top: 265px;
+  }
+}
+/* Style the link itself and make it hoverable */
+.mobile-logout {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.56px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  padding: 15px 24px;
+  border-radius: 18px;
+  border: 1.5px solid var(--color-black);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Change background color on hover */
+.mobile-logout:hover {
+  background-color: var(--color-gold); /* Hover background color */
+}
+@media (max-width: 767px) {
+  .profile-container {
+    display: none;
+  }
+  .signup-container {
+    display: none;
+  }
+}
+
+.switcher {
+  margin-right: 14px;
+}
+/* ----------------------Tablet styles------------------------------ */
+@media screen and (min-width: 768px) {
+  .mob-link {
+    font-size: 18px;
+  }
+  .menu-container .menu-toggle {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    color: var(--color-black);
+  }
+
+  .logo {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-right: 40px;
+  }
+  /*------------- Hiden features -------------------*/
+  .menu-toggle.js-open-menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: none;
+  }
+  /* ================================================ */
+  .profile-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    background-color: var(--color-blue);
+    border-radius: 36px;
+    min-width: 185px;
+    height: 45px;
+  }
+
+  .profile-container:hover,
+  .profile-container:focus {
+    background-color: rgb(79, 79, 187);
+  }
+  .profile-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 9px 4px 12px;
+  }
+
+  .profile-img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile-text {
+    color: var(--color-white);
+    font-family: DM Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.44px;
+  }
+  .signup-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    background-color: var(--color-blue);
+    border-radius: 36px;
+    min-width: 185px;
+    height: 45px;
+  }
+  .signup-container:hover,
+  .signup-container:focus {
+    background-color: rgb(79, 79, 187);
+  }
+
+  .signup-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    margin: 15px 14px 15px 14px;
+  }
+
+  .signup-text {
+    color: #fff;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.56px;
+  }
+  .header {
+    margin-bottom: 40px;
+    padding: 0;
+  }
+  .container.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main-nav {
+    display: flex;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-right: 60px;
+  }
+
+  /* <a> in section main-nav */
+  .nav-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: var(--color-black);
+    font-family: DM Sans;
+    font-size: 14px;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.56px;
+    text-transform: uppercase;
+    transition: color 0.2s, background-color 0.2s;
+    gap: 4px;
+  }
+
+  .nav-link:hover {
+    padding: 8px 16px;
+    border-radius: 36px;
+    background-color: var(--color-gold);
+    font-weight: 700;
+  }
+
+  .nav-link:active {
+    padding: 8px 16px;
+    border-radius: 36px;
+    color: var(--color-black);
+    background-color: var(--color-gold);
+    font-weight: 700;
+  }
+  .nav-link.active {
+    padding: 8px 16px;
+    border-radius: 36px;
+    color: var(--color-black);
+    background-color: var(--color-gold);
+    font-weight: 700;
+  }
+  .switch {
+    margin-right: 20px;
+  }
+  .shop-list {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+/* =========================1024px ==============================*/
+@media screen and (min-width: 1024px) {
+  .main-nav {
+    margin-right: 275px;
+  }
+  .shop-link {
+    width: 118px;
+  }
+}
+/*------------------------------ Dasktop styles-------------------------------------- */
+@media screen and (min-width: 1440px) {
+  .header {
+    /* margin-bottom: 64px; */
+  }
+
+  .logo-icon {
+    width: 128px;
+    height: 18px;
+  }
+  .logo-icon:hover,
+  .logo-icon:focus {
+    stroke: #2a4ff1;
+    fill: #2a4ff1;
+  }
+  .logo.mob-space {
+    padding: 0;
+  }
+}
