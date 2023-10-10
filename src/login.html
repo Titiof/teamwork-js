@@ -16,17 +16,11 @@
   <body>
     <div class="backdrop js-backdrop">
       <div class="login-modal">
-        <a href="./index.html" class="login-link-btn"
-          ><button
-            class="login-btn js-login-btn"
-            type="button"
-            data-login-close
-          >
-            <svg class="login-btn-icon" width="20" height="20">
-              <use href="./images/sprite.svg#icon-x-close"></use>
-            </svg>
-          </button>
-        </a>
+        <button class="login-btn js-login-btn" type="button" data-login-close>
+          <svg class="login-btn-icon" width="20" height="20">
+            <use href="./images/sprite.svg#icon-x-close"></use>
+          </svg>
+        </button>
         <form class="login-form js-login-form">
           <div class="login-field">
             <input
@@ -77,8 +71,8 @@
         </form>
       </div>
     </div>
-    <!-- <script type="module" src="./js/login/fire-base.js"></script> -->
-    <!-- <script type="module" src="./js/login-js.js"></script> -->
-    <script type="module" src="./index.js"></script>
+    <!-- <script defer type="module" src="./js/login/firebase.js"></script> -->
+    <script type="module" src="./js/login.js"></script>
+    <!-- <script type="module" src="./index.js"></script> -->
   </body>
 </html>
