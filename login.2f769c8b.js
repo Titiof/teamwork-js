@@ -1,0 +1,2 @@
+!function(){var e={openModalBtn:document.querySelector(".js-login-open"),closeModalBtn:document.querySelector(".js-login-btn"),modal:document.querySelector(".js-backdrop"),form:document.querySelector(".js-login-form")};function o(){e.modal.classList.toggle("is-hidden")}e.openModalBtn.addEventListener("click",o),e.closeModalBtn.addEventListener("click",o),e.form.addEventListener("submit",(function(o){o.preventDefault(),console.log("hi"),e.form.reset()})),q}();
+//# sourceMappingURL=login.2f769c8b.js.map
