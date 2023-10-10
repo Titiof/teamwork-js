@@ -11,7 +11,7 @@ export function menuTemplate(list){
  }
 
 export function markupCategoryBook(array, category_name){
-    console.log(array);
+    //console.log(array);
     const bookLiEl = array.map(book =>{
         const markup = createBookMarkup(book);
         return markup;
