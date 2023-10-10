@@ -1,20 +1,19 @@
-import {BooksAPI} from "./books-api";
-import {menuTemplate} from "./allcategories/category_template";
+import { BooksAPI } from "./books-api";
+import { menuTemplate } from "./allcategories/category_template";
 
 const listEl = document.querySelector('.vertical-menu');
 
 const booksAPI = new BooksAPI();
 
-async function fetchBookCategoryList(){
-    return booksListData = await booksAPI.getCategoriesList(); 
-}
-
 window.addEventListener("DOMContentLoaded", async () => {
-    const listData =  await fetchBookCategoryList();
-    //console.log(listData);
-    const markup = menuTemplate(listData);
-    
-    listEl.insertAdjacentHTML("beforeend", markup);
+    try{
+        const listData =  await booksAPI.getCategoriesList();
+        console.log(listData);
+        const markup = menuTemplate(listData);
+        listEl.insertAdjacentHTML("beforeend", markup);
+    }catch(error) {
+        Notiflix.Notify.failure('Oops, something went wrong!');
+    }
 });
 
 listEl.addEventListener('click', onChangeCategoryPage);
