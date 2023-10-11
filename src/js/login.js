@@ -94,7 +94,7 @@ async function signup() {
       Notify.success('Registration was successful!');
 
       setTimeout(function () {
-        // window.location.href = '/teamwork-js/';
+      window.location.href = '/teamwork-js/';
       }, 3000);
     })
     .catch(error => {
@@ -119,6 +119,7 @@ async function signin() {
       setTimeout(function () {
         window.location.href = '/teamwork-js/';
       }, 3000);
+
     })
     .catch(error => {
       const errorCode = error.code;
