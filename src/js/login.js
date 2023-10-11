@@ -82,7 +82,7 @@ async function signup() {
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/';
+      window.location.href = '/teamwork-js/';
     })
     .catch(error => {
       const errorCode = error.code;
@@ -104,7 +104,7 @@ async function signin() {
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/';
+      window.location.href = '/teamwork-js/';
     })
     .catch(error => {
       const errorCode = error.code;

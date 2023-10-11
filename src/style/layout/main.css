@@ -35,14 +35,12 @@
 
 @media only screen and (max-width: 767px) {
   .book-card:first-child {
-    max-width: 335px;
     display: block;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .book-card:nth-child(-n + 3) {
-    max-width: 218px;
     display: block;
   }
 }
@@ -57,25 +55,21 @@
 .book-card-img {
   border-radius: 8px;
   margin-bottom: 14px;
-
-  display: block;
-  max-width: 100%;
-  height: auto;
+  width: 335px;
+  height: 485px;
 }
-/* height: auto; */
-/* object-fit: cover; */
-/* border: #b4afaf 1px solid; */
 
 @media only screen and (min-width: 768px) {
   .book-card-img {
-    /* width: 335px;
-    height: 485px; */
-    display: block;
-    max-width: 100%;
-    height: auto;
-    /* height: auto; */
-    /* object-fit: cover; */
-    /* border: #b4afaf 1px solid; */
+    width: 218px;
+    height: 316px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .book-card-img {
+    width: 180px;
+    height: 256px;
   }
 }
 
@@ -90,6 +84,19 @@
   letter-spacing: -0.04em;
   text-transform: uppercase;
   margin-bottom: 4px;
+  max-width: 335px;
+}
+
+@media only screen and (min-width: 768px) {
+  .book-card-title {
+    max-width: 218px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .book-card-title {
+    max-width: 180px;
+  }
 }
 
 .book-card-text {
@@ -101,17 +108,34 @@
   font-style: italic;
   line-height: 1.16;
   letter-spacing: -0.04em;
+  max-width: 335px;
+}
+
+@media only screen and (min-width: 768px) {
+  .book-card-text {
+    max-width: 218px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .book-card-text {
+    max-width: 180px;
+  }
 }
 
 .book-card-btn {
+  color: var(--color-black);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
   display: block;
   margin-bottom: 40px;
   margin-left: auto;
   padding: 14px 28px;
-
   min-width: 124px;
   min-height: 46px;
-  background-color: var(--color-light-gray);
+  background-color: var(--color-white);
   border: 2px solid var(--color-blue);
   border-radius: 40px;
   transition: color 500ms ease-in-out, background-color 500ms ease-in-out;
@@ -132,27 +156,22 @@
   display: flex;
   gap: 24px;
   margin-bottom: 8px;
-  /* max-height: 571px; */
 }
 
 @media only screen and (min-width: 768px) {
   .top-category-list {
     margin-bottom: 20px;
-    max-height: 408px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .top-category-list {
     margin-bottom: 32px;
-    max-height: 348px;
   }
 }
 
 .top-category-title {
-  color: #b4afaf;
-  font-size: 14px;
-  font-weight: 400;
+  color: var(--color-gray);
   line-height: 1.28;
   letter-spacing: 0.03em;
   text-transform: uppercase;
