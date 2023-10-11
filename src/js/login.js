@@ -1,8 +1,11 @@
 import { initializeApp } from 'firebase/app';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
   signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -53,14 +56,19 @@ function onSignupClick() {
 }
 
 function changeActiveTab() {
-  refs.signupBtn.classList.toggle('active');
-  refs.signinBtn.classList.toggle('active');
   if (activeTab === 'signin') {
+    refs.signupBtn.classList.remove('active');
+    refs.signinBtn.classList.add('active');
     refs.containerNameInput.classList.add('is-hidden');
+    refs.inputName.required = false;
+
     refs.loginSubmitBtn.textContent = 'Sign in';
   }
   if (activeTab === 'signup') {
+    refs.signupBtn.classList.add('active');
+    refs.signinBtn.classList.remove('active');
     refs.containerNameInput.classList.remove('is-hidden');
+    refs.inputName.required = true;
     refs.loginSubmitBtn.textContent = 'Sign up';
   }
 }
@@ -75,36 +83,25 @@ async function onFormSubmit(e) {
 }
 
 async function signup() {
-  await createUserWithEmailAndPassword(
+  const userCredential = await createUserWithEmailAndPassword(
     auth,
     refs.email.value,
     refs.password.value
-  )
-    .then(userCredential => {
-      const user = userCredential.user;
-      const displayName = refs.inputName.value;
-      console.log(displayName);
-      user.updateProfile({
-        displayName: displayName,
+  );
+  if (userCredential && auth.currentUser) {
+    try {
+      sendEmailVerification(auth.currentUser);
+      updateProfile(auth.currentUser, {
+        displayName: refs.inputName.value,
+        photoURL: 'https://picsum.photos/50/50?random=1',
       });
-
-      localStorage.setItem('user', JSON.stringify(user));
-      refs.form.reset();
-      error = '';
-      Notify.success('Registration was successful!');
-
       setTimeout(function () {
-        // window.location.href = '/teamwork-js/';
+        window.location.href = '/teamwork-js/';
       }, 3000);
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === 'auth/invalid-login-credentials') {
-        error = 'invalid user email or passsword2';
-        Notify.failure(error);
-      }
-    });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 async function signin() {
@@ -117,7 +114,7 @@ async function signin() {
       // Notify.success('Authorization was successful!');
 
       setTimeout(function () {
-        window.location.href = '/teamwork-js/';
+        // window.location.href = '/teamwork-js/';
       }, 3000);
     })
     .catch(error => {
@@ -135,6 +132,7 @@ document.querySelector('.login-logout').addEventListener('click', function () {
   auth
     .signOut()
     .then(function () {
+      localStorage.removeItem('user');
       console.log('Користувач не авторизований');
     })
     .catch(function (error) {
@@ -144,7 +142,6 @@ document.querySelector('.login-logout').addEventListener('click', function () {
 
 auth.onAuthStateChanged(function (user) {
   console.log(user);
-  
 
   if (user) {
     Notify.success(`Authorized user: ${user.email}`);

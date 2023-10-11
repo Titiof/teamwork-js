@@ -36,6 +36,7 @@
   border: 2px solid var(--color-black);
   background-color: var(--color-light-gray);
   margin: 0 auto;
+
 }
 @media screen and (min-width: 768px) {
   .login-modal {
@@ -88,13 +89,15 @@
   gap: 24px;
   margin-bottom: 40px;
 }
-.login-field {
-  position: relative;
-}
+
 @media screen and (min-width: 768px) {
-  .login-field {
+  .login-field-container {
     gap: 28px;
   }
+}
+
+.login-field {
+  position: relative;
 }
 
 .login-field-input {
@@ -131,21 +134,10 @@
 }
 
 #login-field-name {
-  transition: all 800ms ease-in-out;
 }
-/* #login-field-name.hidden {
-  opacity: 0;
+#login-field-name.is-hidden {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-} */
+}
 
 .modal-error-message {
   position: absolute;
@@ -257,5 +249,4 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-
 }
