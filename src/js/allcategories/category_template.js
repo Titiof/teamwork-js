@@ -3,9 +3,7 @@ import createBookMarkup from "../bookMarkupLi";
 
 export function menuTemplate(list){
      return list.map(el => {
-        return `<li class='list_name'>
-                 <a href="#" name='${el.list_name}'>${el.list_name}</a>
-             </li>`;
+        return `<li class='list_name' name='${el.list_name}>${el.list_name}</li>`;
      }).join('');
  }
 

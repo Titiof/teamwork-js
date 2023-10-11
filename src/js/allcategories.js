@@ -6,7 +6,7 @@ import { createListMarkup } from "./bookMarkupLi";
 const listEl = document.querySelector('.vertical-menu');
 const categoryTitle = document.querySelector('.main-header');
 const bestsellersList = document.querySelector('.bestsellers-list');
-const items = listEl.querySelectorAll('a');
+const items = listEl.querySelectorAll('li');
 
 
 const booksAPI = new BooksAPI();
@@ -38,9 +38,9 @@ bestsellersList.addEventListener('click', (e) => {
 async function onChangeCategoryPage(e){
     e.preventDefault();
 
-    if(e.target.nodeName === 'A'){
+    if(e.target.nodeName === 'LI'){
 
-            listEl.querySelectorAll('a').forEach(item => {
+            listEl.querySelectorAll('li').forEach(item => {
                 item.classList.remove('active');
             });
     
