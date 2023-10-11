@@ -47,11 +47,11 @@ async function onChangeCategoryPage(e){
         if(e.target.classList.contains('all_categories')){
             try {
                 const response = await booksAPI.getBooks();
-                console.log(response);
                 createListMarkup(response);
     
                 categoryTitle.style.display = "block";
-  
+
+                
               } catch (error) {
                 Notiflix.Notify.failure('Oops, something went wrong!');
               }
@@ -60,7 +60,6 @@ async function onChangeCategoryPage(e){
             categoryTitle.style.display = "none";
             const title = e.target.textContent;
             renderBooksFromCategory(title);
-        
         }    
     } else {
         return;
