@@ -56,11 +56,11 @@ function changeActiveTab() {
   refs.signupBtn.classList.toggle('active');
   refs.signinBtn.classList.toggle('active');
   if (activeTab === 'signin') {
-    refs.containerNameInput.classList.add('hidden');
+    refs.containerNameInput.classList.add('is-hidden');
     refs.loginSubmitBtn.textContent = 'Sign in';
   }
   if (activeTab === 'signup') {
-    refs.containerNameInput.classList.remove('hidden');
+    refs.containerNameInput.classList.remove('is-hidden');
     refs.loginSubmitBtn.textContent = 'Sign up';
   }
 }
@@ -88,6 +88,7 @@ async function signup() {
       window.location.href = '/teamwork-js/';
     })
     .catch(error => {
+      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
@@ -110,13 +111,11 @@ async function signin() {
       window.location.href = '/teamwork-js/';
     })
     .catch(error => {
+      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode);
-      if (errorCode === 'auth/invalid-login-credentials') {
-        error = 'invalid user email or passsword';
-        alert(error);
-      }
+
     });
   console.log(123);
 }
