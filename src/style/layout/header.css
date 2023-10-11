@@ -1,113 +1,100 @@
-/* body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-/* Light Theme */
-/*.theme-light {
-  --background-color: var(--color-white);
-  --text-color: var(--color-black);
-}
-
-/* Dark Theme */
-/*.theme-dark {
-  --background-color: var(--color-black);
-  --text-color: var(--color-white);
-} */
-/* Add additional styling for dark theme here */
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
+/* ===============Switcher============== */
+.knobs,
+.layer {
   position: absolute;
-  cursor: pointer;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  left: 0;
 }
 
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 40px;
+.button {
+  position: relative;
+  top: 50%;
   width: 40px;
-  left: 0px;
-  bottom: 4px;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  box-shadow: 0 0px 15px #2020203d;
-  background: white url('https://i.ibb.co/FxzBYR9/night.png');
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 20px;
+  margin-right: 14px;
+  overflow: hidden;
+}
+@media only screen and (min-width: 425px) {
+  .button {
+    margin-right: 24px;
+  }
 }
 
-input:checked + .slider {
-  background-color: #2196f3;
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+.button.b2 {
+  border-radius: 2px;
+  width: 40px;
+  height: 20px;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(24px);
-  -ms-transform: translateX(24px);
-  transform: translateX(24px);
-  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-/* Add this CSS to your existing styles */
-.theme-switch .background-icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.theme-switch .background-icon {
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
   cursor: pointer;
+  z-index: 3;
 }
 
-.theme-switch .background-icon:hover {
-  transform: scale(1.1);
+.knobs {
+  z-index: 2;
 }
+
+.layer {
+  width: 100%;
+  background-color: #4f2ee8;
+  box-shadow: var(--layer-bg-box-shadow);
+
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: 'ON';
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 18px;
+  height: 15px;
+  color: blue;
+  font-size: 6px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 4px 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  content: 'OFF';
+  left: 20px;
+  background-color: white;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: var(--color-blue);
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
 /* -----------------------Header ----------------------------------------*/
 .header {
   background: var(--color-white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0;
   border-radius: 0px 0px 8px 8px;
   border: 2px solid #111;
   background: #fff;
@@ -130,10 +117,12 @@ input:checked + .slider:before {
 
 /* nav-container */
 .nav-container {
-  min-width: 280px;
   padding: 13px 20px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-nav {
@@ -146,7 +135,7 @@ input:checked + .slider:before {
 }
 @media only screen and (min-width: 375px) {
   .nav-container {
-    max-width: 345px;
+    max-width: 375px;
   }
 }
 /*----------------------   mobile menu   -----------------------*/
@@ -356,7 +345,7 @@ input:checked + .slider:before {
 
 @media screen and (min-width: 425px) {
   .nav-container {
-    max-width: 385px;
+    max-width: 425px;
   }
 }
 /* ----------------------Tablet styles------------------------------ */
@@ -512,7 +501,7 @@ input:checked + .slider:before {
 /* Tablet styles */
 @media screen and (min-width: 768px) {
   .nav-container {
-    max-width: 704px;
+    max-width: 768px;
     padding: 13px 32px;
   }
   .logo-nav {
@@ -567,5 +556,6 @@ input:checked + .slider:before {
   .nav-container {
     max-width: 1440px;
     padding: 13px 24px;
+    margin-left: 0;
   }
 }
