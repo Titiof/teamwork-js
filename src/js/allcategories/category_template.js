@@ -29,4 +29,9 @@ export function markupCategoryBook(array, category_name){
     <ul class="category-books-wrapper">${bookLiEl}</ul>`;
 
     document.querySelector('.bestsellers-list').innerHTML = bookCategoryElements;
+
+    const bookCard = document.querySelectorAll('.book-card');
+    bookCard.forEach(item => {
+        item.classList.add('show-all');
+    })
 }
