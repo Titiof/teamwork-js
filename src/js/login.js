@@ -4,7 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -30,8 +30,7 @@ const refs = {
   email: document.querySelector('#user_email'),
   password: document.querySelector('#user_password'),
   loginSubmitBtn: document.querySelector('.login-submit-btn'),
-  containerNameInput: document.querySelector('#login-field-name')
-
+  containerNameInput: document.querySelector('#login-field-name'),
 };
 
 refs.closeModalBtn.addEventListener('click', onCloseModalClick);
@@ -40,11 +39,15 @@ refs.signinBtn.addEventListener('click', onSigninClick);
 refs.signupBtn.addEventListener('click', onSignupClick);
 
 function onSigninClick() {
+  refs.form.reset();
+
   activeTab = 'signin';
   changeActiveTab();
 }
 
 function onSignupClick() {
+  refs.form.reset();
+
   activeTab = 'signup';
   changeActiveTab();
 }
@@ -53,11 +56,11 @@ function changeActiveTab() {
   refs.signupBtn.classList.toggle('active');
   refs.signinBtn.classList.toggle('active');
   if (activeTab === 'signin') {
-    refs.containerNameInput.classList.add('hidden');
+    refs.containerNameInput.classList.add('is-hidden');
     refs.loginSubmitBtn.textContent = 'Sign in';
   }
   if (activeTab === 'signup') {
-    refs.containerNameInput.classList.remove('hidden');
+    refs.containerNameInput.classList.remove('is-hidden');
     refs.loginSubmitBtn.textContent = 'Sign up';
   }
 }
@@ -70,6 +73,7 @@ async function onFormSubmit(e) {
   e.preventDefault();
   activeTab === 'signup' ? signup() : signin();
 }
+
 async function signup() {
   await createUserWithEmailAndPassword(
     auth,
@@ -78,42 +82,74 @@ async function signup() {
   )
     .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
+      const displayName = refs.inputName.value;
+      console.log(displayName);
+      user.updateProfile({
+        displayName: displayName,
+      });
+
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
+      Notify.success('Registration was successful!');
+
+      setTimeout(function () {
       window.location.href = '/teamwork-js/';
+      }, 3000);
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
       if (errorCode === 'auth/invalid-login-credentials') {
-        error = 'invalid user email or passsword';
-        alert(error);
+        error = 'invalid user email or passsword2';
+        Notify.failure(error);
       }
     });
 }
 
 async function signin() {
-  console.log(321);
   signInWithEmailAndPassword(auth, refs.email.value, refs.password.value)
     .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/teamwork-js/';
+      // Notify.success('Authorization was successful!');
+
+      setTimeout(function () {
+        window.location.href = '/teamwork-js/';
+      }, 3000);
+
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode);
-      if (errorCode === 'auth/invalid-login-credentials') {
-        error = 'invalid user email or passsword';
-        alert(error);
-      }
+      error = 'invalid user email or passsword';
+
+      Notify.failure(error);
     });
-  console.log(123);
 }
+
+//=======Для кнопки логаут
+
+document.querySelector('.login-logout').addEventListener('click', function () {
+  auth
+    .signOut()
+    .then(function () {
+      console.log('Користувач не авторизований');
+    })
+    .catch(function (error) {
+      console.error('Error whith enter', error);
+    });
+});
+
+auth.onAuthStateChanged(function (user) {
+  console.log(user);
+  
+
+  if (user) {
+    Notify.success(`Authorized user: ${user.email}`);
+  } else {
+    Notify.info('Need authrized');
+  }
+});
