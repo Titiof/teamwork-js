@@ -1,0 +1,32 @@
+<section class="shopping">
+  <h2 class="main-header">
+    Shopping <span class="main-header-accent">List</span>
+  </h2>
+  <div class="shopping-plug">
+    <p class="shopping-plug-text">
+      This page is empty, add some books and proceed to order.
+    </p>
+    <picture class="shopping-plug-img">
+      <source
+        srcset="
+          ./images/shopping-list/books-shopping-list.webp    1x,
+          ./images/shopping-list/books-shopping-list@2x.webp 2x
+        "
+        type="image/webp"
+      />
+      <source
+        srcset="
+          ./images/shopping-list/books-shopping-list.png    1x,
+          ./images/shopping-list/books-shopping-list@2x.png 2x
+        "
+      />
+
+      <img
+        src="./images/shopping-list/books-shopping-list.png"
+        alt="Shopping list is empty"
+      />
+    </picture>
+  </div>
+  <ul class="shopping-list"></ul>
+  <div id="pagination" class="tui-pagination is-hidden"></div>
+</section>
