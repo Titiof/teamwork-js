@@ -58,8 +58,8 @@ async function onChangeCategoryPage(e){
               }
         }else {
             categoryTitle.style.display = "none";
-            renderBooksFromCategory(e.target.name);
-            
+            const title = e.target.name;
+            renderBooksFromCategory(title);
         }    
     } else{
         return;
@@ -69,7 +69,6 @@ async function onChangeCategoryPage(e){
 async function renderBooksFromCategory(category_name){
     try{
         const booksCategoryData = await booksAPI.getFullCategory(category_name);
-
         markupCategoryBook(booksCategoryData, category_name);
     }catch(error){
         Notiflix.Notify.failure('Sorry, there is no books in this category');
