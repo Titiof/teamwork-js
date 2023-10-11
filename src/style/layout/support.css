@@ -1,8 +1,8 @@
 .section-support-container {
-  padding-top: 24px;
+  padding-top: 28px;
   padding-left: 40px;
   padding-right: 40px;
-  padding-bottom: 20px;
+  padding-bottom: 26px;
   background: radial-gradient(
     189.32% 190.93% at 59.76% -23.42%,
     #4f2ee8 18.03%,
@@ -50,8 +50,9 @@
 }
 
 .section-support-png {
+  width: 100%;
+  height: 32px;
   padding-left: 16px;
-  font-weight: 0;
 }
 
 .logo-ukr {
@@ -62,19 +63,15 @@
   height: 32px;
   background: var(--color-white);
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 6px;
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* .section-support-btn:hover { */
-/* background: var(--color-blue); */
-/* } */
-
-.scroll-up {
-  fill: var(--color-blue);
-}
 .scroll-down {
   fill: var(--color-blue);
 }
@@ -92,8 +89,17 @@
     margin-right: 32px;
     margin-bottom: 98px;
   }
+  .section-support-container {
+    padding-top: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 24px;
+  }
   .section-support-title {
     font-size: 24px;
+  }
+  .section-support-list {
+    margin-right: 130px;
   }
   .section-support-btn {
     width: 38px;

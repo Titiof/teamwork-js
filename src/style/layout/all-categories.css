@@ -1,5 +1,5 @@
 .vertical-menu {
-  width: 335px;
+  max-width: 335px;
   height: 228px;
   overflow-y: auto;
 }
@@ -17,7 +17,7 @@
     width: 356px;
   }
 }
-.vertical-menu a {
+.vertical-menu li {
   text-decoration: none;
   margin-bottom: 32px;
   color: var(--color-black-transparent);
@@ -25,13 +25,13 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-a.active {
+li.active {
   color: var(--color-blue);
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
 }
-.vertical-menu a:hover {
+.vertical-menu li:hover {
   color: var(--color-blue);
   font-size: 18px;
   font-weight: 700;
