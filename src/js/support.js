@@ -4,7 +4,7 @@ const firstThreeLiEl = document.querySelector('.first-three-el');
 const lastThreeLiEl = document.querySelector('.last-three-el');
 
 scrollDownEl.addEventListener('click', onScrollDownClick);
-scrollUpEl.addEventListener('click', onScrollUpClick);
+// scrollUpEl.addEventListener('click', onScrollUpClick);
 
 function onScrollDownClick() {
   scrollDownEl.classList.add('is-hidden');

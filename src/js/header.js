@@ -1,7 +1,7 @@
 const currentPath = window.location.pathname;
 // додава авторизацію Владислав
 const user = JSON.parse(localStorage.getItem('user'));
-console.log(user);
+// console.log(user);
 
 // додати прослуховувача подій для кнопки logout і видаляй свого юсера з локалсторедж (код нижче)
 // localStorage.removeItem('user');
