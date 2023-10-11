@@ -145,6 +145,11 @@ input:checked + .slider:before {
     margin-right: 162px;
   }
 }
+/* nav-container */
+.nav-container {
+  min-width: 320px;
+  margin: 0 auto;
+}
 /*----------------------   mobile menu   -----------------------*/
 
 .header-menu {
@@ -353,6 +358,14 @@ input:checked + .slider:before {
 .switcher {
   margin-right: 14px;
 }
+/* Only mobile styles */
+
+@media only screen and (max-width: 767.98px) {
+  .nav-container {
+    max-width: 335px;
+    padding: 0 20px;
+  }
+}
 /* ----------------------Tablet styles------------------------------ */
 @media screen and (min-width: 768px) {
   .mob-link {
@@ -514,7 +527,14 @@ input:checked + .slider:before {
     gap: 8px;
   }
 }
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1439.98px) {
+  .nav-container {
+    max-width: 768px;
 
+    padding: 0 32px;
+  }
+}
 /* =========================1024px ==============================*/
 @media screen and (min-width: 1024px) {
   .main-nav {
@@ -531,8 +551,9 @@ input:checked + .slider:before {
   }
 
   .logo-icon {
-    width: 128px;
-    height: 18px;
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
   .logo-icon:hover,
   .logo-icon:focus {
@@ -541,5 +562,13 @@ input:checked + .slider:before {
   }
   .logo.mob-space {
     padding: 0;
+  }
+}
+/* Dasktop styles */
+@media screen and (min-width: 1440px) {
+  .nav-container {
+    max-width: 1440px;
+    padding: 0 24px;
+    display: inline-flex;
   }
 }
