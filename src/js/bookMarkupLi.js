@@ -1,8 +1,8 @@
 const booksList = document.querySelector('.bestsellers-list');
 
 export default function createBookMarkup(book) {
-  return `<li class="book-card">
-            <img class="book-card-img" src="${book.book_image}" alt="${book.description}" loading="lazy" width ="180" height ="256" />
+  return `<li class="book-card" id="${book._id}">
+            <img class="book-card-img" src="${book.book_image}" alt="${book.description}" loading="lazy" />
             <h3 class="book-card-title">${book.title}</h3>
             <p class="book-card-text">${book.author}</p>
         </li>`;
@@ -22,7 +22,7 @@ export function createListMarkup(books) {
     <ul class="top-category-list">
     ${liMarkup}
     </ul>
-    <button class="book-card-btn" type="button">See more</button>`;
+    <button class="book-card-btn" name='${books[i].list_name}' type="button">See more</button>`;
     lists.push(markup);
   }
   booksList.innerHTML = lists.join('');

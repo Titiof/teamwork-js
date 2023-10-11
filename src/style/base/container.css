@@ -33,5 +33,6 @@
   }
   .sidebar {
     flex-direction: column;
+    margin-right: 40px;
   }
 }

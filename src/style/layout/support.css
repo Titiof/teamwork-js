@@ -1,0 +1,117 @@
+.section-support-container {
+  padding-top: 28px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 26px;
+  background: radial-gradient(
+    189.32% 190.93% at 59.76% -23.42%,
+    #4f2ee8 18.03%,
+    #fff 100%
+  );
+  box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
+
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.section-support {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.section-support-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 44px;
+  color: var(--color-white, #ffffff);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1, 09;
+  letter-spacing: -0.88px;
+}
+.section-support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 24px;
+  margin-right: 112px;
+}
+.section-support-link {
+  color: var(--color-white, #ffffff);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1, 28;
+  letter-spacing: -0.56px;
+}
+
+.section-support-png {
+  width: 100%;
+  height: 32px;
+  padding-left: 16px;
+}
+
+.logo-ukr {
+  margin-left: 12px;
+}
+.section-support-btn {
+  width: 32px;
+  height: 32px;
+  background: var(--color-white);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scroll-down {
+  fill: var(--color-blue);
+}
+@media screen and (min-width: 375px) {
+  .section-support {
+    max-width: 335px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section-support {
+    max-width: 335px;
+    margin-top: 40px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 98px;
+  }
+  .section-support-container {
+    padding-top: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 24px;
+  }
+  .section-support-title {
+    font-size: 24px;
+  }
+  .section-support-list {
+    margin-right: 130px;
+  }
+  .section-support-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section-support {
+    max-width: 356px;
+    margin-top: 86px;
+    margin-left: 24px;
+    margin-right: 40px;
+  }
+}

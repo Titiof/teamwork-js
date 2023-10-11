@@ -81,7 +81,6 @@ mark,
 audio,
 video {
   margin: 0;
-  padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
@@ -113,6 +112,7 @@ body {
 ol,
 ul {
   list-style: none;
+  padding: 0;
 }
 blockquote,
 q {
@@ -148,4 +148,10 @@ button {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

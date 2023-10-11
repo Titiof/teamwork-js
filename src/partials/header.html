@@ -1,5 +1,5 @@
-<header class="header">
-  <div class="container nav-container">
+<header class="header nav-container">
+  <div class="logo-nav">
     <a href="" class="logo">
       <svg class="logo-icon" width="24" height="24" aria-label="logotype">
         <use href="./images/sprite.svg#icon-logo"></use>
@@ -14,7 +14,11 @@
           <a href="./index.html" id="home-link" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link shop-link" href="./shoppinglist.html" id="shopping-list-link">Shopping List
+          <a
+            class="nav-link shop-link"
+            href="./shoppinglist.html"
+            id="shopping-list-link"
+            >Shopping List
             <svg class="logo-icon" width="20" height="20" aria-label="logotype">
               <use href="./images/sprite.svg#icon-uil-cart"></use>
             </svg>
@@ -22,6 +26,8 @@
         </li>
       </ul>
     </nav>
+  </div>
+  <div class="switcher-button">
     <div class="switcher">
       <label id="switch" class="switch">
         <input type="checkbox" onchange="toggleTheme()" id="slider" />
@@ -30,8 +36,17 @@
       <!-- <button id="switch" onclick="toggleTheme()">Switch</button> -->
     </div>
     <!--  button menu -->
-    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
-      <svg class="burger-icon" width="32" height="32" aria-label="mobile menu button">
+    <button
+      class="menu-toggle js-open-menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg
+        class="burger-icon"
+        width="32"
+        height="32"
+        aria-label="mobile menu button"
+      >
         <use href="./images/sprite.svg#icon-align-left"></use>
       </svg>
     </button>
@@ -39,18 +54,28 @@
       <a href="./login.html" class="signup-link" id="signup-link">
         <span class="signup-text"> Sign up </span>
         <svg width="20" height="20" aria-label="Sign up Icon">
-          <use href="./images/sprite.svg#icon-arrow-narrow-right"></use>
+          <use href="./images/sprite.svg#arrow-right"></use>
         </svg>
       </a>
     </div>
     <div class="profile-container is-hidden">
       <a class="profile-link" href="#">
-        <img class="profile-img" src="./images/profil-img/ellipse-3.webp" alt="User profile image" srcset="
+        <img
+          class="profile-img"
+          src="./images/profil-img/ellipse-3.webp"
+          alt="User profile image"
+          srcset="
             ./images/profil-img/ellipse-3.webp    1x,
             ./images/profil-img/ellipse-3@2x.webp 2x
-          " />
+          "
+        />
         <span class="profile-text">Stephen</span>
-        <svg class="burger-icon" width="23" height="26" aria-label="profile down arrow">
+        <svg
+          class="burger-icon"
+          width="23"
+          height="26"
+          aria-label="profile down arrow"
+        >
           <use href="./images/sprite.svg#icon-fi-ss-caret-down"></use>
         </svg>
       </a>
@@ -59,7 +84,7 @@
       <a href="#" class="signup-link" id="signup-link">
         <span class="signup-text"> Log out </span>
         <svg width="20" height="20" aria-label="Sign up Icon">
-          <use href="./images/sprite.svg#icon-arrow-narrow-right"></use>
+          <use href="./images/sprite.svg#arrow-right"></use>
         </svg>
       </a>
     </div>
