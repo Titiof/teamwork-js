@@ -3,14 +3,12 @@ import createBookMarkup from "../bookMarkupLi";
 
 export function menuTemplate(list){
      return list.map(el => {
-        return `<li class='list_name'>
-                 <a href="#" name='${el.list_name}'>${el.list_name}</a>
-             </li>`;
+        return `<li class='list_name'>${el.list_name}</li>`;
      }).join('');
  }
 
 export function markupCategoryBook(array, category_name){
-    const bookLiEl = array.map(book =>{
+    const bookLiEl = array.map(book => {
         const markup = createBookMarkup(book);
         return markup;
     }).join('');
