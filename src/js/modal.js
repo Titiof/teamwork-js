@@ -1,33 +1,52 @@
 import { BooksAPI } from './books-api';
 
-const modal = document.querySelector('[data-modal]');
-const closeButton = modal.querySelector('.close');
-const addToListButton = modal.querySelector('.add-button');
-const removeFromListButton = modal.querySelector('.remove-button');
-const bookCard = modal.querySelector('.modal-book-card');
+const modal = document.querySelector('.modal-shown');
+const closeButton = document.querySelector('.close');
+const addToListButton = document.querySelector('.add-button');
+const removeFromListButton = document.querySelector('.remove-button');
+const modalBookCard = document.querySelector('.modal-book-card');
 
 const bookArray = [];
 let bookObject = {};
 
-async function openModal(bookId) {
+export function openModalFromBookCard(bookId) {
+  fetchBookData(bookId);
+}
+
+const bookCards = document.querySelector('.bestsellers-list');
+
+bookCards.addEventListener('click', event => {
+  if (
+    event.target.nodeName === 'LI' ||
+    event.target.nodeName === 'IMG' ||
+    event.target.nodeName === 'H3' ||
+    event.target.nodeName === 'P'
+  ) {
+    const book = document.querySelector('.book-card');
+    const bookId = book.id;
+    console.log(bookId);
+  }
+});
+
+async function fetchBookData(bookId) {
   try {
     const booksAPI = new BooksAPI();
     const data = await booksAPI.getBookById(bookId);
-    addMarkup(data);
-    makeBookObjects(data);
+    addBookMarkup(data);
+    createBookObject(data);
     modal.classList.remove('is-hidden');
   } catch (error) {
     console.error(error.message);
   }
 }
 
-function addMarkup(data) {
-  const markup = createMarkup(data);
-  bookCard.innerHTML = markup;
+function addBookMarkup(data) {
+  const bookMarkup = createMarkup(data);
+  modalBookCard.innerHTML = bookMarkup;
 }
 
-function createMarkup(data) {
-  const { _id, book_image, title, author, description, buy_links } = data;
+function createMarkup(data, id) {
+  const { book_image, title, author, description, buy_links } = data;
   return `<div class="book-id">
     <img class="modal-cover" src="${book_image}" alt="Обкладинка книги">
     <div class="book-info">
@@ -38,59 +57,68 @@ function createMarkup(data) {
         <p class="modal-description">${description}</p>
         <ul class="book-shops">
             <li class="shop"><a href="${buy_links[0].url}" class="shop-link" target="_blank">
-            <img
-            class="shops-item-icon"
-             src="./images/modal/amazon.webp"
-            alt="Amazone-logo" 
-              />
-              </a></li>
+                <img
+                class="shops-item-icon"
+                src="./images/modal/amazon.webp"
+                alt="Amazon-logo" 
+                />
+            </a></li>
             <li class="shop"><a href="${buy_links[1].url}" class="shop-link" target="_blank">
-            <img
-            class="shops-item-icon"
-            src="./images/modal/amazon-book.webp"
-            alt="Apple-Books-logo" 
-              /></a></li>
+                <img
+                class="shops-item-icon"
+                src="./images/modal/amazon-book.webp"
+                alt="Apple-Books-logo" 
+                /></a></li>
         </ul>
     </div>
 </div>`;
 }
 
-function makeBookObjects(data) {
+function createBookObject(data) {
   const { _id, book_image, title, author, buy_links, description } = data;
-  bookObject = { _id, book_image, title, author, buy_links, description };
+  bookObject = {
+    _id,
+    book_image,
+    title,
+    author,
+    buy_links,
+    description
+  };
+  addToListButton.classList.add('is-hidden');
+  removeFromListButton.classList.remove('is-hidden');
+  removeFromListButton.removeEventListener('click', removeFromShoppingList);
 }
 
-function addToShoppingList(e) {
-  if (e.target.tagName === 'BUTTON') {
-    if (bookObject) {
-      bookArray.push(bookObject);
-      localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-      addToListButton.classList.add('is-hidden');
-      removeFromListButton.classList.remove('is-hidden');
-      removeFromListButton.addEventListener('click', removeFromShoppingList);
-    }
+function addToShoppingList() {
+  if (bookObject) {
+    bookArray.push(bookObject);
+    localStorage.setItem('shopping-list', JSON.stringify(bookArray));
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+    removeFromListButton.addEventListener('click', removeFromShoppingList);
   }
 }
 
-function removeFromShoppingList(e) {
-  if (e.target.tagName === 'BUTTON') {
-    const removeBookId = bookObject._id;
-    const removeIndex = bookArray.findIndex((item) => item._id === removeBookId);
-    if (removeIndex !== -1) {
-      bookArray.splice(removeIndex, 1);
-      localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-      removeFromListButton.classList.add('is-hidden');
-      addToListButton.classList.remove('is-hidden');
-    }
+function removeFromShoppingList() {
+  const bookIdToRemove = bookObject._id;
+  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  if (indexToRemove !== -1) {
+    bookArray.splice(indexToRemove, 1);
+    localStorage.setItem('shopping-list', JSON.stringify(bookArray));
+    removeFromListButton.classList.add('is-hidden');
+    addToListButton.classList.remove('is-hidden');
   }
 }
-
-addToListButton.addEventListener('click', addToShoppingList);
-removeFromListButton.addEventListener('click', removeFromShoppingList);
 
 closeButton.addEventListener('click', function () {
   modal.classList.add('is-hidden');
 });
+
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.classList.add('is-hidden');
+  }
+};
 
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
