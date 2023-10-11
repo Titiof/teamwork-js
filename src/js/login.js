@@ -4,7 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -73,6 +73,7 @@ async function onFormSubmit(e) {
   e.preventDefault();
   activeTab === 'signup' ? signup() : signin();
 }
+
 async function signup() {
   await createUserWithEmailAndPassword(
     auth,
@@ -81,41 +82,73 @@ async function signup() {
   )
     .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
+      const displayName = refs.inputName.value;
+      console.log(displayName);
+      user.updateProfile({
+        displayName: displayName,
+      });
+
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/teamwork-js/';
+      Notify.success('Registration was successful!');
+
+      setTimeout(function () {
+        // window.location.href = '/teamwork-js/';
+      }, 3000);
     })
     .catch(error => {
-      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
       if (errorCode === 'auth/invalid-login-credentials') {
-        error = 'invalid user email or passsword';
-        alert(error);
+        error = 'invalid user email or passsword2';
+        Notify.failure(error);
       }
     });
 }
 
 async function signin() {
-  console.log(321);
   signInWithEmailAndPassword(auth, refs.email.value, refs.password.value)
     .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
       localStorage.setItem('user', JSON.stringify(user));
       refs.form.reset();
       error = '';
-      window.location.href = '/teamwork-js/';
+      // Notify.success('Authorization was successful!');
+
+      setTimeout(function () {
+        window.location.href = '/teamwork-js/';
+      }, 3000);
     })
     .catch(error => {
-      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode);
+      error = 'invalid user email or passsword';
 
+      Notify.failure(error);
     });
-  console.log(123);
 }
+
+//=======Для кнопки логаут
+
+document.querySelector('.login-logout').addEventListener('click', function () {
+  auth
+    .signOut()
+    .then(function () {
+      console.log('Користувач не авторизований');
+    })
+    .catch(function (error) {
+      console.error('Error whith enter', error);
+    });
+});
+
+auth.onAuthStateChanged(function (user) {
+  console.log(user);
+  
+
+  if (user) {
+    Notify.success(`Authorized user: ${user.email}`);
+  } else {
+    Notify.info('Need authrized');
+  }
+});
