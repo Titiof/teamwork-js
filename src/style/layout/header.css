@@ -1,3 +1,31 @@
+.nav-container {
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+/* Only mobile styles */
+
+@media only screen and (max-width: 767.98px) {
+  .nav-container {
+    max-width: 335px;
+    padding: 0 20px;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1439.98px) {
+  .nav-container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+/* Dasktop styles */
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 24px;
+  }
+}
 
 /* body {
   background-color: var(--background-color);
@@ -46,7 +74,7 @@
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 40px;
   width: 40px;
   left: 0px;
@@ -57,7 +85,7 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
   box-shadow: 0 0px 15px #2020203d;
-  background: white url("https://i.ibb.co/FxzBYR9/night.png");
+  background: white url('https://i.ibb.co/FxzBYR9/night.png');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -74,7 +102,7 @@ input:checked + .slider:before {
   -webkit-transform: translateX(24px);
   -ms-transform: translateX(24px);
   transform: translateX(24px);
-  background: white url("https://i.ibb.co/7JfqXxB/sunny.png");
+  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -113,7 +141,7 @@ input:checked + .slider:before {
   border: 2px solid #111;
   background: #fff;
 }
-.container.nav-container {
+.nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -273,7 +301,7 @@ input:checked + .slider:before {
 }
 
 .menu-container {
-  background-image: url("./images/mobile-menu-bg/group-6.webp"),
+  background-image: url('./images/mobile-menu-bg/group-6.webp'),
     var(--custom-radial-gradient); /* 1x image */
   background-repeat: no-repeat;
   background-size: contain;
@@ -284,7 +312,7 @@ input:checked + .slider:before {
 @media only screen and (min-resolution: 144dpi),
   only screen and (min-resolution: 1.5dppx) {
   .menu-container {
-    background-image: url("./images/mobile-menu-bg/group-6@2x.webp"),
+    background-image: url('./images/mobile-menu-bg/group-6@2x.webp'),
       var(--custom-radial-gradient);
     background-size: contain;
     background-position: center bottom;
