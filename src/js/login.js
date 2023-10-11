@@ -97,7 +97,6 @@ async function signup() {
       });
       setTimeout(function () {
         window.location.href = '/teamwork-js/';
-
       }, 3000);
     } catch (error) {
       console.log(error);
@@ -117,7 +116,6 @@ async function signin() {
       setTimeout(function () {
         // window.location.href = '/teamwork-js/';
       }, 3000);
-
     })
     .catch(error => {
       const errorCode = error.code;
@@ -151,3 +149,27 @@ auth.onAuthStateChanged(function (user) {
     Notify.info('Need authrized');
   }
 });
+/// це додати в шопінг ліст
+// import {
+//   collection,
+//   doc,
+//   getDocs,
+//   getFirestore,
+//   setDoc,
+// } from 'firebase/firestore';
+
+// const db = getFirestore(app);
+
+// const shoppingRef = collection(db, 'shopping-list');
+
+// //як дістати з бази всі книги
+// const querySnapshot = getDocs(shoppingRef).then(res => {
+//   res.forEach(doc => {
+//     console.log(doc.data());
+//   });
+// });
+
+// //як додати до бази даних книгу с айді
+// setDoc(doc(shoppingRef, 'list_name'), {
+//   id: 231231,
+// });
