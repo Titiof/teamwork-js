@@ -6,14 +6,14 @@ import { createListMarkup } from "./bookMarkupLi";
 const listEl = document.querySelector('.vertical-menu');
 const categoryTitle = document.querySelector('.main-header');
 const bestsellersList = document.querySelector('.bestsellers-list');
-const items = listEl.querySelectorAll('li');
+const itemList = listEl.querySelector('li');
 
 
 const booksAPI = new BooksAPI();
 
 
 window.addEventListener("DOMContentLoaded", async () => {
-    items[0].classList.add('active');
+    itemList.classList.add('active');
 
     try{
         const listData =  await booksAPI.getCategoriesList();
@@ -39,29 +39,30 @@ async function onChangeCategoryPage(e){
     e.preventDefault();
 
     if(e.target.nodeName === 'LI'){
-
             listEl.querySelectorAll('li').forEach(item => {
                 item.classList.remove('active');
             });
-    
             e.target.classList.add('active');
-    
-        if(e.target.name === 'allcategories'){
+
+        if(e.target.classList.contains('all_categories')){
             try {
                 const response = await booksAPI.getBooks();
+                console.log(response);
                 createListMarkup(response);
     
                 categoryTitle.style.display = "block";
-                
+  
               } catch (error) {
                 Notiflix.Notify.failure('Oops, something went wrong!');
               }
-        }else {
+
+        } else {
             categoryTitle.style.display = "none";
-            const title = e.target.name;
+            const title = e.target.textContent;
             renderBooksFromCategory(title);
+        
         }    
-    } else{
+    } else {
         return;
     }
 }
