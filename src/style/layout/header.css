@@ -104,10 +104,6 @@ input:checked + .slider:before {
 /* -----------------------Header ----------------------------------------*/
 .header {
   background: var(--color-white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0;
   border-radius: 0px 0px 8px 8px;
   border: 2px solid #111;
   background: #fff;
@@ -130,10 +126,12 @@ input:checked + .slider:before {
 
 /* nav-container */
 .nav-container {
-  min-width: 280px;
   padding: 13px 20px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-nav {
@@ -146,7 +144,7 @@ input:checked + .slider:before {
 }
 @media only screen and (min-width: 375px) {
   .nav-container {
-    max-width: 345px;
+    max-width: 375px;
   }
 }
 /*----------------------   mobile menu   -----------------------*/
@@ -356,7 +354,7 @@ input:checked + .slider:before {
 
 @media screen and (min-width: 425px) {
   .nav-container {
-    max-width: 385px;
+    max-width: 425px;
   }
 }
 /* ----------------------Tablet styles------------------------------ */
@@ -512,7 +510,7 @@ input:checked + .slider:before {
 /* Tablet styles */
 @media screen and (min-width: 768px) {
   .nav-container {
-    max-width: 704px;
+    max-width: 768px;
     padding: 13px 32px;
   }
   .logo-nav {
@@ -567,5 +565,6 @@ input:checked + .slider:before {
   .nav-container {
     max-width: 1440px;
     padding: 13px 24px;
+    margin-left: 0;
   }
 }
