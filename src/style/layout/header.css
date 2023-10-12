@@ -96,8 +96,7 @@
 .header {
   background: var(--color-white);
   border-radius: 0px 0px 8px 8px;
-  border: 2px solid #111;
-  background: #fff;
+  border: 2px solid var(--color-black);
 }
 .nav-container {
   display: flex;
