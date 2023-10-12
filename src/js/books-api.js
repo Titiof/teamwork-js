@@ -7,10 +7,7 @@ export class BooksAPI {
   #CATEGORY_LIST = '/category-list';
   #CATEGORY = `/category?category=`;
 
-  constructor(bookId, category) {
-    this.bookID = bookId;
-    this.category = null;
-  }
+  constructor() {}
 
   async getBooks() {
     try {
