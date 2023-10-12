@@ -52,6 +52,12 @@
 .section-support-png {
   padding-left: 16px;
 }
+.section-support-link:hover {
+  filter: brightness(0) invert(1);
+}
+.section-support-link:focus {
+  filter: brightness(0) invert(1);
+}
 
 .logo-ukr {
   margin-left: 12px;

@@ -26,13 +26,13 @@
   transition: all 0.3s ease-in-out;
 }
 li.active {
-  color: var(--color-blue);
+  color: var(--color-blue-gold);
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
 }
 .vertical-menu li:hover {
-  color: var(--color-blue);
+  color: var(--color-blue-gold);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.1;
@@ -62,7 +62,7 @@ li.active {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 12px;
-  background: var(--color-light-gray2);
+  background: var(--color-light-gray);
   width: 8px;
   height: 167px;
 }
