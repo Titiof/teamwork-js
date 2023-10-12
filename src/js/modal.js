@@ -1,3 +1,4 @@
+import createBookMarkup from './bookMarkupLi';
 import { BooksAPI } from './books-api';
 
 const modal = document.querySelector('.modal-shown');
@@ -15,26 +16,25 @@ export function openModalFromBookCard(bookId) {
 
 const bookCards = document.querySelector('.bestsellers-list');
 
-bookCards.addEventListener('click', event => {
-  if (
-    event.target.nodeName === 'LI' ||
-    event.target.nodeName === 'IMG' ||
-    event.target.nodeName === 'H3' ||
-    event.target.nodeName === 'P'
-  ) {
-    const book = document.querySelector('.book-card');
-    const bookId = book.id;
-    console.log(bookId);
+bookCards.addEventListener('click', onCardClick);
+
+async function onCardClick(event) {
+  let listItem = event.target.closest('li');
+  if (listItem) {
+    const data = await fetchBookData(listItem.id);
+    console.log(data);
   }
-});
+}
 
 async function fetchBookData(bookId) {
   try {
     const booksAPI = new BooksAPI();
     const data = await booksAPI.getBookById(bookId);
+
     addBookMarkup(data);
-    createBookObject(data);
+    // createBookObject(data);
     modal.classList.remove('is-hidden');
+    return data;
   } catch (error) {
     console.error(error.message);
   }
@@ -42,10 +42,12 @@ async function fetchBookData(bookId) {
 
 function addBookMarkup(data) {
   const bookMarkup = createMarkup(data);
+
   modalBookCard.innerHTML = bookMarkup;
+  console.log(modalBookCard);
 }
 
-function createMarkup(data, id) {
+function createMarkup(data) {
   const { book_image, title, author, description, buy_links } = data;
   return `<div class="book-id">
     <img class="modal-cover" src="${book_image}" alt="Обкладинка книги">
@@ -82,7 +84,7 @@ function createBookObject(data) {
     title,
     author,
     buy_links,
-    description
+    description,
   };
   addToListButton.classList.add('is-hidden');
   removeFromListButton.classList.remove('is-hidden');
@@ -101,7 +103,9 @@ function addToShoppingList() {
 
 function removeFromShoppingList() {
   const bookIdToRemove = bookObject._id;
-  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  const indexToRemove = bookArray.findIndex(
+    book => book._id === bookIdToRemove
+  );
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
@@ -128,7 +132,7 @@ window.addEventListener('keydown', function (e) {
 
 const shopLinks = document.querySelectorAll('.shop-link');
 
-shopLinks.forEach((shopLink) => {
+shopLinks.forEach(shopLink => {
   shopLink.addEventListener('click', function (e) {
     e.preventDefault();
     const url = shopLink.getAttribute('href');
