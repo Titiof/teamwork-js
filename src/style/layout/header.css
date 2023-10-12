@@ -137,6 +137,12 @@
   .nav-container {
     max-width: 375px;
   }
+  .menu-container {
+    max-width: 375px;
+  }
+  .header-menu {
+    gap: 145px;
+  }
 }
 /*----------------------   mobile menu   -----------------------*/
 
@@ -163,9 +169,9 @@
   border-radius: 50%;
   outline: none;
 }
-.menu-toggle:hover,
-.menu-toggle:focus {
-  background-color: rgba(0, 0, 0, 0.1);
+.burger-icon:hover,
+.burger-icon:focus {
+  fill: var(--color-blue);
 }
 @media (max-width: 767px) {
   .menu {
@@ -202,7 +208,7 @@
 
 .menu-container .menu-toggle {
   position: absolute;
-  top: 20px;
+  top: 15px;
   right: 16px;
   color: var(--color-black);
 }
@@ -288,6 +294,7 @@
   align-items: center;
   gap: 9px;
   margin: 20px 20px;
+  text-decoration: none;
 }
 
 .profile-text {
@@ -303,12 +310,18 @@
 /* Style the container for the bottom-left link */
 .mobile-logoutbtn-container {
   position: fixed;
-  margin-top: 270px;
-  left: 20px;
+  margin-top: 240px;
+  left: 30px;
 }
 @media (max-width: 320px) {
   .mobile-logoutbtn-container {
-    margin-top: 265px;
+    margin-top: 320px;
+  }
+  .menu-container {
+    max-width: 320px;
+  }
+  .header-menu {
+    gap: 95px;
   }
 }
 /* Style the link itself and make it hoverable */
@@ -346,6 +359,17 @@
 @media screen and (min-width: 425px) {
   .nav-container {
     max-width: 425px;
+  }
+  .menu-container {
+    max-width: 425px;
+  }
+  .header-menu {
+    gap: 190px;
+  }
+}
+@media screen and (min-width: 426px) {
+  .menu-container {
+    display: none;
   }
 }
 /* ----------------------Tablet styles------------------------------ */
@@ -453,7 +477,6 @@
     gap: 16px;
   }
 
-  /* <a> in section main-nav */
   .nav-link {
     text-decoration: none;
     display: flex;
@@ -464,7 +487,7 @@
     line-height: 18px; /* 128.571% */
     letter-spacing: -0.56px;
     text-transform: uppercase;
-    transition: color 0.2s, background-color 0.2s;
+    transition: color 0.2s, background-color 0.5s;
     gap: 4px;
   }
 
@@ -508,12 +531,7 @@
     gap: 40px;
   }
 }
-/* =========================1024px ==============================*/
-@media screen and (min-width: 1024px) {
-  .shop-link {
-    width: 118px;
-  }
-}
+
 /*------------------------------ Dasktop styles-------------------------------------- */
 @media screen and (min-width: 1440px) {
   .header {

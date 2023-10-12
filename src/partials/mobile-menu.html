@@ -1,19 +1,21 @@
 <div class="menu-container js-menu-container" id="mobile-menu">
   <div class="header-menu">
-    <a href="#" class="logo">
-      <svg class="logo-icon" width="24" height="24" aria-label="logotype">
-        <use href="./images/sprite.svg#icon-logo"></use>
-      </svg>
-      <svg class="logo-icon" width="77" height="14" aria-label="logotype">
-        <use href="./images/sprite.svg#bookshelf"></use>
-      </svg>
-    </a>
+    <div class="logo-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" width="24" height="24" aria-label="logotype">
+          <use href="./images/sprite.svg#icon-logo"></use>
+        </svg>
+        <svg class="logo-icon" width="77" height="14" aria-label="logotype">
+          <use href="./images/sprite.svg#bookshelf"></use>
+        </svg>
+      </a>
+    </div>
     <div class="switcher">
-      <label id="switch" class="switch">
-        <input type="checkbox" onchange="toggleTheme()" id="slider" />
-        <span class="slider round"> </span>
-      </label>
-      <!-- <button id="switch" onclick="toggleTheme()">Switch</button> -->
+      <div class="button r" id="button-1">
+        <input type="checkbox" class="checkbox" />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
     </div>
     <button class="menu-toggle js-close-menu">
       <svg
