@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -18,6 +17,7 @@ const firebaseConfig = {
   appId: '1:258455649332:web:4a54c5fd8564a412d79e61',
   measurementId: 'G-2EMZHHRVM8',
 };
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 let activeTab = 'signup';
@@ -83,72 +83,76 @@ async function onFormSubmit(e) {
 }
 
 async function signup() {
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    refs.email.value,
-    refs.password.value
-  );
-  if (userCredential && auth.currentUser) {
-    try {
+  try {
+    // створюєм нового користувача
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      refs.email.value,
+      refs.password.value
+    );
+
+    // якщо створено успішно
+    if (userCredential && auth.currentUser) {
       sendEmailVerification(auth.currentUser);
       updateProfile(auth.currentUser, {
         displayName: refs.inputName.value,
         photoURL: 'https://picsum.photos/50/50?random=1',
       });
+      Notify.success('Registration was successful!');
+
       setTimeout(function () {
         window.location.href = '/teamwork-js/';
-      }, 3000);
-    } catch (error) {
-      console.log(error);
+      }, 500);
+    }
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') {
+      Notify.warning(
+        'This email address is already registered. Please go to the tab signin.'
+      );
+    } else {
+      Notify.error('An error occurred during registration.');
     }
   }
 }
 
 async function signin() {
-  signInWithEmailAndPassword(auth, refs.email.value, refs.password.value)
-    .then(userCredential => {
-      const user = userCredential.user;
-      localStorage.setItem('user', JSON.stringify(user));
-      refs.form.reset();
-      error = '';
-      // Notify.success('Authorization was successful!');
+  try {
+    //звертаємось до юзера (повертається url, name, email)
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      refs.email.value,
+      refs.password.value
+    );
+    const user = userCredential.user;
+    console.log(user); // повертається  url, name, email
+    // localStorage.setItem('user', JSON.stringify(user));
+    refs.form.reset();
+    error = '';
+    Notify.success('Authorization was successful!');
 
-      setTimeout(function () {
-        // window.location.href = '/teamwork-js/';
-      }, 3000);
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      error = 'invalid user email or passsword';
-
-      Notify.failure(error);
-    });
+    setTimeout(function () {
+      window.location.href = '/teamwork-js/';
+    }, 500);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    error = 'Invalid user email or password';
+    Notify.failure(error);
+  }
 }
-
-//=======Для кнопки логаут
-
-document.querySelector('.login-logout').addEventListener('click', function () {
-  auth
-    .signOut()
-    .then(function () {
-      localStorage.removeItem('user');
-      console.log('Користувач не авторизований');
-    })
-    .catch(function (error) {
-      console.error('Error whith enter', error);
-    });
-});
-
+// перевірка, якщо юзер авторизований - змінюємо розмітку 
 auth.onAuthStateChanged(function (user) {
-  console.log(user);
+  console.log('perevirka', user);
 
   if (user) {
-    Notify.success(`Authorized user: ${user.email}`);
+    Notify.success(
+      `Successful authorized! You will be redirected to the home page`
+    );
   } else {
-    Notify.info('Need authrized');
+    Notify.info('Need authorized');
   }
 });
+
 /// це додати в шопінг ліст
 // import {
 //   collection,
