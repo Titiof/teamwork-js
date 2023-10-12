@@ -2,9 +2,8 @@
 let darkMode = localStorage.getItem('darkMode'); 
 
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
+const darkModeToggleTwo = document.querySelector('#dark-mode-toggle-two');
 const darkModeCheckbox = document.querySelector('.checkbox'); // Get the checkbox element
-// const darkModeToggleTwo = document.querySelector('#dark-mode-toggle-two');
-// const darkModeCheckboxTwo = document.querySelector('.checkbox-two'); // Get the checkbox element
 
 const enableDarkMode = () => {
   // 1. Add the class to the body
@@ -30,17 +29,32 @@ if (darkMode === 'enabled') {
   enableDarkMode();
 }
 
-// When someone clicks the button
+// When someone clicks the first toggle
 darkModeToggle.addEventListener('click', () => {
-  // get their darkMode setting
-  darkMode = localStorage.getItem('darkMode'); 
+  // Get the current state of dark mode
+  darkMode = localStorage.getItem('darkMode');
   
-  // if it not current enabled, enable it
+  // Toggle the state based on the current value
   if (darkMode !== 'enabled') {
     enableDarkMode();
-  // if it has been enabled, turn it off  
-  } else {  
-    disableDarkMode(); 
+    darkModeToggleTwo.checked = true;
+  } else {
+    disableDarkMode();
+    darkModeToggleTwo.checked = false;
   }
 });
 
+// When someone clicks the second toggle
+darkModeToggleTwo.addEventListener('click', () => {
+  // Get the current state of dark mode for the second toggle
+  darkMode = localStorage.getItem('darkMode');
+  
+  // Toggle the state based on the current value
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+    darkModeToggle.checked = true;
+  } else {
+    disableDarkMode();
+    darkModeToggle.checked = false;
+  }
+});
