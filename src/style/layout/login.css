@@ -137,7 +137,6 @@
 }
 #user_name::placeholder {
   text-transform: uppercase;
-
 }
 #login-field-name.is-hidden {
   position: absolute;

@@ -193,7 +193,7 @@
 }
 
 .book-text-backdrop {
-  background-color: var(--color-blue);
+  background-color: var(--color-blue-gold);
   color: var(--color-white);
   line-height: 1.5;
   letter-spacing: 0.02em;

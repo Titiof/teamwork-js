@@ -8,6 +8,9 @@
   left: 0;
 }
 
+.logo-icon {
+  fill: var(--color-black);
+}
 .button {
   position: relative;
   top: 50%;
@@ -452,7 +455,7 @@
   }
 
   .signup-text {
-    color: #fff;
+    color: var(--color-white-all-time);
     font-family: DM Sans;
     font-size: 14px;
     font-style: normal;
