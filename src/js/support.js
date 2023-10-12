@@ -1,21 +1,30 @@
 const scrollDownEl = document.querySelector('.scroll-down-btn');
-const scrollUpEl = document.querySelector('.scroll-up-btn');
-const firstThreeLiEl = document.querySelector('.first-three-el');
-const lastThreeLiEl = document.querySelector('.last-three-el');
+const scrollDownLogo = document.querySelector('.scroll-down');
+const UlEl = document.querySelector('.list-support');
+let up = null;
 
 scrollDownEl.addEventListener('click', onScrollDownClick);
-// scrollUpEl.addEventListener('click', onScrollUpClick);
 
 function onScrollDownClick() {
-  scrollDownEl.classList.add('is-hidden');
-  scrollUpEl.classList.remove('is-hidden');
-  firstThreeLiEl.classList.add('is-hidden');
-  lastThreeLiEl.classList.remove('is-hidden');
-}
-
-function onScrollUpClick() {
-  scrollDownEl.classList.remove('is-hidden');
-  scrollUpEl.classList.add('is-hidden');
-  firstThreeLiEl.classList.remove('is-hidden');
-  lastThreeLiEl.classList.add('is-hidden');
+  if (!up) {
+    up = 1;
+    scrollDownLogo.classList.add('up');
+    scrollDownLogo.classList.remove('down');
+    UlEl.children[0].classList.add('is-hidden');
+    UlEl.children[1].classList.add('is-hidden');
+    UlEl.children[2].classList.add('is-hidden');
+    UlEl.children[6].classList.remove('is-hidden');
+    UlEl.children[7].classList.remove('is-hidden');
+    UlEl.children[8].classList.remove('is-hidden');
+  } else {
+    up = 0;
+    scrollDownLogo.classList.add('down');
+    scrollDownLogo.classList.remove('up');
+    UlEl.children[0].classList.remove('is-hidden');
+    UlEl.children[1].classList.remove('is-hidden');
+    UlEl.children[2].classList.remove('is-hidden');
+    UlEl.children[6].classList.add('is-hidden');
+    UlEl.children[7].classList.add('is-hidden');
+    UlEl.children[8].classList.add('is-hidden');
+  }
 }

@@ -23,4 +23,6 @@
     #4f2ee8 18.03%,
     #fff 100%
   );
+  --layer-bgc-gradient: linear-gradient(180deg, #4f2ee8 0%, #dcdcdc 100%);
+  --layer-bg-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1) inset;
 }
