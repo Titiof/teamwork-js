@@ -193,17 +193,20 @@
 }
 
 .book-text-backdrop {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
   border-radius: 0 0 8px 8px;
   background-color: var(--color-blue);
   color: var(--color-white);
   line-height: 1.5;
-  letter-spacing: 0.02em;
-  padding: 40px 32px;
+  letter-spacing: -0.02em;
+  padding: 20px 32px;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 33.33%;
+  height: 20%;
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -212,11 +215,11 @@
 .book-card:hover .book-text-backdrop {
   visibility: visible;
   opacity: 1;
-  transform: translateY(200%);
+  transform: translateY(400%);
 }
 
 .book-card:focus .book-text-backdrop {
   visibility: visible;
   opacity: 1;
-  transform: translateY(200%);
+  transform: translateY(400%);
 }
