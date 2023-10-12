@@ -36,7 +36,6 @@
   border: 2px solid var(--color-black);
   background-color: var(--color-light-gray);
   margin: 0 auto;
-
 }
 @media screen and (min-width: 768px) {
   .login-modal {
@@ -133,7 +132,12 @@
   color: var(--color-black);
 }
 
-#login-field-name {
+#user_name {
+  text-transform: none;
+}
+#user_name::placeholder {
+  text-transform: uppercase;
+
 }
 #login-field-name.is-hidden {
   position: absolute;
@@ -243,10 +247,4 @@
 .active {
   color: var(--color-blue);
   text-decoration: underline;
-}
-.login-logout {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
 }
