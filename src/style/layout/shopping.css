@@ -1,6 +1,6 @@
 .shopping-plug-text {
   width: 244px;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-gray-shopping);
   text-align: center;
   letter-spacing: -0.28px;
   margin-left: auto;
