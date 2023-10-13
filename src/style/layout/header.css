@@ -62,7 +62,7 @@
 
 /* Button 1 */
 #button-1 .knobs:before {
-  content: 'ON';
+  content: '';
   position: absolute;
   top: 3px;
   left: 4px;
@@ -80,7 +80,7 @@
 }
 
 #button-1 .checkbox:checked + .knobs:before {
-  content: 'OFF';
+  content: '';
   left: 20px;
   background-color: white;
 }
