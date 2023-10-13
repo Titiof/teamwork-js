@@ -263,6 +263,7 @@
   color: var(--color-black);
   background-color: var(--color-gold);
   font-weight: 700;
+  text-decoration: none;
 }
 
 .mob-link .logo-icon {
@@ -461,7 +462,6 @@
   }
 
   .signup-text {
-
     color: var(--color-white-all-time);
     font-weight: 500;
     line-height: 1.29;
@@ -503,6 +503,7 @@
     color: var(--color-black);
     background-color: var(--color-gold);
     font-weight: 700;
+    text-decoration: none;
   }
 
   .switch {
