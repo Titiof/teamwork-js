@@ -7,6 +7,28 @@
   margin-bottom: 40px;
 }
 
+.bestsellers-list {
+  min-width: 288px;
+}
+
+@media only screen and (min-width: 375px) {
+  .bestsellers-list {
+    min-width: 335px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .bestsellers-list {
+    min-width: 704px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .bestsellers-list {
+    min-width: 996px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .main-header {
     font-size: 48px;
@@ -139,7 +161,9 @@
   background-color: transparent;
   border: 2px solid var(--color-blue);
   border-radius: 40px;
-  transition: color 500ms ease-in-out, background-color 500ms ease-in-out;
+  transition:
+    color 500ms ease-in-out,
+    background-color 500ms ease-in-out;
 }
 
 @media only screen and (min-width: 768px) {
