@@ -1,0 +1,132 @@
+.section-support-container {
+  padding-top: 24px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  background: radial-gradient(
+    189.32% 190.93% at 59.76% -23.42%,
+    #4f2ee8 18.03%,
+    #fff 100%
+  );
+  box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
+  min-height: 460px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.section-support {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.section-support-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  color: var(--color-white-all-time, #ffffff);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1, 09;
+  letter-spacing: -0.88px;
+}
+.section-support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.section-support-link {
+  color: var(--color-white-all-time, #ffffff);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1, 28;
+  letter-spacing: -0.56px;
+  height: 32px;
+}
+
+.section-support-png {
+  box-sizing: content-box;
+  padding-left: 16px;
+  transition: all 0.3s ease-in;
+
+  filter: brightness(0) invert(1);
+}
+.section-support-png:hover,
+.section-support-png:focus {
+  filter: none;
+  scale: 1.2;
+}
+
+.logo-ukr {
+  margin-left: 12px;
+}
+.section-support-btn {
+  width: 32px;
+  height: 32px;
+  background: var(--color-white-all-time-color-white, #ffffff);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s;
+}
+
+.up {
+  transform: rotate(180deg);
+}
+.down {
+  transform: rotate(360deg);
+}
+.scroll-down {
+  fill: var(--color-blue);
+}
+
+@media screen and (min-width: 375px) {
+  .section-support {
+    max-width: 335px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .section-support-container {
+    min-width: 335px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section-support {
+    max-width: 335px;
+    margin-top: 40px;
+    margin-bottom: 98px;
+  }
+  .section-support-container {
+    padding-top: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 24px;
+  }
+  .section-support-title {
+    font-size: 24px;
+    margin-bottom: 44px;
+  }
+
+  .section-support-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section-support {
+    max-width: 356px;
+    margin-top: 86px;
+  }
+}

@@ -81,7 +81,6 @@ mark,
 audio,
 video {
   margin: 0;
-  padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
@@ -102,17 +101,19 @@ section {
   display: block;
 }
 body {
-  font-family: DM Sans;
+  font-family: 'DM Sans', Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.29;
   letter-spacing: -0.56px;
   color: var(--color-black);
+  background: var(--color-body-bg);
 }
 ol,
 ul {
   list-style: none;
+  padding: 0;
 }
 blockquote,
 q {
@@ -148,4 +149,10 @@ button {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

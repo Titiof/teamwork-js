@@ -1,66 +1,73 @@
- <div class="menu-container js-menu-container" id="mobile-menu">
-      <div class="header-menu">
-        <a href="" class="logo">
-          <svg class="logo-icon" width="24" height="24" aria-label="logotype">
-            <use href="./logos/symbol-defs.svg#icon-logo"></use>
-          </svg>
-          <svg class="logo-icon" width="77" height="14" aria-label="logotype">
-            <use href="./logos/symbol-defs.svg#bookshelf"></use>
-          </svg>
-        </a>
-        <div class="switcher">
-          <label id="switch" class="switch">
-            <input type="checkbox" onchange="toggleTheme()" id="slider" />
-            <span class="slider round"> </span>
-          </label>
-          <!-- <button id="switch" onclick="toggleTheme()">Switch</button> -->
-        </div>
-        <button class="menu-toggle js-close-menu">
-          <svg
-            class="burger-icon"
-            width="32"
-            height="32"
-            aria-label="close menu button"
-          >
-            <use href="./logos/symbol-defs.svg#icon-x-close"></use>
-          </svg>
-        </button>
-      </div>
-      <a class="profile-link" href="#">
-        <img
-          class="profile-img"
-          src="./images/profil-img/ellipse-3.webp"
-          alt="User profile image"
-          srcset="
-            ./images/profil-img/ellipse-3.webp    1x,
-            ./images/profil-img/ellipse-3@2x.webp 2x
-          "
-        />
-        <span class="profile-text">Stephen</span>
+<div class="menu-container js-menu-container" id="mobile-menu">
+  <div class="header-menu">
+    <div class="logo-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" width="24" height="24" aria-label="logotype">
+          <use href="./images/sprite.svg#icon-logo"></use>
+        </svg>
+        <svg class="logo-icon" width="77" height="14" aria-label="logotype">
+          <use href="./images/sprite.svg#bookshelf"></use>
+        </svg>
       </a>
-      <ul class="mobile-menu">
-        <li class="menu-item">
-          <a href="header.html" class="mob-link">HOME</a>
-        </li>
-        <li class="menu-item">
-          <a href="shopping-list.html" class="mob-link"
-            >SHOPPING LIST<svg
-              class="logo-icon"
-              width="20"
-              height="20"
-              aria-label="logotype"
-            >
-              <use href="./logos/symbol-defs.svg#icon-uil-cart"></use>
-            </svg>
-          </a>
-        </li>
-      </ul>
-      <div class="mobile-logoutbtn-container">
-        <a href="#" class="mobile-logout" id="logout-link">
-          Log out
-          <svg width="20" height="20" aria-label="Logout Icon">
-            <use href="./logos/symbol-defs.svg#icon-arrow-narrow-right"></use>
-          </svg>
-        </a>
+    </div>
+    <div class="switcher">
+      <div class="button r" id="button-1">
+        <input
+          class="checkbox dark-mode-toggle"
+          type="checkbox"
+          id="dark-mode-toggle-two"
+          aria-label="toggle dark mode"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
       </div>
     </div>
+    <button class="menu-toggle js-close-menu">
+      <svg
+        class="burger-icon icon-animation"
+        width="32"
+        height="32"
+        aria-label="close menu button"
+      >
+        <use href="./images/sprite.svg#icon-x-close"></use>
+      </svg>
+    </button>
+  </div>
+  <a class="profile-link link" href="#">
+    <img
+      class="profile-img"
+      src="./images/profil-img/ellipse-3.webp"
+      alt="User profile image"
+      srcset="
+        ./images/profil-img/ellipse-3.webp    1x,
+        ./images/profil-img/ellipse-3@2x.webp 2x
+      "
+    />
+    <span class="profile-text">Stephen</span>
+  </a>
+  <ul class="mobile-menu">
+    <li class="menu-item">
+      <a href="index.html" class="mob-link link">HOME</a>
+    </li>
+    <li class="menu-item">
+      <a href="shoppinglist.html" class="mob-link"
+        >SHOPPING LIST<svg
+          class="logo-icon"
+          width="20"
+          height="20"
+          aria-label="logotype"
+        >
+          <use href="./images/sprite.svg#icon-uil-cart"></use>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  <div class="mobile-logoutbtn-container">
+    <a href="#" class="mobile-logout link" id="logout-link">
+      Log out
+      <svg width="20" height="20" aria-label="Logout Icon">
+        <use href="./images/sprite.svg#arrow-right"></use>
+      </svg>
+    </a>
+  </div>
+</div>
