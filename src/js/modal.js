@@ -1,6 +1,9 @@
 import createBookMarkup from './bookMarkupLi';
 import { BooksAPI } from './books-api';
 
+import amazon from '../images/modal/amazon.webp';
+import apple from '../images/modal/amazon-book.webp';
+
 const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
 const addToListButton = document.querySelector('.add-button');
@@ -10,8 +13,17 @@ const modalBookCard = document.querySelector('.modal-book-card');
 const bookArray = [];
 let bookObject = {};
 
+function disableBackgroundScroll() {
+  document.body.style.overflow = 'hidden';
+}
+
+function enableBackgroundScroll() {
+  document.body.style.overflow = 'auto';
+}
+
 export function openModalFromBookCard(bookId) {
   fetchBookData(bookId);
+  disableBackgroundScroll();
 }
 
 const bookCards = document.querySelector('.bestsellers-list');
@@ -42,7 +54,6 @@ async function fetchBookData(bookId) {
 
 function addBookMarkup(data) {
   const bookMarkup = createMarkup(data);
-
   modalBookCard.innerHTML = bookMarkup;
   console.log(modalBookCard);
 }
@@ -61,20 +72,25 @@ function createMarkup(data) {
             <li class="shop"><a href="${buy_links[0].url}" class="shop-link" target="_blank">
                 <img
                 class="shops-item-icon"
-                src="./images/modal/amazon.webp"
+                src="${amazon}"
                 alt="Amazon-logo" 
                 />
             </a></li>
             <li class="shop"><a href="${buy_links[1].url}" class="shop-link" target="_blank">
                 <img
-                class="shops-item-icon"
-                src="./images/modal/amazon-book.webp"
+                class="shops-item-icon-book"
+                src="${apple}"
                 alt="Apple-Books-logo" 
                 /></a></li>
         </ul>
     </div>
 </div>`;
 }
+
+addToListButton.addEventListener('click', () => {
+  createBookObject(bookObject);
+  disableBackgroundScroll();
+});
 
 function createBookObject(data) {
   const { _id, book_image, title, author, buy_links, description } = data;
@@ -86,9 +102,7 @@ function createBookObject(data) {
     buy_links,
     description,
   };
-  addToListButton.classList.add('is-hidden');
-  removeFromListButton.classList.remove('is-hidden');
-  removeFromListButton.removeEventListener('click', removeFromShoppingList);
+  addToShoppingList();
 }
 
 function addToShoppingList() {
@@ -109,24 +123,27 @@ function removeFromShoppingList() {
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    removeFromListButton.classList.add('is-hidden');
     addToListButton.classList.remove('is-hidden');
+    removeFromListButton.classList.add('is-hidden');
   }
 }
 
-closeButton.addEventListener('click', function () {
+closeButton.addEventListener('click', () => {
   modal.classList.add('is-hidden');
+  enableBackgroundScroll();
 });
 
 window.onclick = function (event) {
   if (event.target === modal) {
     modal.classList.add('is-hidden');
+    enableBackgroundScroll();
   }
 };
 
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
     modal.classList.add('is-hidden');
+    enableBackgroundScroll();
   }
 });
 

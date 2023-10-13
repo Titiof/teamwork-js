@@ -8,6 +8,9 @@
   left: 0;
 }
 
+.logo-icon {
+  fill: var(--color-black);
+}
 .button {
   position: relative;
   top: 50%;
@@ -458,9 +461,10 @@
   }
 
   .signup-text {
-    color: #fff;
+
+    color: var(--color-white-all-time);
     font-weight: 500;
-    line-height: 18px; /* 128.571% */
+    line-height: 1.29;
     letter-spacing: -0.56px;
   }
 
@@ -524,7 +528,7 @@
   }
   .nav-container {
     max-width: 768px;
-    padding: 13px 32px;
+    padding: 14px 32px;
   }
   .logo-nav {
     gap: 40px;
@@ -567,11 +571,5 @@
   .nav-container {
     max-width: 100%;
     padding: 13px 24px;
-  }
-}
-
-@media screen and (min-width: 1450px) {
-  .nav-container {
-    margin-left: 0;
   }
 }

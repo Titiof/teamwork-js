@@ -1,5 +1,5 @@
 // check for saved 'darkMode' in localStorage
-let darkMode = localStorage.getItem('darkMode'); 
+let darkMode = localStorage.getItem('darkMode');
 
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const darkModeToggleTwo = document.querySelector('#dark-mode-toggle-two');
@@ -8,22 +8,22 @@ const darkModeCheckbox = document.querySelector('.checkbox'); // Get the checkbo
 const enableDarkMode = () => {
   // 1. Add the class to the body
   document.body.classList.add('darkmode');
-  
+
   // 2. Update darkMode in localStorage
-    localStorage.setItem('darkMode', 'enabled');
-     // 3. Check the checkbox
+  localStorage.setItem('darkMode', 'enabled');
+  // 3. Check the checkbox
   darkModeCheckbox.checked = true;
-}
+};
 
 const disableDarkMode = () => {
   // 1. Remove the class from the body
   document.body.classList.remove('darkmode');
-  // 2. Update darkMode in localStorage 
-    localStorage.setItem('darkMode', null);
-      // 3. Uncheck the checkbox
-     darkModeCheckbox.checked = false;
-}
- 
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', null);
+  // 3. Uncheck the checkbox
+  darkModeCheckbox.checked = false;
+};
+
 // If the user already visited and enabled darkMode
 // start things off with it on
 if (darkMode === 'enabled') {
@@ -34,7 +34,7 @@ if (darkMode === 'enabled') {
 darkModeToggle.addEventListener('click', () => {
   // Get the current state of dark mode
   darkMode = localStorage.getItem('darkMode');
-  
+
   // Toggle the state based on the current value
   if (darkMode !== 'enabled') {
     enableDarkMode();
@@ -49,7 +49,7 @@ darkModeToggle.addEventListener('click', () => {
 darkModeToggleTwo.addEventListener('click', () => {
   // Get the current state of dark mode for the second toggle
   darkMode = localStorage.getItem('darkMode');
-  
+
   // Toggle the state based on the current value
   if (darkMode !== 'enabled') {
     enableDarkMode();
