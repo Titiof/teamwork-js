@@ -17,8 +17,17 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     try{
         const listData =  await booksAPI.getCategoriesList();
-        const markup = menuTemplate(listData);
+
+        const sortByAlphabet = listData
+        .map(el => {
+            const nameEl = el.list_name;
+            return nameEl;
+        })
+        .sort((a, b) => a.localeCompare(b));
+
+        const markup = menuTemplate(sortByAlphabet);
         listEl.insertAdjacentHTML("beforeend", markup);
+        
     }catch(error) {
         Notiflix.Notify.failure('Oops, something went wrong!');
     }
