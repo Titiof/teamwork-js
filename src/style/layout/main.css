@@ -31,6 +31,7 @@
 
 .book-card {
   display: none;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 767px) {
@@ -75,9 +76,6 @@
 .book-card-title {
   margin-top: 14px;
   margin-left: auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.12;
@@ -90,6 +88,9 @@
 @media only screen and (min-width: 768px) {
   .book-card-title {
     max-width: 218px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
