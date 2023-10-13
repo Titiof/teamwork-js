@@ -8,11 +8,9 @@
   z-index: 0;
 }
 
-
-
 .modal-content {
   position: fixed;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   box-sizing: border-box;
   margin: 0 auto;
   padding: 24px 40px;
@@ -23,7 +21,7 @@
   transform: translate(-50%, -50%);
   transition: 0.3s all cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 30;
-  border: 2px solid #111111;
+  border: 2px solid var(--color-black);
   border-radius: 18px;
 }
 
@@ -45,7 +43,7 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   margin: 0;
 }
 
@@ -55,12 +53,12 @@
     right: 15px;
   }
 }
-.close-icon{
-  fill: #111111;
+.close-icon {
+  fill: var(--color-black);
 }
 .close-icon:hover,
 .close-icon:focus {
-  fill: #4F2EE8;
+  fill: var(--color-blue);
 }
 
 .modal-body {
@@ -68,7 +66,6 @@
   flex-direction: column;
   gap: 10px;
   position: relative;
-
 }
 
 @media screen and (min-width: 768px) {
@@ -116,7 +113,7 @@
   font-size: 14px;
   line-height: 18px;
   font-style: italic;
-  color: #B4AFAF;
+  color: var(--color-gray);
 }
 
 .modal-description {
@@ -139,33 +136,40 @@
 }
 
 .shop {
-  filter: grayscale(100%);
+  filter: var(--shop);
 }
 .shop:hover {
-  filter: drop-shadow(0px 3px 3px rgba(0,0,0,.35)) grayscale(100%);
+  filter: var(--shop-hover);
 }
 
+.shops-item-icon-book {
+  filter: var(--shop-book);
+}
+
+.shops-item-icon-book:hover {
+  filter: var(--shop-hover-book);
+}
 .add-button,
 .remove-button {
   display: inline-block;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   padding: 20px;
   min-width: 211px;
-  color: #111111;
+  color: var(--color-black);
   font-size: 14px;
   line-height: 18px;
-  border: 2px solid #4F2EE8;
+  border: 2px solid var(--color-blue);
   border-radius: 40px;
 }
 .add-button:focus,
 .remove-button:focus {
-  background: #4F2EE8;
-  color: #FFF;
+  background: var(--color-blue);
+  color: var(--color-white-all-time);
 }
-.add-button:hover, 
+.add-button:hover,
 .remove-button:hover {
-  background: #4F2EE8;
-  color: #FFF;
+  background: var(--color-blue);
+  color: var(--color-white-all-time);
 }
 @media screen and (min-width: 768px) {
   .add-button,

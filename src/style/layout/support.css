@@ -52,13 +52,13 @@
 .section-support-png {
   padding-left: 16px;
 }
-.section-support-link:hover {
-  filter: brightness(0) invert(1);
-}
-.section-support-link:focus {
-  filter: brightness(0) invert(1);
-}
-
+/* .section-support-link:hover { */
+/* filter: brightness(0) invert(1); */
+/* } */
+/* .section-support-link:focus { */
+/* filter: brightness(0) invert(1); */
+/* } */
+/*  */
 .logo-ukr {
   margin-left: 12px;
 }
@@ -118,8 +118,7 @@
     font-size: 24px;
     margin-bottom: 44px;
   }
-  .section-support-list {
-  }
+
   .section-support-btn {
     width: 38px;
     height: 38px;

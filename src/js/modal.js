@@ -1,8 +1,8 @@
 import createBookMarkup from './bookMarkupLi';
 import { BooksAPI } from './books-api';
 
-import amazon from '../images/modal/amazon.webp'
-import apple from '../images/modal/amazon-book.webp'
+import amazon from '../images/modal/amazon.webp';
+import apple from '../images/modal/amazon-book.webp';
 
 const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
@@ -54,7 +54,7 @@ async function fetchBookData(bookId) {
 
 function addBookMarkup(data) {
   const bookMarkup = createMarkup(data);
- modalBookCard.innerHTML = bookMarkup;
+  modalBookCard.innerHTML = bookMarkup;
   console.log(modalBookCard);
 }
 
@@ -78,7 +78,7 @@ function createMarkup(data) {
             </a></li>
             <li class="shop"><a href="${buy_links[1].url}" class="shop-link" target="_blank">
                 <img
-                class="shops-item-icon"
+                class="shops-item-icon-book"
                 src="${apple}"
                 alt="Apple-Books-logo" 
                 /></a></li>
@@ -109,7 +109,7 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addToListButton.classList.add('is-hidden'); 
+    addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
     removeFromListButton.addEventListener('click', removeFromShoppingList);
   }
@@ -117,11 +117,13 @@ function addToShoppingList() {
 
 function removeFromShoppingList() {
   const bookIdToRemove = bookObject._id;
-  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  const indexToRemove = bookArray.findIndex(
+    book => book._id === bookIdToRemove
+  );
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addToListButton.classList.remove('is-hidden'); 
+    addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
   }
 }

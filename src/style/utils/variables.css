@@ -4,6 +4,7 @@
   --color-blue-gold: rgba(79, 46, 232, 1);
 
   --color-white-all-time: rgba(255, 255, 255, 1);
+  --color-gray-shopping: rgba(0, 0, 0, 0.6);
 
   --color-light-gray: rgba(246, 246, 246, 1);
   --color-black-transparent: rgba(17, 17, 17, 0.6);
@@ -11,7 +12,7 @@
 
   --color-body-bg: rgba(255, 255, 255, 1);
   --color-blue: rgba(79, 46, 232, 1);
-
+  --color-light-gray-modal: rgb(246, 246, 246);
   --color-solid-black: rgba(0, 0, 0, 1);
   --color-light-gray2: rgba(224, 224, 224, 1);
   --color-gold: rgba(234, 198, 69, 1);
@@ -20,6 +21,11 @@
     rgba(79, 46, 232, 1),
     rgba(220, 220, 220, 1)
   );
+  --shop: grayscale(100%);
+  --shop-book: grayscale(100%);
+  --shop-hover-book: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+  --shop-hover-book: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+
   --radial-gradient: radial-gradient(
     circle,
     rgba(79, 46, 232, 1),
@@ -37,11 +43,17 @@
   --color-white: rgba(17, 17, 17, 1);
   --color-body-bg: rgba(32, 32, 36, 1);
 
+  --shop: brightness(0) invert(1);
+  --shop-book: grayscale(100%);
+  --shop-hover: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+  --shop-hover-book: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+
+  --color-gray-shopping: rgba(255, 255, 255, 0.6);
   --color-black-transparent: rgba(255, 255, 255, 0.6);
   --color-light-gray: rgba(17, 17, 17, 0.6);
   --color-blue-gold: rgba(234, 198, 69, 1);
   --color-blue: rgba(79, 46, 232, 1);
-
+  --color-light-gray-modal: rgb(32, 32, 36);
   --color-gray: rgba(180, 175, 175, 1);
 
   --color-solid-black: rgba(0, 0, 0, 1);
