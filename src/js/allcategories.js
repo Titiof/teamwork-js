@@ -26,7 +26,6 @@ window.addEventListener("DOMContentLoaded", async () => {
         .sort((a, b) => a.localeCompare(b));
 
         const markup = menuTemplate(sortByAlphabet);
-        console.log(markup);
         listEl.insertAdjacentHTML("beforeend", markup);
         
     }catch(error) {
