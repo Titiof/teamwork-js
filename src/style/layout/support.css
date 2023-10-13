@@ -15,10 +15,8 @@
   flex-direction: column;
 }
 .section-support {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .section-support-title {
   display: flex;
@@ -96,25 +94,17 @@
 @media screen and (min-width: 375px) {
   .section-support {
     max-width: 335px;
-    margin-top: 40px;
-    margin-bottom: 40px;
   }
   .section-support-container {
-    min-width: 335px;
+    margin-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .section-support {
-    max-width: 335px;
-    margin-top: 40px;
-    margin-bottom: 98px;
-  }
   .section-support-container {
-    padding-top: 24px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 24px;
+    padding: 24px 40px;
+    width: 335px;
+    margin-bottom: 98px;
   }
   .section-support-title {
     font-size: 24px;
@@ -130,6 +120,8 @@
 @media screen and (min-width: 1440px) {
   .section-support {
     max-width: 356px;
-    margin-top: 86px;
+  }
+  .section-support-container {
+    margin-bottom: 0;
   }
 }
