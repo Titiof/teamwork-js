@@ -15,18 +15,9 @@
             <a href="./index.html" id="home-link" class="nav-link link">Home</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link shop-link link"
-              href="./shoppinglist.html"
-              id="shopping-list-link"
-              target="_self"
-              >Shopping List
-              <svg
-                class="logo-icon"
-                width="20"
-                height="20"
-                aria-label="logotype"
-              >
+            <a class="nav-link shop-link link" href="./shoppinglist.html" id="shopping-list-link"
+              target="_self">Shopping List
+              <svg class="logo-icon" width="20" height="20" aria-label="logotype">
                 <use href="./images/sprite.svg#icon-uil-cart"></use>
               </svg>
             </a>
@@ -34,77 +25,44 @@
         </ul>
       </nav>
     </div>
-    <div class="switcher-button">
-      <div class="switcher">
-        <div class="button r" id="button-1">
-          <input
-            class="checkbox dark-mode-toggle"
-            type="checkbox"
-            id="dark-mode-toggle"
-            aria-label="toggle dark mode"
-          />
-          <div class="knobs"></div>
-          <div class="layer"></div>
-        </div>
-      </div>
-      <!--  button menu -->
-      <button
-        class="menu-toggle js-open-menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <svg
-          class="burger-icon"
-          width="32"
-          height="32"
-          aria-label="mobile menu button"
-        >
-          <use href="./images/sprite.svg#icon-align-left"></use>
+    <div class="switcher">
+      <input class="checkbox dark-mode-toggle" type="checkbox" id="dark-mode-toggle" />
+      <label for="dark-mode-toggle">Toggle</label>
+    </div>
+    <!--  button menu -->
+    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="burger-icon" width="32" height="32" aria-label="mobile menu button">
+        <use href="./images/sprite.svg#icon-align-left"></use>
+      </svg>
+    </button>
+    <div class="signup-container">
+      <a href="./login.html" class="signup-link" id="signup-link">
+        <span class="signup-text"> Sign up </span>
+        <svg class="signup-svg" width="20" height="20" aria-label="Sign up Icon">
+          <use href="./images/sprite.svg#arrow-right"></use>
         </svg>
-      </button>
-      <div class="signup-container">
-        <a href="./login.html" class="signup-link" id="signup-link">
-          <span class="signup-text"> Sign up </span>
-          <svg
-            class="signup-svg"
-            width="20"
-            height="20"
-            aria-label="Sign up Icon"
-          >
-            <use href="./images/sprite.svg#arrow-right"></use>
-          </svg>
-        </a>
-      </div>
-      <div class="profile-container is-hidden">
-        <a class="profile-link" href="#">
-          <img
-            class="profile-img"
-            src="./images/profil-img/ellipse-3.webp"
-            alt="User profile image"
-            srcset="
+      </a>
+    </div>
+    <div class="profile-container is-hidden">
+      <a class="profile-link" href="#">
+        <img class="profile-img" src="./images/profil-img/ellipse-3.webp" alt="User profile image" srcset="
               ./images/profil-img/ellipse-3.webp    1x,
               ./images/profil-img/ellipse-3@2x.webp 2x
-            "
-          />
-          <span class="profile-text">Stephen</span>
-          <svg
-            class="burger-icon"
-            width="23"
-            height="26"
-            aria-label="profile down arrow"
-          >
-            <use href="./images/sprite.svg#icon-fi-ss-caret-down"></use>
-          </svg>
-        </a>
-      </div>
-      <div class="signup-container is-hidden">
-        <a href="#" class="signup-link" id="signup-link">
-          <span class="signup-text"> Log out </span>
-          <svg width="20" height="20" aria-label="Sign up Icon">
-            <use href="./images/sprite.svg#arrow-right"></use>
-          </svg>
-        </a>
-      </div>
+            " />
+        <span class="profile-text">Stephen</span>
+        <svg class="burger-icon" width="23" height="26" aria-label="profile down arrow">
+          <use href="./images/sprite.svg#icon-fi-ss-caret-down"></use>
+        </svg>
+      </a>
     </div>
+    <div class="signup-container is-hidden">
+      <a href="#" class="signup-link" id="signup-link">
+        <span class="signup-text"> Log out </span>
+        <svg width="20" height="20" aria-label="Sign up Icon">
+          <use href="./images/sprite.svg#arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
   </div>
 </header>
