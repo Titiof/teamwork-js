@@ -5,20 +5,20 @@
 
   const toggleMenu = () => {
     const isMenuOpen = mobileMenu.classList.contains('is-open');
-    
+
     if (!isMenuOpen) {
       // If the menu is closed, open it
       mobileMenu.classList.remove('is-hidden');
       mobileMenu.classList.add('is-open');
     } else {
       // If the menu is open, close it
-      
-          setTimeout(() => {
-     mobileMenu.classList.remove('is-open');
-    }, 500);
-       setTimeout(() => {
-      mobileMenu.classList.add('is-hidden');
-    }, 800);
+
+      setTimeout(() => {
+        mobileMenu.classList.remove('is-open');
+      }, 500);
+      setTimeout(() => {
+        mobileMenu.classList.add('is-hidden');
+      }, 800);
     }
   };
 
@@ -34,7 +34,7 @@
   };
 
   // Close the mobile menu on wider screens if the device orientation changes
-  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+  window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
     if (!e.matches) return;
     mobileMenu.classList.remove('is-open');
     openMenuBtn.setAttribute('aria-expanded', false);
@@ -46,7 +46,7 @@
 
 (() => {
   // Function to hide the menu on small screens
-  const hideMenuOnSmallScreen = (matches) => {
+  const hideMenuOnSmallScreen = matches => {
     const menu = document.querySelector('.menu');
     if (matches) {
       menu.classList.add('is-hidden');
@@ -62,31 +62,30 @@
   hideMenuOnSmallScreen(mediaQuery.matches);
 
   // Add a listener to detect changes in screen width
-  mediaQuery.addEventListener('change', (e) => {
+  mediaQuery.addEventListener('change', e => {
     hideMenuOnSmallScreen(e.matches);
   });
 })();
 
-
 (() => {
   const profileContainer = document.querySelector('.profile-container');
   const signupContainer = document.querySelector('.signup-container');
-  
+
   const mediaQuery = window.matchMedia('(max-width: 767px)');
-  
+
   const toggleVisibility = () => {
     if (mediaQuery.matches) {
       profileContainer.classList.add('is-hidden');
       signupContainer.classList.add('is-hidden');
     } else {
-      profileContainer.classList.remove('is-hidden');
+      profileContainer.classList.add('is-hidden');
       signupContainer.classList.remove('is-hidden');
     }
   };
-  
+
   // Initial check and setup
   toggleVisibility();
-  
+
   // Add a listener to detect changes in screen width
   mediaQuery.addEventListener('change', toggleVisibility);
 })();
