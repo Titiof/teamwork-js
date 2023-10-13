@@ -7,3 +7,6 @@ import './js/clock';
 import './js/mobile-menu';
 import './js/scroll-up';
 import './js/dark-mode';
+import './js/login';
+import './js/login-darkmode';
+import './js/pagination';
