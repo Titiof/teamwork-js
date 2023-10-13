@@ -6,20 +6,26 @@ const refs = {
     container: document.querySelector('.shopping-plug')
 };
 
-const localStorageKey = 'addedBooks';
+const localStorageKey = 'shopping-list';
 
 document.body.addEventListener('DOMContentLoaded', onLoadPage);
 
 function bookTemplate({book_image, title, list_name, description, author }) {
-    return `<div class="">
-    <button class="" type="button"></button>
-    <img class="" src="${book_image}" alt="Обкладинка книги">
-    <h2 class="book-card-title">${title}</h2>
-    <h3 class="">${list_name}</h3>
-    <p class="">${description}</p>
-    <p class="">${author}</p>
-    <img src="" alt="">
-</div>`;
+    return ` <div class="shopping-border">
+          <button class="shopping-button" type="button">
+            <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
+              <use href="../images/sprite.svg#trash"></use>
+            </svg>
+          </button>
+          <img class="img-card" src="${book_image}" alt="Book cover" />
+          <div class="inform-box">
+            <h2 class="shopping-title">${title}</h2>
+            <h3 class="shopping-category">${list_name}</h3>
+            <p class="shopping-description">${description}</p>
+            <p class="shopping-author">${author}</p>
+          </div>
+          <img src="" alt="" />
+        </div>`;
 };
 
 function booksTemplate(books) {
