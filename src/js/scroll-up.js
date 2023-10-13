@@ -1,21 +1,23 @@
-// id="home-link" айди кнопки
+const btnToTop = document.querySelector('#button-scroll-up');
 
-// функция крутит страницу вверх
-function scrollToTop() {
-  document.body.scrollTop = 0; // Для Safari
-  document.documentElement.scrollTop = 0; // Для других
-}
+function scrollTop() {
+  window.addEventListener('scroll', onScrollShowBtn);
 
-// скрыть или показывать кнопку в зависимости от положения
-window.onscroll = function () {
-  showScrollToTopButton();
-};
+  function onScrollShowBtn() {
+    window.scrollY > 200
+      ? btnToTop.classList.add('show')
+      : btnToTop.classList.remove('show');
+  }
 
-function showScrollToTopButton() {
-  const scrollButton = document.getElementById("scrollToTopBtn");
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    scrollButton.style.display = "block";
-  } else {
-    scrollButton.style.display = "none";
+  btnToTop.addEventListener('click', onClickGoTop);
+
+  function onClickGoTop() {
+    if (window.scrollY != 0) {
+      setTimeout(function () {
+        window.scrollTo(0, window.scrollY - 70);
+        onClickGoTop();
+      }, 10);
+    }
   }
 }
+scrollTop();
