@@ -12,10 +12,13 @@
       mobileMenu.classList.add('is-open');
     } else {
       // If the menu is open, close it
-      mobileMenu.classList.remove('is-open');
+      
+          setTimeout(() => {
+     mobileMenu.classList.remove('is-open');
+    }, 500);
        setTimeout(() => {
       mobileMenu.classList.add('is-hidden');
-    }, 400);
+    }, 800);
     }
   };
 
@@ -39,4 +42,51 @@
   });
 
   hideMenuOnSmallScreen();
+})();
+
+(() => {
+  // Function to hide the menu on small screens
+  const hideMenuOnSmallScreen = (matches) => {
+    const menu = document.querySelector('.menu');
+    if (matches) {
+      menu.classList.add('is-hidden');
+    } else {
+      menu.classList.remove('is-hidden');
+    }
+  };
+
+  // Check if the screen width matches the condition
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+
+  // Initial check and setup
+  hideMenuOnSmallScreen(mediaQuery.matches);
+
+  // Add a listener to detect changes in screen width
+  mediaQuery.addEventListener('change', (e) => {
+    hideMenuOnSmallScreen(e.matches);
+  });
+})();
+
+
+(() => {
+  const profileContainer = document.querySelector('.profile-container');
+  const signupContainer = document.querySelector('.signup-container');
+  
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+  
+  const toggleVisibility = () => {
+    if (mediaQuery.matches) {
+      profileContainer.classList.add('is-hidden');
+      signupContainer.classList.add('is-hidden');
+    } else {
+      profileContainer.classList.remove('is-hidden');
+      signupContainer.classList.remove('is-hidden');
+    }
+  };
+  
+  // Initial check and setup
+  toggleVisibility();
+  
+  // Add a listener to detect changes in screen width
+  mediaQuery.addEventListener('change', toggleVisibility);
 })();
