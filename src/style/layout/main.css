@@ -136,7 +136,7 @@
   padding: 14px 28px;
   min-width: 124px;
   min-height: 46px;
-  background-color: var(--color-white);
+  background-color: transparent;
   border: 2px solid var(--color-blue);
   border-radius: 40px;
   transition: color 500ms ease-in-out, background-color 500ms ease-in-out;
