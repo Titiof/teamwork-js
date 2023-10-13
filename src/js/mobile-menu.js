@@ -26,7 +26,7 @@
   closeMenuBtn.addEventListener('click', toggleMenu);
 
   const hideMenuOnSmallScreen = () => {
-    if (window.innerWidth <= 320 && !mobileMenu.classList.contains('is-open')) {
+    if (!mobileMenu.classList.contains('is-open')) {
       mobileMenu.classList.add('is-hidden');
     } else {
       mobileMenu.classList.remove('is-hidden');
