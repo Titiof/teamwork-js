@@ -10,8 +10,7 @@ const enableDarkMode = () => {
   document.body.classList.add('darkmode');
 
   // 2. Update darkMode in localStorage
-  localStorage.setItem('darkMode', true); // Змінилось на true
-
+  localStorage.setItem('darkMode', 'enabled');
   // 3. Check the checkbox
   darkModeCheckbox.checked = true;
 };
@@ -19,18 +18,15 @@ const enableDarkMode = () => {
 const disableDarkMode = () => {
   // 1. Remove the class from the body
   document.body.classList.remove('darkmode');
-
   // 2. Update darkMode in localStorage
-  localStorage.setItem('darkMode', false); // Змінилось на false
-
+  localStorage.setItem('darkMode', null);
   // 3. Uncheck the checkbox
   darkModeCheckbox.checked = false;
 };
 
 // If the user already visited and enabled darkMode
 // start things off with it on
-if (darkMode === 'true') {
-  // Перевірка на 'true' замість 'enabled'
+if (darkMode === 'enabled') {
   enableDarkMode();
 }
 
@@ -40,8 +36,7 @@ darkModeToggle.addEventListener('click', () => {
   darkMode = localStorage.getItem('darkMode');
 
   // Toggle the state based on the current value
-  if (darkMode !== 'true') {
-    // Перевірка на 'true' замість 'enabled'
+  if (darkMode !== 'enabled') {
     enableDarkMode();
     darkModeToggleTwo.checked = true;
   } else {
@@ -56,8 +51,7 @@ darkModeToggleTwo.addEventListener('click', () => {
   darkMode = localStorage.getItem('darkMode');
 
   // Toggle the state based on the current value
-  if (darkMode !== 'true') {
-    // Перевірка на 'true' замість 'enabled'
+  if (darkMode !== 'enabled') {
     enableDarkMode();
     darkModeToggle.checked = true;
   } else {
