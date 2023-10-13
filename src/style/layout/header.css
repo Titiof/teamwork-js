@@ -231,6 +231,9 @@ label:active:after {
   fill: var(--color-white);
 }
 
+.logo-icon-bookshelf {
+  fill: var(--color-black);
+}
 .close-icon {
   fill: var(--color-white);
 }
