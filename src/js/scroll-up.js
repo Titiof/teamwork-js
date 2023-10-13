@@ -12,7 +12,7 @@ window.onscroll = function () {
 };
 
 function showScrollToTopButton() {
-  const scrollButton = document.getElementById("home-link");
+  const scrollButton = document.getElementById("scrollToTopBtn");
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     scrollButton.style.display = "block";
   } else {
