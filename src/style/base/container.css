@@ -5,10 +5,12 @@
 }
 
 .sidebar {
+  column-gap: 32px;
+  row-gap: 40px;
   display: flex;
   flex-direction: column;
-  width: 335px;
-  gap: 40px;
+  width: 100%;
+  margin-bottom: 40px;
 }
 @media screen and (min-width: 375px) {
   .container {
@@ -24,7 +26,7 @@
   .sidebar {
     flex-direction: row;
     width: 704px;
-    gap: 32px;
+    margin-bottom: 98px;
   }
 }
 
@@ -39,6 +41,6 @@
     flex-direction: column;
     margin-right: 40px;
     width: 356px;
-    gap: 86px;
+    row-gap: 86px;
   }
 }

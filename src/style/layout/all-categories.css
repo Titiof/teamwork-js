@@ -9,6 +9,14 @@
 @media only screen and (min-width: 768px) {
   .vertical-menu {
     height: 472px;
+    width: 337px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .vertical-menu {
+    height: 472px;
+    width: 100%;
   }
 }
 
