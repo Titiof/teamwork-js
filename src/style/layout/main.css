@@ -101,9 +101,6 @@
 }
 
 .book-card-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: var(--color-gray);
   font-size: 12px;
   font-style: italic;
@@ -115,6 +112,9 @@
 @media only screen and (min-width: 768px) {
   .book-card-text {
     max-width: 218px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
