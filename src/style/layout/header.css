@@ -524,7 +524,7 @@ label:active:after {
     padding: 0;
   }
   .nav-container {
-    max-width: 100%;
+    max-width: 1440px;
     padding: 13px 24px;
   }
 }
