@@ -26,7 +26,6 @@
   margin-bottom: 40px;
   color: var(--color-white-all-time, #ffffff);
   font-size: 22px;
-  font-style: normal;
   font-weight: 700;
   line-height: 1, 09;
   letter-spacing: -0.88px;
@@ -36,24 +35,28 @@
   flex-direction: column;
   gap: 20px;
   margin-bottom: 20px;
+  width: 148px;
 }
 .section-support-link {
   color: var(--color-white-all-time, #ffffff);
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1, 28;
+  line-height: 1.28;
   letter-spacing: -0.56px;
   height: 32px;
 }
 
+.section-support-list-item {
+  display: block;
+  height: 32px;
+  width: auto;
+}
 .section-support-png {
-  box-sizing: content-box;
+  max-width: 116px;
+  max-height: 32px;
   padding-left: 16px;
   transition: all 0.3s ease-in;
-
   filter: brightness(0) invert(1);
 }
 .section-support-png:hover,
