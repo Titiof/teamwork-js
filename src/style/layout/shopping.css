@@ -1,3 +1,33 @@
+.shoping-list {
+  padding: 0;
+  margin: 0 auto;
+}
+
+.shopping-plug {
+  max-width: 335px;
+}
+
+.support-none {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .shopping-plug {
+    max-width: 704px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .shopping-plug {
+    max-width: 996px;
+    width: 996px;
+  }
+
+  .support-none {
+    display: block;
+  }
+}
+
 .shopping-plug-text {
   width: 244px;
   color: var(--color-gray-shopping);
@@ -155,4 +185,31 @@
 
 .shopping-delete-icon {
   fill: var(--color-white);
+}
+
+.shopping-link {
+  position: absolute;
+  display: flex;
+  bottom: 14px;
+  right: 14px;
+  padding: 0;
+  gap: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .shopping-link {
+    bottom: 24px;
+    right: 24px;
+    gap: 16px;
+  }
+}
+
+.shops-icon-amazon {
+  width: 32px;
+  height: 11px;
+}
+
+.shop-icon-book {
+  width: 15px;
+  height: 15px;
 }
