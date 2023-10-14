@@ -11,29 +11,63 @@
       </a>
     </div>
     <div class="switcher-burger">
-      <input class="checkbox dark-mode-toggle" type="checkbox" id="dark-mode-toggle-two" />
+      <input
+        class="checkbox dark-mode-toggle"
+        type="checkbox"
+        id="dark-mode-toggle-two"
+      />
       <label for="dark-mode-toggle-two">Toggle</label>
     </div>
     <button class="menu-toggle js-close-menu">
-      <svg class="burger-icon icon-animation" width="32" height="32" aria-label="close menu button">
+      <svg
+        class="burger-icon icon-animation"
+        width="32"
+        height="32"
+        aria-label="close menu button"
+      >
         <use href="./images/sprite.svg#icon-x-close"></use>
       </svg>
     </button>
   </div>
-  <a class="profile-link link" href="#">
-    <img class="profile-img" src="./images/profil-img/ellipse-3.webp" alt="User profile image" srcset="
-        ./images/profil-img/ellipse-3.webp    1x,
-        ./images/profil-img/ellipse-3@2x.webp 2x
-      " />
-    <span class="profile-text">Stephen</span>
-  </a>
+  <div class="mobile-loginbtn-container">
+    <a href="./login.html" class="mobile-login link" id="login-link">
+      Log in
+      <svg width="20" height="20" aria-label="Log in icon">
+        <use href="./images/sprite.svg#arrow-right"></use>
+      </svg>
+    </a>
+  </div>
+  <div class="mobile-profile-container">
+    <a class="profile-link link" href="#">
+      <img
+        class="profile-img menu-profile"
+        id="userMobImage"
+        src="./images/profil-img/ellipse-3.webp"
+        alt="User profile image"
+        srcset="
+          ./images/profil-img/ellipse-3.webp    1x,
+          ./images/profil-img/ellipse-3@2x.webp 2x
+        "
+      />
+      <svg class="user-icon" width="37" height="37" aria-label="User img space">
+        <use href="./images/sprite.svg#user"></use>
+      </svg>
+      <span class="profile-text profile-mob-text">Stephen</span>
+    </a>
+  </div>
+
   <ul class="mobile-menu">
     <li class="menu-item">
       <a href="index.html" class="mob-link link">HOME</a>
     </li>
     <li class="menu-item">
-      <a href="shoppinglist.html" class="mob-link">SHOPPING LIST<svg class="logo-icon" width="20" height="20"
-          aria-label="logotype">
+      <a href="shoppinglist.html" class="mob-link link"
+        >SHOPPING LIST<svg
+          class="logo-icon"
+          width="20"
+          height="20"
+          aria-label="logotype"
+        >
           <use href="./images/sprite.svg#icon-uil-cart"></use>
         </svg>
       </a>
