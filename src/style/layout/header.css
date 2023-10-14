@@ -260,11 +260,7 @@ label:active:after {
   bottom: 20px;
   left: 20px;
 }
-.mobile-loginbtn-container {
-  position: fixed;
-  top: 90px;
-  left: 20px;
-}
+
 .menu-container {
   background-image: url('../../images/mobile-menu-bg/group-6.webp'),
     var(--custom-radial-gradient); /* 1x image */
