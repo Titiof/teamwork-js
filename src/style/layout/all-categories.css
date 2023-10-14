@@ -77,7 +77,7 @@ li.active {
 .category-books-wrapper {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 25px;
+  column-gap: 24px;
   row-gap: 40px;
 }
 @media only screen and (min-width: 375px) {
