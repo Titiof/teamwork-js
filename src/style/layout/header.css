@@ -256,33 +256,30 @@ label:active:after {
 /* Style the container for the bottom-left link */
 .mobile-logoutbtn-container {
   position: fixed;
-  margin-top: 240px;
-  left: 30px;
+  buttom: 20px;
+  left: 20px;
 }
-@media (max-width: 320px) {
-  .mobile-logoutbtn-container {
-    margin-top: 320px;
-  }
+.menu-container {
+  background-image: url('../../images/mobile-menu-bg/group-6.webp'),
+    var(--custom-radial-gradient); /* 1x image */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 100% 100%;
+}
+
+/* For high-resolution screens (x2 or 2x) */
+@media only screen and (min-resolution: 144dpi),
+  only screen and (min-resolution: 1.5dppx) {
   .menu-container {
-    max-width: 320px;
-  }
-  .menu-container {
-    background-image: url('../../images/mobile-menu-bg/group-6.webp'),
-      var(--custom-radial-gradient); /* 1x image */
-    background-repeat: no-repeat;
+    background-image: url('../../images/mobile-menu-bg/group-6@2x.webp'),
+      var(--custom-radial-gradient);
     background-size: contain;
     background-position: 100% 100%;
   }
-
-  /* For high-resolution screens (x2 or 2x) */
-  @media only screen and (min-resolution: 144dpi),
-    only screen and (min-resolution: 1.5dppx) {
-    .menu-container {
-      background-image: url('../../images/mobile-menu-bg/group-6@2x.webp'),
-        var(--custom-radial-gradient);
-      background-size: contain;
-      background-position: 100% 100%;
-    }
+}
+@media (max-width: 320px) {
+  .menu-container {
+    max-width: 320px;
   }
 }
 
@@ -362,13 +359,16 @@ label:active:after {
   }
   /* ================================================ */
   .profile-container {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
     background-color: var(--color-blue);
-    border-radius: 36px;
     min-width: 185px;
     height: 45px;
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    align-content: center;
+    transition: background-color 0.5s;
   }
 
   .profile-container:hover,
@@ -376,6 +376,7 @@ label:active:after {
   .profile-container:active {
     background-color: rgb(79, 79, 187);
   }
+
   .profile-link {
     text-decoration: none;
     display: flex;
@@ -416,8 +417,16 @@ label:active:after {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 90px;
+    justify-content: space-between;
     padding: 15px 14px 15px 14px;
+  }
+  .user-icon {
+    display: flex;
+    margin-right: 9px;
+  }
+  .signup-svg {
+    display: flex;
+    margin-left: 50px;
   }
 
   .signup-text {
@@ -425,6 +434,21 @@ label:active:after {
     font-weight: 500;
     line-height: 1.29;
     letter-spacing: -0.56px;
+  }
+
+  .logout-container {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    background-color: var(--color-blue);
+    border-radius: 36px;
+    min-width: 185px;
+    height: 45px;
+  }
+
+  .logout-container:hover,
+  .logout-container:focus {
+    background-color: rgb(79, 79, 187);
   }
 
   .container.nav-container {
@@ -456,8 +480,6 @@ label:active:after {
   }
 
   .nav-link:hover,
-  .nav-link:active,
-  .nav-link:focus,
   .nav-link.active {
     color: var(--color-black);
     background-color: var(--color-gold);
