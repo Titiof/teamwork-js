@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import createBookMarkup from './bookMarkupLi';
 import { BooksAPI } from './books-api';
 
@@ -92,23 +93,58 @@ function createMarkup(data) {
 </div>`;
 }
 
+function isBookInLocalStorage(bookId) {
+  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  return existingBookArray.some(book => book._id === bookId);
+}
+
 addToListButton.addEventListener('click', async () => {
   try {
     const bookId = currentId;
-    console.log(bookId);
-    const booksAPI = new BooksAPI();
-    const data = await booksAPI.getBookById(bookId);
-    createBookObject(data);
-    disableBackgroundScroll();
-    addSuccessMessage.textContent =
-      'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+    if (!isBookInLocalStorage(bookId)) {
+      const booksAPI = new BooksAPI();
+      const data = await booksAPI.getBookById(bookId);
+      createBookObject(data);
+      disableBackgroundScroll();
+      addSuccessMessage.textContent =
+        'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+      // При додаванні книги в localStorage, змінюйте кнопки "Add" і "Remove"
+      addToListButton.classList.add('is-hidden');
+      removeFromListButton.classList.remove('is-hidden');
+    } else {
+      // Книга вже є в localStorage, ви можете вивести повідомлення про це.
+      Notiflix.Notify.failure('This book is already in your shopping list.');
+    }
   } catch (error) {}
 });
 
+removeFromListButton.addEventListener('click', () => {
+  // Код для видалення книги з localStorage
+  const bookIdToRemove = currentId;
+  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  addSuccessMessage.textContent = '';
+  if (indexToRemove !== -1) {
+    bookArray.splice(indexToRemove, 1);
+    localStorage.setItem('shopping-list', JSON.stringify(bookArray));
+    // Оновіть кнопки "Add" і "Remove" після видалення
+    addToListButton.classList.remove('is-hidden');
+    removeFromListButton.classList.add('is-hidden');
+  }
+});
+
+window.addEventListener('load', () => {
+  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  if (existingBookArray.some(book => book._id === currentId)) {
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+  }
+});
+
 function createBookObject(data) {
-  const { _id, book_image, title, author, buy_links, description } = data;
+  const { _id, list_name, book_image, title, author, buy_links, description } = data;
   bookObject = {
     _id,
+    list_name,
     book_image,
     title,
     author,
