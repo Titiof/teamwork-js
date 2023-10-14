@@ -8,6 +8,9 @@ async function onPageLoad() {
   toggleLoader();
   try {
     const response = await booksApi.getBooks();
+    if (response.length === 0) {
+      Notiflix.Notify.warning('Sorry, there are no top books yet');
+    }
     createListMarkup(response);
   } catch (error) {
     Notiflix.Notify.failure('Oops, something went wrong!');

@@ -3,7 +3,7 @@ const booksList = document.querySelector('.bestsellers-list');
 export default function createBookMarkup(book) {
   return `<li class="book-card" id="${book._id}">
             <div class="book-card-wrapper">
-            <img class="book-card-img" src="${book.book_image}" alt="${book.description}" loading="lazy" />
+            <img class="book-card-img" src="${book.book_image}" alt="Book cover" loading="lazy" />
             <p class="book-text-backdrop">Quick view</p>
             </div>
             <h3 class="book-card-title">${book.title}</h3>
