@@ -32,88 +32,97 @@ function setActiveLink(className, currentPath) {
 setActiveLink('mob-link', currentPath);
 setActiveLink('nav-link', currentPath);
 
-// // Get references to the signup and user containers
-// const signupContainer = document.getElementById('signup-container');
-// const userContainer = document.getElementById('profile-container');
-
-// // Get a reference to the signup form and the signup button
-// const signupForm = document.getElementById('js-login-form');
-// const signupButton = document.getElementById('login-submit-btn');
-
-// // Add an event listener to the signup button
-// signupButton.addEventListener('click', () => {
-//   // Assuming you've successfully signed up the user
-//   // You can add your signup logic here
-
-//   // Hide the signup container
-//   signupContainer.classList.add('is-hidden');
-
-//   // Show the user container
-//   userContainer.classList.remove('is-hidden');
-//   // You can populate the user container with user-specific content here
-// });
-
 const signupContainer = document.querySelector('.signup-container');
 const userContainer = document.querySelector('.profile-container');
 const userNameBtn = document.querySelector('.profile-text');
 const logoutButton = document.querySelector('.logout-container');
 const userImageBtn = document.querySelector('#userImage');
 const defaultUserImage = './images/sprite.svg#user';
+const navList = document.querySelector('.nav-list');
+
+let hideTimeout;
+
 auth.onAuthStateChanged(user => {
   if (user) {
     signupContainer.classList.add('is-hidden');
     userContainer.classList.remove('is-hidden');
-   
-    // const userImageURL = user.photoURL; 
-     const userImageURL = ''; 
 
-if (userImageURL) {
-  userImage.src = userImageURL;
-  userImage.classList.remove('is-hidden'); 
-  userImage.nextElementSibling.classList.add('is-hidden'); 
-} else {
-  
-  userImage.classList.add('is-hidden'); 
-  userImage.nextElementSibling.classList.remove('is-hidden'); 
-}
+    // const userImageURL = user.photoURL;
+    const userImageURL = '';
+
+    if (userImageURL) {
+      userImageBtn.src = userImageURL;
+      userImageBtn.classList.remove('is-hidden');
+      userImageBtn.nextElementSibling.classList.add('is-hidden');
+    } else {
+      userImageBtn.classList.add('is-hidden');
+      userImageBtn.nextElementSibling.classList.remove('is-hidden');
+    }
 
     const userName = user.displayName || 'User';
-    userNameBtn.textContent = `${userName}`;
+    userNameBtn.textContent = userName;
+
+    logoutButton.classList.add('is-hidden');
+
+    userContainer.addEventListener('mouseenter', () => {
+      hideTimeout = setTimeout(() => {
+        logoutButton.classList.remove('is-hidden');
+      }, 300);
+    });
+    userContainer.addEventListener('mouseleave', () => {
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        logoutButton.classList.add('is-hidden');
+      }, 300);
+    });
+
+    navList.classList.remove('is-hidden');
   } else {
-    
     signupContainer.classList.remove('is-hidden');
     userContainer.classList.add('is-hidden');
+    logoutButton.classList.add('is-hidden');
+    navList.classList.add('is-hidden');
   }
 });
 
 logoutButton.addEventListener('click', () => {
-  auth.signOut().then(() => {
-  });
+  auth.signOut().then(() => {});
 });
 
+// function hideSignupContainer() {
+//   signupContainer.classList.add('is-hidden');
+// }
 
+// function showSignupContainer() {
+//   signupContainer.classList.remove('is-hidden');
+// }
 
+// function hideProfileContainer() {
+//   userContainer.classList.add('is-hidden');
+// }
 
-logoutButton.classList.add('is-hidden'); 
+// function showProfileContainer() {
+//   userContainer.classList.remove('is-hidden');
+// }
 
-userContainer.addEventListener('mouseenter', () => {
-  setTimeout(() => {
-    logoutButton.classList.remove('is-hidden');
-  }, 300); 
-});
+// window.addEventListener('resize', () => {
+//   const screenWidth = window.innerWidth;
 
-logoutButton.addEventListener('mouseenter', () => {
-  clearTimeout(hideTimeout); 
-});
+//   if (screenWidth < 767) {
+//     hideSignupContainer();
+//     hideProfileContainer();
+//   } else {
+//     showSignupContainer();
+//     showProfileContainer();
+//   }
+// });
 
-let hideTimeout; 
+// const screenWidth = window.innerWidth;
 
-userContainer.addEventListener('mouseleave', () => {
-  hideTimeout = setTimeout(() => {
-    logoutButton.classList.add('is-hidden');
-  }, 300); 
-});
-
-logoutButton.addEventListener('mouseleave', () => {
-  clearTimeout(hideTimeout); 
-});
+// if (screenWidth < 767) {
+//   hideSignupContainer();
+//   hideProfileContainer();
+// } else {
+//   showSignupContainer();
+//   showProfileContainer();
+// }

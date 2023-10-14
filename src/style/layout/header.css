@@ -123,6 +123,8 @@ label:active:after {
 
 .header-menu {
   background: var(--color-white);
+  color: var(--color-black);
+  fill: var(--color-black);
   border-radius: 0px 0px 8px 8px;
   border: 2px solid #111;
   display: flex;
@@ -253,10 +255,14 @@ label:active:after {
   letter-spacing: -0.44px;
 }
 
-/* Style the container for the bottom-left link */
 .mobile-logoutbtn-container {
   position: fixed;
-  top: 590px;
+  bottom: 20px;
+  left: 20px;
+}
+.mobile-loginbtn-container {
+  position: fixed;
+  top: 90px;
   left: 20px;
 }
 .menu-container {
@@ -302,7 +308,24 @@ label:active:after {
 .mobile-logout:active {
   background-color: var(--color-gold);
 }
+.mobile-login {
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.56px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
+  padding: 15px 24px;
+  border-radius: 18px;
+  border: 1.5px solid var(--color-black);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transition: background-color 0.3s ease;
+}
+.mobile-login:active {
+  background-color: var(--color-gold);
+}
 @media screen and (min-width: 425px) {
   .button {
     margin-right: 24px;
@@ -393,7 +416,7 @@ label:active:after {
   }
 
   .profile-text {
-    color: var(--color-white);
+    color: var(--color-white-all-time);
     font-size: 22px;
     font-weight: 700;
     line-height: normal;

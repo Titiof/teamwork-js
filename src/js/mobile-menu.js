@@ -1,3 +1,6 @@
+import { getAuth } from 'firebase/auth';
+const auth = getAuth();
+
 (() => {
   const mobileMenu = document.querySelector('.js-menu-container');
   const openMenuBtn = document.querySelector('.js-open-menu');
@@ -7,12 +10,9 @@
     const isMenuOpen = mobileMenu.classList.contains('is-open');
 
     if (!isMenuOpen) {
-      // If the menu is closed, open it
       mobileMenu.classList.remove('is-hidden');
       mobileMenu.classList.add('is-open');
     } else {
-      // If the menu is open, close it
-
       setTimeout(() => {
         mobileMenu.classList.remove('is-open');
       }, 500);
@@ -33,7 +33,6 @@
     }
   };
 
-  // Close the mobile menu on wider screens if the device orientation changes
   window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
     if (!e.matches) return;
     mobileMenu.classList.remove('is-open');
@@ -45,7 +44,6 @@
 })();
 
 (() => {
-  // Function to hide the menu on small screens
   const hideMenuOnSmallScreen = matches => {
     const menu = document.querySelector('.menu');
     if (matches) {
@@ -55,13 +53,10 @@
     }
   };
 
-  // Check if the screen width matches the condition
   const mediaQuery = window.matchMedia('(max-width: 767px)');
 
-  // Initial check and setup
   hideMenuOnSmallScreen(mediaQuery.matches);
 
-  // Add a listener to detect changes in screen width
   mediaQuery.addEventListener('change', e => {
     hideMenuOnSmallScreen(e.matches);
   });
@@ -83,9 +78,50 @@
     }
   };
 
-  // Initial check and setup
   toggleVisibility();
 
-  // Add a listener to detect changes in screen width
   mediaQuery.addEventListener('change', toggleVisibility);
 })();
+
+// =============================================
+
+const loginContainer = document.querySelector('.mobile-loginbtn-container');
+const mobProContainer = document.querySelector('.mobile-profile-container');
+const userMobNameBtn = document.querySelector('.profile-mob-text');
+const logoutButton = document.querySelector('.mobile-logoutbtn-container');
+const userMobImageBtn = document.querySelector('#userMobImage');
+const defaultUserImage = './images/sprite.svg#user';
+const menuList = document.querySelector('.mobile-menu');
+auth.onAuthStateChanged(user => {
+  if (user) {
+    loginContainer.classList.add('is-hidden');
+    mobProContainer.classList.remove('is-hidden');
+
+    // const userImageURL = user.photoURL;
+    const userImageURL = '';
+
+    if (userImageURL) {
+      userMobImageBtn.src = userImageURL;
+      userMobImageBtn.classList.remove('is-hidden');
+      userMobImageBtn.nextElementSibling.classList.add('is-hidden');
+    } else {
+      userMobImageBtn.classList.add('is-hidden');
+      userMobImageBtn.nextElementSibling.classList.remove('is-hidden');
+    }
+
+    const userName = user.displayName || 'User';
+    userMobNameBtn.textContent = `${userName}`;
+    menuList.classList.remove('is-hidden');
+  } else {
+    loginContainer.classList.remove('is-hidden');
+    mobProContainer.classList.add('is-hidden');
+    menuList.classList.add('is-hidden');
+  }
+});
+
+logoutButton.addEventListener('click', () => {
+  auth.signOut().then(() => {
+    mobProContainer.classList.add('is-hidden');
+    logoutButton.classList.add('is-hidden');
+  });
+});
