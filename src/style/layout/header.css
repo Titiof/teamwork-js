@@ -256,7 +256,7 @@ label:active:after {
 /* Style the container for the bottom-left link */
 .mobile-logoutbtn-container {
   position: fixed;
-  top: 590px;
+  buttom: 20px;
   left: 20px;
 }
 .menu-container {
