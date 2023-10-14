@@ -202,6 +202,16 @@
     right: 24px;
     gap: 16px;
   }
+
+  .shops-icon-amazon {
+    width: 48px;
+    height: 15px;
+  }
+
+  .shop-icon-book {
+    width: 22px;
+    height: 23px;
+  }
 }
 
 .shops-icon-amazon {
@@ -210,6 +220,6 @@
 }
 
 .shop-icon-book {
-  width: 15px;
+  width: 13px;
   height: 15px;
 }

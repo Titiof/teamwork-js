@@ -8,3 +8,4 @@ import './js/mobile-menu';
 import './js/scroll-up';
 import './js/login';
 import './js/pagination';
+import './js/shopping-list';
