@@ -13,7 +13,7 @@ const addSuccessMessage = document.querySelector('.add-success-message');
 
 const bookArray = [];
 let bookObject = {};
-let isModalOpen = false;
+let currentId = null;
 
 function disableBackgroundScroll() {
   document.body.style.overflow = 'hidden';
@@ -24,6 +24,7 @@ function enableBackgroundScroll() {
 }
 
 export function openModalFromBookCard(bookId) {
+  currentId = bookId;
   fetchBookData(bookId);
   disableBackgroundScroll();
 }
@@ -34,6 +35,7 @@ bookCards.addEventListener('click', onCardClick);
 
 async function onCardClick(event) {
   let listItem = event.target.closest('li');
+  currentId = listItem.id;
   if (listItem) {
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
@@ -90,11 +92,17 @@ function createMarkup(data) {
 </div>`;
 }
 
-addToListButton.addEventListener('click', () => {
-  createBookObject(bookObject);
-  disableBackgroundScroll();
-  addSuccessMessage.textContent =
-    'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+addToListButton.addEventListener('click', async () => {
+  try {
+    const bookId = currentId;
+    console.log(bookId);
+    const booksAPI = new BooksAPI();
+    const data = await booksAPI.getBookById(bookId);
+    createBookObject(data);
+    disableBackgroundScroll();
+    addSuccessMessage.textContent =
+      'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+  } catch (error) {}
 });
 
 function createBookObject(data) {
