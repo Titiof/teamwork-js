@@ -1,4 +1,7 @@
 import { initializeApp } from 'firebase/app';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -6,8 +9,14 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { collection, doc, getFirestore, addDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -96,9 +105,34 @@ export function checkAuthState() {
   });
 }
 
-export async function addBooksToUserCart(bookId) {
+export async function addBooksToUserCart(bookArray) {
   const user = auth.currentUser;
-  console.log(user);
 
-  const docRef = await addDoc(collection(db, 'users'), { bookId });
+  if (user) {
+    await setDoc(doc(db, 'userCarts', user.uid), { cart: bookArray });
+  } else {
+    console.log('User is not authenticated.');
+  }
+}
+
+export async function getUserCarts() {
+  const user = auth.currentUser;
+  if (user) {
+    const userCartRef = collection(db, 'userCarts');
+    const docs = await getDocs(userCartRef);
+    console.log(docs, 'docs');
+  }
+
+  const ref = doc(db, 'userCarts', user.uid);
+  const docSnap = await getDoc(ref);
+  if (docSnap.exists()) {
+    const cartData = docSnap.data().cart;
+    console.log(cartData, 'cartData');
+  } else {
+    console.log('No such document!');
+  }
+}
+
+export function getUser() {
+  return auth;
 }
