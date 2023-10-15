@@ -12,7 +12,7 @@ const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
 
-const bookArray = [];
+let bookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
 let bookObject = {};
 let currentId = null;
 
@@ -28,6 +28,11 @@ export function openModalFromBookCard(bookId) {
   currentId = bookId;
   fetchBookData(bookId);
   disableBackgroundScroll();
+  console.log(isBookInLocalStorage());
+  if (isBookInLocalStorage()) {
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+  }
 }
 
 const bookCards = document.querySelector('.bestsellers-list');
@@ -40,6 +45,11 @@ async function onCardClick(event) {
     currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
+  } if (isBookInLocalStorage(currentId)) {
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+    addSuccessMessage.textContent =
+        'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
   }
 }
 
@@ -94,8 +104,7 @@ function createMarkup(data) {
 }
 
 function isBookInLocalStorage(bookId) {
-  const existingBookArray =
-    JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
   return existingBookArray.some(book => book._id === bookId);
 }
 
@@ -136,8 +145,7 @@ removeFromListButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-  const existingBookArray =
-    JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
   if (existingBookArray.some(book => book._id === currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -173,9 +181,7 @@ function addToShoppingList() {
 
 function removeFromShoppingList() {
   const bookIdToRemove = bookObject._id;
-  const indexToRemove = bookArray.findIndex(
-    book => book._id === bookIdToRemove
-  );
+  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
   addSuccessMessage.textContent = '';
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
