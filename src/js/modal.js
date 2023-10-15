@@ -11,6 +11,7 @@ const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
+const backdrop = document.querySelector('.modal-backdrop');
 
 let bookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
 let bookObject = {};
@@ -45,6 +46,7 @@ async function onCardClick(event) {
     currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
+     backdrop.classList.add('is-shown');
   } if (isBookInLocalStorage(currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -175,7 +177,7 @@ function addToShoppingList() {
 
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
-    removeFromListButton.addEventListener('click', removeFromShoppingList);
+    // removeFromListButton.addEventListener('click', removeFromShoppingList);
   }
 }
 
@@ -198,16 +200,18 @@ closeButton.addEventListener('click', () => {
   addToListButton.classList.remove('is-hidden');
   removeFromListButton.classList.add('is-hidden');
   addSuccessMessage.textContent = '';
+    backdrop.classList.remove('is-shown');
 });
 
 window.onclick = function (event) {
-  if (event.target === modal) {
+  if (event.target === backdrop) {
     modal.classList.add('is-hidden');
     modal.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
+    backdrop.classList.remove('is-shown');
   }
 };
 
@@ -219,6 +223,7 @@ window.addEventListener('keydown', function (e) {
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
+    backdrop.classList.remove('is-shown');
   }
 });
 
