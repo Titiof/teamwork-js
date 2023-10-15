@@ -1,5 +1,5 @@
-// import './js/header';
 import './js/login/logout';
+import './js/header';
 import './js/shoppinglist-darkmode';
 import './js/support';
 import './js/shopping-list';
