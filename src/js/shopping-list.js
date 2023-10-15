@@ -1,4 +1,3 @@
-
 import amazon from '../images/shopping-list/amazon-logo@2x.webp';
 import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
@@ -25,18 +24,21 @@ function onLoadPage() {
 
 onLoadPage();
 
-function bookTemplate({
-  _id,
-  book_image,
-  title,
-  list_name,
-  description,
-  author,
-  buy_links,
-}) {
-
-  const shopDescription = description || 'Description will be added later';
-  return ` <li class="shopping-border">
+export function booksTemplate(book) {
+  return book
+    .map(
+      ({
+        _id,
+        book_image,
+        title,
+        list_name,
+        description,
+        author,
+        buy_links,
+      }) => {
+        const shopDescription =
+          description || 'Description will be added later';
+        return `<li class="shopping-border">
   <button class="shopping-button" type="button" id="${_id}">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
       <use href="${sprite}#trash"><use>
@@ -69,12 +71,10 @@ function bookTemplate({
       </a>
     </li>
   </ul>
-
 </li>`;
-}
-
-function booksTemplate(books) {
-  return books.map(bookTemplate).join('');
+      }
+    )
+    .join('');
 }
 
 function renderShoppingList(books) {
@@ -91,7 +91,6 @@ function loadFromLS(key) {
       return [];
     }
   }
-
 }
 
 refs.shoppingList.addEventListener('click', onDeleteFromLS);
