@@ -26,5 +26,5 @@
 
 #button-scroll-up:hover,
 #button-scroll-up:focus {
-  scale: 0.9;
+  transform: scale(0.9);
 }

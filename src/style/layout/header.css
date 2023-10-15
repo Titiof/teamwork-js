@@ -152,8 +152,7 @@ label:active:after {
 }
 .js-close-menu:focus,
 .js-close-menu:active {
-  transform: rotate(360deg);
-  scale: 1.1;
+  transform: rotate(360deg) scale(1.1);
   outline: 2px solid black;
 }
 
@@ -534,8 +533,7 @@ label:active:after {
   }
 
   .js-close-menu:active {
-    transform: rotate(360deg);
-    scale: 1.3;
+    transform: rotate(360deg) scale(1.3);
     outline: 3px solid black;
   }
   .icon-animation {
