@@ -1,3 +1,9 @@
+
+import amazon from '../images/shopping-list/amazon-logo@2x.webp';
+import apple from '../images/shopping-list/amazon-book@2x.webp';
+import sprite from '../images/sprite.svg';
+import { toggleLoader } from './loader';
+
 const refs = {
   shoppingList: document.querySelector('.shopping-list-selector'),
   header: document.querySelector('.main-header'),
@@ -6,9 +12,21 @@ const refs = {
 
 const localStorageKey = 'shopping-list';
 
-document.body.addEventListener('DOMContentLoaded', onLoadPage);
+function onLoadPage() {
+  toggleLoader();
+  const loadedData = loadFromLS(localStorageKey);
+  if (loadedData.length > 0) {
+    renderShoppingList(loadedData);
+    refs.header.classList.add('is-hidden');
+    refs.container.classList.add('is-hidden');
+  }
+  toggleLoader();
+}
+
+onLoadPage();
 
 function bookTemplate({
+  _id,
   book_image,
   title,
   list_name,
@@ -16,55 +34,43 @@ function bookTemplate({
   author,
   buy_links,
 }) {
-  return ` <div class="shopping-border">
-  <button class="shopping-button" type="button">
+
+  const shopDescription = description || 'Description will be added later';
+  return ` <li class="shopping-border">
+  <button class="shopping-button" type="button" id="${_id}">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
-      <use href="./images/sprite.svg#trash"></use>
+      <use href="${sprite}#trash"><use>
     </svg>
   </button>
   <img class="img-card" src="${book_image}" alt="Book cover" />
   <div class="inform-box">
     <h2 class="shopping-title">${title}</h2>
     <h3 class="shopping-category">${list_name}</h3>
-    <p class="shopping-description">${description}</p>
+    <p class="shopping-description">${shopDescription}</p>
     <p class="shopping-author">${author}</p>
   </div>
   <ul class="shopping-link">
     <li class="shop">
       <a href="${buy_links[0].url}" class="shop-link" target="_blank">
       <img
-      class="shops-icon-amazon"
-      src="./images/shopping-list/amazon-logo.png"
+      class="shops-icon-amazon shops-item-icon"
       alt="Amazon-logo"
-      srcset="
-        ./images/shopping-list/amazon-logo.webp    1x,
-        ./images/shopping-list/amazon-logo@2x.webp 2x,
-        ./images/shopping-list/amazon-logo.png     1x,
-        ./images/shopping-list/amazon-logo@2x.png  2x
-      "
-      sizes="(max-width: 48px)"
-      loading="lazy"
-    />
+      src="${amazon}"
+      loading="lazy"/>
       </a>
     </li>
     <li class="shop">
       <a href="${buy_links[1].url}" class="shop-link" target="_blank">
       <img
-      class="shop-icon-book"
-      src="./images/shopping-list/amazon-book.png"
+      class="shop-icon-book shops-item-icon-book"
       alt="Apple-Books-logo"
-      srcset="
-        ./images/shopping-list/amazon-book.webp    1x,
-        ./images/shopping-list/amazon-book@2x.webp 2x,
-        ./images/shopping-list/amazon-book.png     1x,
-        ./images/shopping-list/amazon-book@2x.png  2x
-      "
-      sizes="(max-width: 22px)"
-      loading="lazy"
-    /></a>
+      src="${apple}"
+      loading="lazy"/>
+      </a>
     </li>
   </ul>
-</div>`;
+
+</li>`;
 }
 
 function booksTemplate(books) {
@@ -85,17 +91,30 @@ function loadFromLS(key) {
       return [];
     }
   }
+
 }
 
-function onLoadPage() {
-  const loadedData = loadFromLS(localStorageKey);
-  if (loadedData.length > 0) {
-    renderShoppingList(loadedData);
-    refs.header.classList.add('is-hidden');
-    refs.container.classList.add('is-hidden');
+refs.shoppingList.addEventListener('click', onDeleteFromLS);
+
+function onDeleteFromLS(e) {
+  if (
+    e.target.classList.contains('shopping-button') ||
+    e.target.classList.contains('shopping-delete-icon')
+  ) {
+    const bookIdBtn = e.target.closest('button').id;
+    const books_data = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    const bookIndex = books_data.findIndex(book => book._id === bookIdBtn);
+
+    if (bookIndex !== -1) {
+      books_data.splice(bookIndex, 1);
+      localStorage.setItem(localStorageKey, JSON.stringify(books_data));
+
+      if (books_data.length === 0) {
+        refs.header.classList.remove('is-hidden');
+        refs.container.classList.remove('is-hidden');
+      }
+
+      renderShoppingList(books_data);
+    }
   }
 }
-
-onLoadPage();
-
-function onDeleteFromLS() {}

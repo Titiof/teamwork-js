@@ -5,29 +5,37 @@ import { addBooksToUserCart } from './firebase';
 import apple from '../images/modal/amazon-book.webp';
 import amazon from '../images/modal/amazon.webp';
 
-const modal = document.querySelector('.modal-shown');
+// const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
 const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
+const backdrop = document.querySelector('.modal-backdrop');
+const scrollUpBut = document.querySelector('#button-scroll-up');
 
-const bookArray = [];
+let bookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
 let bookObject = {};
 let currentId = null;
 
 function disableBackgroundScroll() {
   document.body.style.overflow = 'hidden';
+  scrollUpBut.classList.add('is-hidden');
 }
 
 function enableBackgroundScroll() {
   document.body.style.overflow = 'auto';
+  scrollUpBut.classList.remove('is-hidden');
 }
 
 export function openModalFromBookCard(bookId) {
   currentId = bookId;
   fetchBookData(bookId);
   disableBackgroundScroll();
+  if (isBookInLocalStorage()) {
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+  }
 }
 
 const bookCards = document.querySelector('.bestsellers-list');
@@ -38,8 +46,14 @@ async function onCardClick(event) {
   let listItem = event.target.closest('li');
   if (listItem) {
     currentId = listItem.id;
-    const data = await fetchBookData(listItem.id);
+    await fetchBookData(listItem.id);
     disableBackgroundScroll();
+  }
+  if (isBookInLocalStorage(currentId)) {
+    addToListButton.classList.add('is-hidden');
+    removeFromListButton.classList.remove('is-hidden');
+    addSuccessMessage.textContent =
+      'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
   }
 }
 
@@ -49,9 +63,8 @@ async function fetchBookData(bookId) {
     const data = await booksAPI.getBookById(bookId);
 
     addBookMarkup(data);
-    // createBookObject(data);
-    modal.classList.remove('is-hidden');
-    modal.classList.add('show');
+    backdrop.classList.remove('modal-hidden');
+    backdrop.classList.add('show');
     return data;
   } catch (error) {
     console.error(error.message);
@@ -163,32 +176,16 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    console.log(123);
     addBooksToUserCart(bookArray);
 
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
-    removeFromListButton.addEventListener('click', removeFromShoppingList);
-  }
-}
-
-function removeFromShoppingList() {
-  const bookIdToRemove = bookObject._id;
-  const indexToRemove = bookArray.findIndex(
-    book => book._id === bookIdToRemove
-  );
-  addSuccessMessage.textContent = '';
-  if (indexToRemove !== -1) {
-    bookArray.splice(indexToRemove, 1);
-    localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addToListButton.classList.remove('is-hidden');
-    removeFromListButton.classList.add('is-hidden');
   }
 }
 
 closeButton.addEventListener('click', () => {
-  modal.classList.add('is-hidden');
-  modal.classList.remove('show');
+  backdrop.classList.add('modal-hidden');
+  backdrop.classList.remove('show');
   enableBackgroundScroll();
   addToListButton.classList.remove('is-hidden');
   removeFromListButton.classList.add('is-hidden');
@@ -196,9 +193,9 @@ closeButton.addEventListener('click', () => {
 });
 
 window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.classList.add('is-hidden');
-    modal.classList.remove('show');
+  if (event.target === backdrop) {
+    backdrop.classList.add('modal-hidden');
+    backdrop.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
@@ -208,8 +205,8 @@ window.onclick = function (event) {
 
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
-    modal.classList.add('is-hidden');
-    modal.classList.remove('show');
+    backdrop.classList.add('modal-hidden');
+    backdrop.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');

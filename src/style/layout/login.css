@@ -112,6 +112,7 @@
 .login-field-input {
   max-width: 295px;
   width: 100%;
+  color: var(--color-black);
   border-radius: 40px;
   border: 2px solid var(--color-black);
   padding: 16px 24px;

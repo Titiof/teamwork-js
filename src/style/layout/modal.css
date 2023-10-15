@@ -1,43 +1,39 @@
-.modal-backdrop.is-shown {
+.modal-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.modal-backdrop {
   background: rgba(17, 17, 17, 0.4);
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-}
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 
+  transition:
+    background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .modal-shown {
   position: fixed;
+  top: 50%;
+  left: 50%;
   background-color: var(--color-body-bg);
   box-sizing: border-box;
   margin: 0 auto;
   padding: 24px 40px;
   min-width: 335px;
-  top: 50%;
-  left: 50%;
+
   transform: translate(-50%, -50%) scale(0.8);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 30;
   border: 2px solid var(--color-black);
   border-radius: 18px;
 }
-
-.modal-shown.show {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.5s ease, visibility 0s;
-}
-
-.modal-shown.show {
+.show .modal-shown {
   transform: translate(-50%, -50%) scale(1);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-shown.show.fade-out {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.8);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -148,13 +144,6 @@
   gap: 20px;
 }
 
-.shop {
-  filter: var(--shop);
-}
-.shop:hover {
-  filter: var(--shop-hover);
-}
-
 .shops-item-icon-book {
   filter: var(--shop-book);
 }
@@ -162,6 +151,14 @@
 .shops-item-icon-book:hover {
   filter: var(--shop-hover-book);
 }
+
+.shops-item-icon {
+  filter: var(--shop);
+}
+.shops-item-icon:hover {
+  filter: var(--shop-hover);
+}
+
 .add-button,
 .remove-button {
   display: inline-block;
