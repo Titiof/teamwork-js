@@ -1,3 +1,4 @@
+import './js/firebase';
 import './js/login/logout';
 import './js/mobile-menu';
 import './js/header';
