@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const firebaseConfig = {
@@ -15,7 +13,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 
 const logoutLink = document.querySelector('#logout-link');
 
@@ -36,8 +33,6 @@ async function onLogoutClick() {
 }
 
 auth.onAuthStateChanged(function (user) {
-  console.log('perevirka', user);
-
   if (user) {
     Notify.success(`Authorized user: ${user.displayName}`);
   } else {
