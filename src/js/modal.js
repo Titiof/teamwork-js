@@ -1,10 +1,9 @@
 import Notiflix from 'notiflix';
-import createBookMarkup from './bookMarkupLi';
 import { BooksAPI } from './books-api';
-
-import amazon from '../images/modal/amazon.webp';
-import apple from '../images/modal/amazon-book.webp';
 import { addBooksToUserCart } from './firebase';
+
+import apple from '../images/modal/amazon-book.webp';
+import amazon from '../images/modal/amazon.webp';
 
 const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
@@ -12,7 +11,6 @@ const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
-const backdrop = document.querySelector('.modal-backdrop');
 
 const bookArray = [];
 let bookObject = {};
@@ -39,7 +37,6 @@ bookCards.addEventListener('click', onCardClick);
 async function onCardClick(event) {
   let listItem = event.target.closest('li');
   if (listItem) {
-    backdrop.classList.add('is-shown');
     currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
@@ -195,19 +192,16 @@ closeButton.addEventListener('click', () => {
   addToListButton.classList.remove('is-hidden');
   removeFromListButton.classList.add('is-hidden');
   addSuccessMessage.textContent = '';
-  backdrop.classList.remove('is-shown');
 });
 
 window.onclick = function (event) {
-  if (event.target === backdrop) {
+  if (event.target === modal) {
     modal.classList.add('is-hidden');
     modal.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
-
-    backdrop.classList.remove('is-shown');
   }
 };
 
@@ -219,7 +213,6 @@ window.addEventListener('keydown', function (e) {
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
-    backdrop.classList.remove('is-shown');
   }
 });
 
