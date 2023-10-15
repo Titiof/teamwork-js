@@ -1,4 +1,3 @@
-import { setDarkMode } from "./firebase";
 // check for saved 'darkMode' in localStorage
 let darkMode = localStorage.getItem('darkMode');
 
@@ -8,7 +7,6 @@ const darkModeCheckbox = document.querySelector('.checkbox'); // Get the checkbo
 
 const enableDarkMode = () => {
   // 1. Add the class to the body
-  setDarkMode('enable')
 
   document.body.classList.add('darkmode');
 
@@ -19,7 +17,6 @@ const enableDarkMode = () => {
 };
 
 const disableDarkMode = () => {
-  setDarkMode('null')
   // 1. Remove the class from the body
   document.body.classList.remove('darkmode');
   // 2. Update darkMode in localStorage

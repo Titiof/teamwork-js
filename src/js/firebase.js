@@ -7,6 +7,13 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -18,15 +25,18 @@ const firebaseConfig = {
   measurementId: 'G-2EMZHHRVM8',
 };
 
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+const shoppingRef = collection(db, 'shopping-list');
 
 export async function signup(email, password, name) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
-      email.value,
-      password.value
+      email.value.trim(),
+      password.value.trim()
     );
 
     // якщо створено успішно
@@ -34,7 +44,7 @@ export async function signup(email, password, name) {
     if (userCredential && auth.currentUser) {
       sendEmailVerification(auth.currentUser);
       updateProfile(auth.currentUser, {
-        displayName: name.value,
+        displayName: name.value.trim(),
         photoURL: 'https://picsum.photos/50/50?random=1',
       });
       Notify.success('Registration was successful!');
@@ -56,15 +66,14 @@ export async function signup(email, password, name) {
 
 export async function signin(email, password) {
   try {
-    //звертаємось до юзера (повертається url, name, email)
     const userCredential = await signInWithEmailAndPassword(
       auth,
-      email.value,
-      password.value
+      email.value.trim(),
+      password.value.trim()
     );
     const user = userCredential.user;
     console.log(user); // повертається  url, name, email
-    refs.form.reset();
+    // refs.form.reset();
     error = '';
     Notify.success('Authorization was successful!');
 
@@ -74,6 +83,7 @@ export async function signin(email, password) {
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log(error);
     error = 'Invalid user email or password';
     Notify.failure(error);
   }
@@ -93,40 +103,20 @@ export function checkAuthState() {
   });
 }
 
-export function setDarkMode(value) {
-  // if (auth.currentUser) {
-  //   sendEmailVerification(auth.currentUser);
-  //   updateProfile(auth.currentUser, {
-  //     darkMode: value,
-  //   });
-  // }
-  if (auth.currentUser) {
-    const userId = auth.currentUser.uid;
-
-    // Отримайте посилання на документ користувача в Firestore (зазвичай за його ID користувача).
-    const userDoc = firestore().collection('users').doc(userId);
-
-    // Оновіть поле darkMode в документі користувача.
-    userDoc
-      .update({
-        darkMode: value,
-      })
-      .then(() => {
-        console.log('Значення darkMode оновлено в Firestore.');
-      })
-      .catch(error => {
-        console.error('Помилка при оновленні darkMode в Firestore: ', error);
-      });
-  }
-}
-
-export function addBooksToUserCart(cart) {
+export function addBooksToUserCart(bookId) {
+  console.log('test');
   const user = auth.currentUser;
-  if (user) {
-    const userDocRef = db.collection('users').doc(user.uid);
-    userDocRef.update({
-      cart,
-    });
-  }
-  console.log(12314);
+
+  console.log(user);
+  //як дістати з бази всі книги
+  // const querySnapshot = getDocs(shoppingRef).then(res => {
+  //   res.forEach(doc => {
+  //     console.log(doc.data());
+  //   });
+  // });
+
+  //як додати до бази даних книгу с айді
+  setDoc(doc(shoppingRef, 'cart'), {
+    id: bookId,
+  });
 }
