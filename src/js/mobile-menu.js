@@ -11,7 +11,9 @@ const auth = getAuth();
 
     if (!isMenuOpen) {
       mobileMenu.classList.remove('is-hidden');
-      mobileMenu.classList.add('is-open');
+      setTimeout(() => {
+        mobileMenu.classList.add('is-open');
+      }, 400);
     } else {
       setTimeout(() => {
         mobileMenu.classList.remove('is-open');
