@@ -1,4 +1,3 @@
-
 import amazon from '../images/shopping-list/amazon-logo@2x.webp';
 import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
