@@ -109,11 +109,14 @@
 
 .shopping-description {
   width: 180px;
-  height: 58px;
+  height: 56px;
   color: var(--color-black);
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 26px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  margin-bottom: 28px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -136,7 +139,7 @@
   line-height: 1.17;
   letter-spacing: -0.48px;
   color: var(--color-gray);
-  width: 155px;
+  width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
