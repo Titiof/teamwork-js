@@ -14,5 +14,5 @@
 @import './layout/support.css';
 @import './layout/clock.css';
 @import './layout/scroll-up-btn.css';
-@import './layout/pagination.css';
+/* @import './layout/pagination.css'; */
 @import './layout/loader.css';
