@@ -36,8 +36,8 @@ bookCards.addEventListener('click', onCardClick);
 
 async function onCardClick(event) {
   let listItem = event.target.closest('li');
-  currentId = listItem.id;
   if (listItem) {
+    currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
   }
