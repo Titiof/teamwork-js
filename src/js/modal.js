@@ -11,6 +11,7 @@ const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
+const backdrop = document.querySelector('.modal-backdrop');
 
 const bookArray = [];
 let bookObject = {};
@@ -35,9 +36,11 @@ const bookCards = document.querySelector('.bestsellers-list');
 bookCards.addEventListener('click', onCardClick);
 
 async function onCardClick(event) {
+  backdrop.classList.add('is-shown');
+
   let listItem = event.target.closest('li');
-  currentId = listItem.id;
   if (listItem) {
+    currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
   }
@@ -94,7 +97,8 @@ function createMarkup(data) {
 }
 
 function isBookInLocalStorage(bookId) {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   return existingBookArray.some(book => book._id === bookId);
 }
 
@@ -121,7 +125,9 @@ addToListButton.addEventListener('click', async () => {
 removeFromListButton.addEventListener('click', () => {
   // Код для видалення книги з localStorage
   const bookIdToRemove = currentId;
-  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  const indexToRemove = bookArray.findIndex(
+    book => book._id === bookIdToRemove
+  );
   addSuccessMessage.textContent = '';
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
@@ -133,7 +139,8 @@ removeFromListButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   if (existingBookArray.some(book => book._id === currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -141,7 +148,8 @@ window.addEventListener('load', () => {
 });
 
 function createBookObject(data) {
-  const { _id, list_name, book_image, title, author, buy_links, description } = data;
+  const { _id, list_name, book_image, title, author, buy_links, description } =
+    data;
   bookObject = {
     _id,
     list_name,
@@ -185,16 +193,19 @@ closeButton.addEventListener('click', () => {
   addToListButton.classList.remove('is-hidden');
   removeFromListButton.classList.add('is-hidden');
   addSuccessMessage.textContent = '';
+  backdrop.classList.remove('is-shown');
 });
 
 window.onclick = function (event) {
-  if (event.target === modal) {
+  if (event.target === backdrop) {
     modal.classList.add('is-hidden');
     modal.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
+
+    backdrop.classList.remove('is-shown');
   }
 };
 
@@ -206,6 +217,7 @@ window.addEventListener('keydown', function (e) {
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
+    backdrop.classList.remove('is-shown');
   }
 });
 

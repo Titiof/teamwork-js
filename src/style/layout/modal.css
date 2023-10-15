@@ -1,4 +1,4 @@
-.background {
+.modal-backdrop.is-shown {
   background: rgba(17, 17, 17, 0.4);
   position: fixed;
   top: 0;
@@ -6,6 +6,7 @@
   width: 100%;
   height: 100%;
 }
+
 .modal-shown {
   position: fixed;
   background-color: var(--color-body-bg);
