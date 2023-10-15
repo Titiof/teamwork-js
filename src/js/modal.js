@@ -4,6 +4,7 @@ import { BooksAPI } from './books-api';
 
 import amazon from '../images/modal/amazon.webp';
 import apple from '../images/modal/amazon-book.webp';
+import { addBooksToUserCart } from './firebase';
 
 const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
@@ -165,6 +166,8 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
+    addBooksToUserCart(bookArray);
+
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
     removeFromListButton.addEventListener('click', removeFromShoppingList);
