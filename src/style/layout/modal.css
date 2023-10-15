@@ -148,13 +148,6 @@
   gap: 20px;
 }
 
-.shop {
-  filter: var(--shop);
-}
-.shop:hover {
-  filter: var(--shop-hover);
-}
-
 .shops-item-icon-book {
   filter: var(--shop-book);
 }
@@ -162,6 +155,14 @@
 .shops-item-icon-book:hover {
   filter: var(--shop-hover-book);
 }
+
+.shops-item-icon {
+  filter: var(--shop);
+}
+.shops-item-icon:hover {
+  filter: var(--shop-hover);
+}
+
 .add-button,
 .remove-button {
   display: inline-block;
