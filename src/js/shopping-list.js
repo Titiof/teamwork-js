@@ -14,7 +14,8 @@ const localStorageKey = 'shopping-list';
 
 document.body.addEventListener('DOMContentLoaded', onLoadPage);
 
-function bookTemplate({book_image, title, list_name, description, author, buy_links }) {
+function bookTemplate({ book_image, title, list_name, description, author, buy_links }) {
+   const shopDescription = description || 'Description will be added later';
     return ` <li class="shopping-border">
   <button class="shopping-button" type="button">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
@@ -25,14 +26,14 @@ function bookTemplate({book_image, title, list_name, description, author, buy_li
   <div class="inform-box">
     <h2 class="shopping-title">${title}</h2>
     <h3 class="shopping-category">${list_name}</h3>
-    <p class="shopping-description">${description}</p>
+    <p class="shopping-description">${shopDescription}</p>
     <p class="shopping-author">${author}</p>
   </div>
   <ul class="shopping-link">
     <li class="shop">
       <a href="${buy_links[0].url}" class="shop-link" target="_blank">
       <img
-      class="shops-icon-amazon"
+      class="shops-icon-amazon shops-item-icon"
       alt="Amazon-logo"
       src="${amazon}"
       loading="lazy"/>
@@ -41,7 +42,7 @@ function bookTemplate({book_image, title, list_name, description, author, buy_li
     <li class="shop">
       <a href="${buy_links[1].url}" class="shop-link" target="_blank">
       <img
-      class="shop-icon-book"
+      class="shop-icon-book shops-item-icon-book"
       alt="Apple-Books-logo"
       src="${apple}"
       loading="lazy"/>
@@ -88,5 +89,3 @@ function onLoadPage() {
 
 onLoadPage();
 
-
-function onDeleteFromLS() { };
