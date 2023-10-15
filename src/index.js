@@ -1,3 +1,4 @@
+import './js/header';
 import './js/login/logout';
 import './js/dark-mode';
 import './js/allcategories';
