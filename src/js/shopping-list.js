@@ -1,4 +1,7 @@
-import { BooksAPI } from './books-api';
+
+import amazon from '../images/shopping-list/amazon-logo@2x.webp';
+import apple from '../images/shopping-list/amazon-book@2x.webp';
+import sprite from '../images/sprite.svg';
 
 const refs = {
     shoppingList: document.querySelector('.shopping-list-selector'),
@@ -12,10 +15,10 @@ const localStorageKey = 'shopping-list';
 document.body.addEventListener('DOMContentLoaded', onLoadPage);
 
 function bookTemplate({book_image, title, list_name, description, author, buy_links }) {
-    return ` <div class="shopping-border">
+    return ` <li class="shopping-border">
   <button class="shopping-button" type="button">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
-      <use href="./images/sprite.svg#trash"></use>
+      <use href="${sprite}#trash"><use>
     </svg>
   </button>
   <img class="img-card" src="${book_image}" alt="Book cover" />
@@ -30,37 +33,22 @@ function bookTemplate({book_image, title, list_name, description, author, buy_li
       <a href="${buy_links[0].url}" class="shop-link" target="_blank">
       <img
       class="shops-icon-amazon"
-      src="./images/shopping-list/amazon-logo.png"
       alt="Amazon-logo"
-      srcset="
-        ./images/shopping-list/amazon-logo.webp    1x,
-        ./images/shopping-list/amazon-logo@2x.webp 2x,
-        ./images/shopping-list/amazon-logo.png     1x,
-        ./images/shopping-list/amazon-logo@2x.png  2x
-      "
-      sizes="(max-width: 48px)"
-      loading="lazy"
-    />
+      src="${amazon}"
+      loading="lazy"/>
       </a>
     </li>
     <li class="shop">
       <a href="${buy_links[1].url}" class="shop-link" target="_blank">
       <img
       class="shop-icon-book"
-      src="./images/shopping-list/amazon-book.png"
       alt="Apple-Books-logo"
-      srcset="
-        ./images/shopping-list/amazon-book.webp    1x,
-        ./images/shopping-list/amazon-book@2x.webp 2x,
-        ./images/shopping-list/amazon-book.png     1x,
-        ./images/shopping-list/amazon-book@2x.png  2x
-      "
-      sizes="(max-width: 22px)"
-      loading="lazy"
-    /></a>
+      src="${apple}"
+      loading="lazy"/>
+      </a>
     </li>
   </ul>
-</div>`;
+</li>`;
 };
 
 function booksTemplate(books) {

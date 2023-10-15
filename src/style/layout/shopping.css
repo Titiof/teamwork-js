@@ -76,6 +76,16 @@
   letter-spacing: -0.64px;
   text-transform: uppercase;
   margin-bottom: 4px;
+  width: 144px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 768px) {
+  .shopping-title {
+    overflow: visible;
+  }
 }
 
 .shopping-category {
@@ -84,35 +94,39 @@
   line-height: 1.17;
   letter-spacing: 0.36px;
   margin-bottom: 8px;
+  width: 155px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media only screen and (min-width: 768px) {
   .shopping-category {
     margin-bottom: 14px;
+    overflow: visible;
   }
 }
 
 .shopping-description {
-  width: 193px;
-  max-height: 68px;
+  width: 180px;
+  height: 58px;
   color: var(--color-black);
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-bottom: 16px;
+  margin-bottom: 26px;
 }
 
 @media only screen and (min-width: 768px) {
   .shopping-description {
-    width: 508px;
-    overflow: visible;
+    width: 504px;
     margin-bottom: 48px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .shopping-description {
-    width: 808px;
+    width: 788px;
+    overflow: visible;
   }
 }
 
@@ -121,6 +135,11 @@
   font-style: italic;
   line-height: 1.17;
   letter-spacing: -0.48px;
+  color: var(--color-gray);
+  width: 155px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .shopping-border {
@@ -133,6 +152,29 @@
   padding: 14px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 374.98px) {
+  .shopping-border {
+    max-width: 100%;
+  }
+
+  .shopping-title {
+    width: 100px;
+  }
+
+  .shopping-category {
+    width: 110px;
+  }
+
+  .shopping-description {
+    width: 120px;
+  }
+
+  .shopping-author {
+    width: 70px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -184,7 +226,8 @@
 }
 
 .shopping-delete-icon {
-  fill: var(--color-white);
+  stroke: var(--color-white-all-time);
+  fill: none;
 }
 
 .shopping-link {
@@ -194,6 +237,17 @@
   right: 14px;
   padding: 0;
   gap: 8px;
+}
+
+.shops-icon-amazon {
+  width: 32px;
+  height: 11px;
+  margin-top: 5px;
+}
+
+.shop-icon-book {
+  width: 16px;
+  height: 16px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -206,20 +260,11 @@
   .shops-icon-amazon {
     width: 48px;
     height: 15px;
+    margin-top: 10px;
   }
 
   .shop-icon-book {
-    width: 22px;
-    height: 23px;
+    width: 28px;
+    height: 27px;
   }
-}
-
-.shops-icon-amazon {
-  width: 32px;
-  height: 11px;
-}
-
-.shop-icon-book {
-  width: 13px;
-  height: 15px;
 }
