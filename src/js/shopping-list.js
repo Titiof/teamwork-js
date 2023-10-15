@@ -3,31 +3,28 @@ import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
 
 const refs = {
-  shoppingList: document.querySelector('.shopping-list-selector'),
-  header: document.querySelector('.main-header'),
-  container: document.querySelector('.shopping-plug'),
+    shoppingList: document.querySelector('.shopping-list-selector'),
+    header: document.querySelector('.main-header'),
+    container: document.querySelector('.shopping-plug'),
 };
 
 const localStorageKey = 'shopping-list';
 
-document.body.addEventListener('DOMContentLoaded', onLoadPage);
+function onLoadPage() {
+  const loadedData = loadFromLS(localStorageKey);
+  if (loadedData.length > 0) {
+      renderShoppingList(loadedData);
+      refs.header.classList.add('is-hidden');
+      refs.container.classList.add('is-hidden');
+  }
+}
 
-function booksTemplate(arr) {
-  return arr
-    .map(
-      ({
-        _id,
-        book_image,
-        title,
-        list_name,
-        description,
-        author,
-        buy_links,
-      }) => {
-        const shopDescription =
-          description || 'Description will be added later';
-        return ` <li class="shopping-border">
-  <button class="shopping-button" type="button" data-id="${_id}">
+onLoadPage();
+
+function bookTemplate({_id, book_image, title, list_name, description, author, buy_links }) {
+   const shopDescription = description || 'Description will be added later';
+    return ` <li class="shopping-border">
+  <button class="shopping-button" type="button" id="${_id}">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
       <use href="${sprite}#trash"><use>
     </svg>
@@ -60,18 +57,20 @@ function booksTemplate(arr) {
     </li>
   </ul>
 </li>`;
-      }
-    )
-    .join('');
-}
+};
 
-function renderShoppingList(books) {
-  const markup = booksTemplate(books);
-  refs.shoppingList.innerHTML = markup;
-}
+function booksTemplate(books) {
+    return books.map(bookTemplate).join('');
+ };
+
+function renderShoppingList(books) { 
+    const markup = booksTemplate(books);
+    refs.shoppingList.innerHTML = markup;
+};
+
 
 function loadFromLS(key) {
-  const savedData = localStorage.getItem(key);
+    const savedData = localStorage.getItem(key);
   if (savedData) {
     try {
       return JSON.parse(savedData);
@@ -79,15 +78,27 @@ function loadFromLS(key) {
       return [];
     }
   }
-}
+};
 
-function onLoadPage() {
-  const loadedData = loadFromLS(localStorageKey);
-  if (loadedData.length > 0) {
-    renderShoppingList(loadedData);
-    refs.header.classList.add('is-hidden');
-    refs.container.classList.add('is-hidden');
+
+refs.shoppingList.addEventListener('click', onDeleteFromLS);
+
+function onDeleteFromLS(e) {
+  if (e.target.classList.contains('shopping-button') || e.target.classList.contains('shopping-delete-icon')) {
+    const bookIdBtn = e.target.closest('button').id;
+    const books_data = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    const bookIndex = books_data.findIndex(book => book._id === bookIdBtn);
+
+    if (bookIndex !== -1) {
+      books_data.splice(bookIndex, 1);
+      localStorage.setItem(localStorageKey, JSON.stringify(books_data));
+
+      if (books_data.length === 0) {
+        refs.header.classList.remove('is-hidden');
+        refs.container.classList.remove('is-hidden');
+      }
+
+      renderShoppingList(books_data);
+    }
   }
 }
-
-onLoadPage();
