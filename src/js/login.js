@@ -64,31 +64,26 @@ async function onFormSubmit(e) {
     : await signin(refs.email, refs.password);
 }
 
-// перевірка, якщо юзер авторизований - змінюємо розмітку
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
 
-checkAuthState();
+const db = getFirestore(app);
 
-/// це додати в шопінг ліст
-// import {
-//   collection,
-//   doc,
-//   getDocs,
-//   getFirestore,
-//   setDoc,
-// } from 'firebase/firestore';
+const shoppingRef = collection(db, 'shopping-list');
 
-// const db = getFirestore(app);
-
-// const shoppingRef = collection(db, 'shopping-list');
-
-// //як дістати з бази всі книги
+//як дістати з бази всі книги
 // const querySnapshot = getDocs(shoppingRef).then(res => {
 //   res.forEach(doc => {
 //     console.log(doc.data());
 //   });
 // });
 
-// //як додати до бази даних книгу с айді
-// setDoc(doc(shoppingRef, 'list_name'), {
-//   id: 231231,
-// });
+//як додати до бази даних книгу с айді
+setDoc(doc(shoppingRef, 'list_name'), {
+  id: 231231,
+});

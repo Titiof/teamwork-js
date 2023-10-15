@@ -12,7 +12,9 @@ const enableDarkMode = () => {
   // 2. Update darkMode in localStorage
   localStorage.setItem('darkMode', 'enabled');
   // 3. Check the checkbox
-  darkModeCheckbox.checked = true;
+  if (darkModeCheckbox) {
+    darkModeCheckbox.checked = true;
+  }
 };
 
 const disableDarkMode = () => {
