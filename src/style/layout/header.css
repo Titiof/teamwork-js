@@ -243,7 +243,19 @@ label:active:after {
   fill: var(--color-white);
 }
 
-.profile-link {
+.profile-container .profile-link {
+  display: none;
+  align-items: center;
+  gap: 9px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-container .profile-link {
+    display: flex;
+  }
+}
+
+.mobile-profile-container .profile-link {
   display: flex;
   align-items: center;
   gap: 9px;
