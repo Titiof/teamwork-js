@@ -1,18 +1,22 @@
-import { BooksAPI } from './books-api';
-
 const refs = {
-    shoppingList: document.querySelector('.shopping-list-selector'),
-    header: document.querySelector('.main-header'),
-    container: document.querySelector('.shopping-plug'),
+  shoppingList: document.querySelector('.shopping-list-selector'),
+  header: document.querySelector('.main-header'),
+  container: document.querySelector('.shopping-plug'),
 };
 
 const localStorageKey = 'shopping-list';
 
-
 document.body.addEventListener('DOMContentLoaded', onLoadPage);
 
-function bookTemplate({book_image, title, list_name, description, author, buy_links }) {
-    return ` <div class="shopping-border">
+function bookTemplate({
+  book_image,
+  title,
+  list_name,
+  description,
+  author,
+  buy_links,
+}) {
+  return ` <div class="shopping-border">
   <button class="shopping-button" type="button">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
       <use href="./images/sprite.svg#trash"></use>
@@ -61,22 +65,19 @@ function bookTemplate({book_image, title, list_name, description, author, buy_li
     </li>
   </ul>
 </div>`;
-};
+}
 
 function booksTemplate(books) {
-    return books.map(bookTemplate).join('');
- };
+  return books.map(bookTemplate).join('');
+}
 
-
-function renderShoppingList(books) { 
-    const markup = booksTemplate(books);
-    refs.shoppingList.innerHTML = markup;
-};
-
-
+function renderShoppingList(books) {
+  const markup = booksTemplate(books);
+  refs.shoppingList.innerHTML = markup;
+}
 
 function loadFromLS(key) {
-    const savedData = localStorage.getItem(key);
+  const savedData = localStorage.getItem(key);
   if (savedData) {
     try {
       return JSON.parse(savedData);
@@ -84,21 +85,17 @@ function loadFromLS(key) {
       return [];
     }
   }
-};
-
-
-
-function onLoadPage() {
-    const loadedData = loadFromLS(localStorageKey);
-    if (loadedData.length > 0) {
-        renderShoppingList(loadedData);
-        refs.header.classList.add('is-hidden');
-        refs.container.classList.add('is-hidden');
-    }
 }
 
+function onLoadPage() {
+  const loadedData = loadFromLS(localStorageKey);
+  if (loadedData.length > 0) {
+    renderShoppingList(loadedData);
+    refs.header.classList.add('is-hidden');
+    refs.container.classList.add('is-hidden');
+  }
+}
 
 onLoadPage();
 
-
-function onDeleteFromLS() { };
+function onDeleteFromLS() {}

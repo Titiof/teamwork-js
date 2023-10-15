@@ -1,4 +1,4 @@
-import { signup, signin } from './firebase';
+import { signin, signup } from './firebase';
 
 let activeTab = 'signup';
 
