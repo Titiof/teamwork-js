@@ -2,6 +2,7 @@ import { BooksAPI } from "./books-api";
 import { menuTemplate } from "./allcategories/category_template";
 import { markupCategoryBook } from "./allcategories/category_template";
 import { createListMarkup } from "./bookMarkupLi";
+import { toggleLoader } from "./loader";
 
 const listEl = document.querySelector('.vertical-menu');
 const categoryTitle = document.querySelector('.main-header');
@@ -14,7 +15,7 @@ const booksAPI = new BooksAPI();
 
 window.addEventListener("DOMContentLoaded", async () => {
     itemList.classList.add('active');
-
+    toggleLoader();
     try{
         const listData =  await booksAPI.getCategoriesList();
 
@@ -30,6 +31,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         
     }catch(error) {
         Notiflix.Notify.failure('Oops, something went wrong!');
+    } finally{
+        toggleLoader();
     }
 });
 
@@ -53,7 +56,7 @@ bestsellersList.addEventListener('click', (e) => {
 
 async function onChangeCategoryPage(e){
     e.preventDefault();
-
+    toggleLoader();
     if(e.target.nodeName === 'LI'){
             listEl.querySelectorAll('li').forEach(item => {
                 item.classList.remove('active');
@@ -66,10 +69,11 @@ async function onChangeCategoryPage(e){
                 createListMarkup(response);
     
                 categoryTitle.style.display = "block";
-
                 
               } catch (error) {
                 Notiflix.Notify.failure('Oops, something went wrong!');
+              } finally{
+                toggleLoader();
               }
 
         } else {
@@ -85,9 +89,11 @@ async function onChangeCategoryPage(e){
 async function renderBooksFromCategory(category_name){
     try{
         const booksCategoryData = await booksAPI.getFullCategory(category_name);
-        markupCategoryBook(booksCategoryData, category_name);
+        markupCategoryBook(booksCategoryData, category_name); 
     }catch(error){
         Notiflix.Notify.failure('Sorry, there is no books in this category');
+    } finally {
+        toggleLoader();
     }
 }
 
