@@ -40,6 +40,13 @@ bestsellersList.addEventListener('click', (e) => {
     if(e.target.nodeName === 'BUTTON'){
         categoryTitle.style.display = "none";
         renderBooksFromCategory(e.target.name)
+        const liList = listEl.querySelectorAll('li');
+        liList.forEach(li =>{
+           if(li.textContent === e.target.name){
+            itemList.classList.remove('active');
+            li.classList.add('active');
+           };
+        })
     }
 });
 
