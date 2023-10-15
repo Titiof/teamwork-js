@@ -36,10 +36,9 @@ const bookCards = document.querySelector('.bestsellers-list');
 bookCards.addEventListener('click', onCardClick);
 
 async function onCardClick(event) {
-  backdrop.classList.add('is-shown');
-
   let listItem = event.target.closest('li');
   if (listItem) {
+    backdrop.classList.add('is-shown');
     currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
