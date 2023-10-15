@@ -1,23 +1,33 @@
-
 import amazon from '../images/shopping-list/amazon-logo@2x.webp';
 import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
 
 const refs = {
-    shoppingList: document.querySelector('.shopping-list-selector'),
-    header: document.querySelector('.main-header'),
-    container: document.querySelector('.shopping-plug'),
+  shoppingList: document.querySelector('.shopping-list-selector'),
+  header: document.querySelector('.main-header'),
+  container: document.querySelector('.shopping-plug'),
 };
 
 const localStorageKey = 'shopping-list';
 
-
 document.body.addEventListener('DOMContentLoaded', onLoadPage);
 
-function bookTemplate({ book_image, title, list_name, description, author, buy_links }) {
-   const shopDescription = description || 'Description will be added later';
-    return ` <li class="shopping-border">
-  <button class="shopping-button" type="button">
+function booksTemplate(arr) {
+  return arr
+    .map(
+      ({
+        _id,
+        book_image,
+        title,
+        list_name,
+        description,
+        author,
+        buy_links,
+      }) => {
+        const shopDescription =
+          description || 'Description will be added later';
+        return ` <li class="shopping-border">
+  <button class="shopping-button" type="button" data-id="${_id}">
     <svg class="shopping-delete-icon" width="18" height="18" aria-label="trash">
       <use href="${sprite}#trash"><use>
     </svg>
@@ -50,22 +60,18 @@ function bookTemplate({ book_image, title, list_name, description, author, buy_l
     </li>
   </ul>
 </li>`;
-};
+      }
+    )
+    .join('');
+}
 
-function booksTemplate(books) {
-    return books.map(bookTemplate).join('');
- };
-
-
-function renderShoppingList(books) { 
-    const markup = booksTemplate(books);
-    refs.shoppingList.innerHTML = markup;
-};
-
-
+function renderShoppingList(books) {
+  const markup = booksTemplate(books);
+  refs.shoppingList.innerHTML = markup;
+}
 
 function loadFromLS(key) {
-    const savedData = localStorage.getItem(key);
+  const savedData = localStorage.getItem(key);
   if (savedData) {
     try {
       return JSON.parse(savedData);
@@ -73,19 +79,15 @@ function loadFromLS(key) {
       return [];
     }
   }
-};
-
-
-
-function onLoadPage() {
-    const loadedData = loadFromLS(localStorageKey);
-    if (loadedData.length > 0) {
-        renderShoppingList(loadedData);
-        refs.header.classList.add('is-hidden');
-        refs.container.classList.add('is-hidden');
-    }
 }
 
+function onLoadPage() {
+  const loadedData = loadFromLS(localStorageKey);
+  if (loadedData.length > 0) {
+    renderShoppingList(loadedData);
+    refs.header.classList.add('is-hidden');
+    refs.container.classList.add('is-hidden');
+  }
+}
 
 onLoadPage();
-
