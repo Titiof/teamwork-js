@@ -56,14 +56,16 @@ bestsellersList.addEventListener('click', (e) => {
 
 async function onChangeCategoryPage(e){
     e.preventDefault();
-    toggleLoader();
+    
     if(e.target.nodeName === 'LI'){
+            toggleLoader();
             listEl.querySelectorAll('li').forEach(item => {
                 item.classList.remove('active');
             });
             e.target.classList.add('active');
-
+            toggleLoader()
         if(e.target.classList.contains('all_categories')){
+            toggleLoader()
             try {
                 const response = await booksAPI.getBooks();
                 createListMarkup(response);
@@ -80,13 +82,15 @@ async function onChangeCategoryPage(e){
             categoryTitle.style.display = "none";
             const title = e.target.textContent;
             renderBooksFromCategory(title);
-        }    
+        } 
+
     } else {
         return;
     }
 }
 
 async function renderBooksFromCategory(category_name){
+    toggleLoader();
     try{
         const booksCategoryData = await booksAPI.getFullCategory(category_name);
         markupCategoryBook(booksCategoryData, category_name); 
