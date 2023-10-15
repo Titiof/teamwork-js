@@ -1,7 +1,3 @@
-import './js/header';
-import './js/mobile-menu';
-import './js/login';
-import './js/login/logout';
 import './js/shoppinglist-darkmode';
 import './js/support';
 import './js/shopping-list';
