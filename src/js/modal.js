@@ -1,6 +1,5 @@
 import Notiflix from 'notiflix';
 import { BooksAPI } from './books-api';
-import { addBooksToUserCart } from './firebase';
 
 import apple from '../images/modal/amazon-book.webp';
 import amazon from '../images/modal/amazon.webp';
@@ -176,7 +175,6 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addBooksToUserCart(bookArray);
 
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
