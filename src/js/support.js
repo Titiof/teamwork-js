@@ -28,3 +28,14 @@ function onScrollDownClick() {
     UlEl.children[8].classList.add('is-hidden');
   }
 }
+
+const sidebar = document.querySelector('.sidebar');
+function toggleSidebarVisibility() {
+  if (window.innerWidth < 1440) {
+    sidebar.classList.add('is-hidden');
+  } else {
+    sidebar.classList.remove('is-hidden');
+  }
+}
+window.addEventListener('resize', toggleSidebarVisibility);
+toggleSidebarVisibility();
