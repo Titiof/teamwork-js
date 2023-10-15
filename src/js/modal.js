@@ -5,13 +5,14 @@ import { addBooksToUserCart } from './firebase';
 import apple from '../images/modal/amazon-book.webp';
 import amazon from '../images/modal/amazon.webp';
 
-const modal = document.querySelector('.modal-shown');
+// const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
 const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
 const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
 const backdrop = document.querySelector('.modal-backdrop');
+const scrollUpBut = document.querySelector('#button-scroll-up');
 
 let bookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
 let bookObject = {};
@@ -19,17 +20,18 @@ let currentId = null;
 
 function disableBackgroundScroll() {
   document.body.style.overflow = 'hidden';
+  scrollUpBut.classList.add('is-hidden');
 }
 
 function enableBackgroundScroll() {
   document.body.style.overflow = 'auto';
+  scrollUpBut.classList.remove('is-hidden');
 }
 
 export function openModalFromBookCard(bookId) {
   currentId = bookId;
   fetchBookData(bookId);
   disableBackgroundScroll();
-  console.log(isBookInLocalStorage());
   if (isBookInLocalStorage()) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -44,7 +46,7 @@ async function onCardClick(event) {
   let listItem = event.target.closest('li');
   if (listItem) {
     currentId = listItem.id;
-    const data = await fetchBookData(listItem.id);
+    await fetchBookData(listItem.id);
     disableBackgroundScroll();
   }
   if (isBookInLocalStorage(currentId)) {
@@ -174,7 +176,6 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    console.log(123);
     addBooksToUserCart(bookArray);
 
     addToListButton.classList.add('is-hidden');
