@@ -9,3 +9,4 @@ import './js/main';
 import './js/scroll-up';
 import './js/clock';
 import './js/modal';
+import './js/loader';

@@ -7,3 +7,4 @@ import './js/support';
 import './js/shopping-list';
 import './js/clock';
 import './js/pagination';
+import './js/loader';
