@@ -34,7 +34,10 @@ async function onLogoutClick() {
 
 auth.onAuthStateChanged(function (user) {
   if (user) {
-    Notify.success(`Authorized user: ${user.displayName}`);
+    Notify.success(`Authorized user: ${user.displayName}`, {
+      timeout: 3000,
+      clickToClose: true
+    } );
   } else {
     // Notify.info('The user is not authorized');
   }
