@@ -173,7 +173,8 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addBooksToUserCart(bookObject._id);
+    console.log(123);
+    addBooksToUserCart(bookArray);
 
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
