@@ -34,7 +34,6 @@ export function resetPag(i) {
   } else pagination.setTotalItems(i);
 }
 
-//начальная проверка на необходимость пагинации
 export function isPagination() {
   if (books.length > 3) {
     listBooksEl.insertAdjacentHTML(
