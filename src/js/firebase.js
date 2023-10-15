@@ -1,4 +1,7 @@
 import { initializeApp } from 'firebase/app';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -6,10 +9,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   getFirestore,
   setDoc,
@@ -25,11 +28,10 @@ const firebaseConfig = {
   measurementId: 'G-2EMZHHRVM8',
 };
 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const shoppingRef = collection(db, 'shopping-list');
+const usersRef = collection(db, 'users');
 
 export async function signup(email, password, name) {
   try {
@@ -103,20 +105,34 @@ export function checkAuthState() {
   });
 }
 
-export function addBooksToUserCart(bookId) {
-  console.log('test');
+export async function addBooksToUserCart(bookArray) {
   const user = auth.currentUser;
 
-  console.log(user);
-  //як дістати з бази всі книги
-  // const querySnapshot = getDocs(shoppingRef).then(res => {
-  //   res.forEach(doc => {
-  //     console.log(doc.data());
-  //   });
-  // });
+  if (user) {
+    await setDoc(doc(db, 'userCarts', user.uid), { cart: bookArray });
+  } else {
+    console.log('User is not authenticated.');
+  }
+}
 
-  //як додати до бази даних книгу с айді
-  setDoc(doc(shoppingRef, 'cart'), {
-    id: bookId,
-  });
+export async function getUserCarts() {
+  const user = auth.currentUser;
+  if (user) {
+    const userCartRef = collection(db, 'userCarts');
+    const docs = await getDocs(userCartRef);
+    console.log(docs, 'docs');
+  }
+
+  const ref = doc(db, 'userCarts', user.uid);
+  const docSnap = await getDoc(ref);
+  if (docSnap.exists()) {
+    const cartData = docSnap.data().cart;
+    console.log(cartData, 'cartData');
+  } else {
+    console.log('No such document!');
+  }
+}
+
+export function getUser() {
+  return auth;
 }

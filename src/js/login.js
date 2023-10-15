@@ -1,7 +1,6 @@
-import { signup, signin, checkAuthState } from './firebase';
+import { signup, signin } from './firebase';
 
 let activeTab = 'signup';
-let error = '';
 
 const refs = {
   signinBtn: document.querySelector('.login-sign-in'),
@@ -63,27 +62,3 @@ async function onFormSubmit(e) {
     ? await signup(refs.email, refs.password, refs.inputName)
     : await signin(refs.email, refs.password);
 }
-
-import {
-  collection,
-  doc,
-  getDocs,
-  getFirestore,
-  setDoc,
-} from 'firebase/firestore';
-
-const db = getFirestore(app);
-
-const shoppingRef = collection(db, 'shopping-list');
-
-//як дістати з бази всі книги
-// const querySnapshot = getDocs(shoppingRef).then(res => {
-//   res.forEach(doc => {
-//     console.log(doc.data());
-//   });
-// });
-
-//як додати до бази даних книгу с айді
-setDoc(doc(shoppingRef, 'list_name'), {
-  id: 231231,
-});
