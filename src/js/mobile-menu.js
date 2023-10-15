@@ -36,10 +36,13 @@ const auth = getAuth();
   };
 
   window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
-    if (!e.matches) return;
-    mobileMenu.classList.remove('is-open');
-    openMenuBtn.setAttribute('aria-expanded', false);
-    bodyScrollLock.enableBodyScroll(document.body);
+    if (!e.matches) {
+      mobileMenu.classList.remove('is-open');
+      openMenuBtn.setAttribute('aria-expanded', false);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   });
 
   hideMenuOnSmallScreen();
