@@ -46,12 +46,12 @@ async function onCardClick(event) {
     currentId = listItem.id;
     const data = await fetchBookData(listItem.id);
     disableBackgroundScroll();
-     backdrop.classList.add('is-shown');
-  } if (isBookInLocalStorage(currentId)) {
+  }
+  if (isBookInLocalStorage(currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
     addSuccessMessage.textContent =
-        'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+      'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
   }
 }
 
@@ -61,9 +61,8 @@ async function fetchBookData(bookId) {
     const data = await booksAPI.getBookById(bookId);
 
     addBookMarkup(data);
-    // createBookObject(data);
-    modal.classList.remove('is-hidden');
-    modal.classList.add('show');
+    backdrop.classList.remove('modal-hidden');
+    backdrop.classList.add('show');
     return data;
   } catch (error) {
     console.error(error.message);
@@ -106,7 +105,8 @@ function createMarkup(data) {
 }
 
 function isBookInLocalStorage(bookId) {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   return existingBookArray.some(book => book._id === bookId);
 }
 
@@ -147,7 +147,8 @@ removeFromListButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   if (existingBookArray.some(book => book._id === currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -177,53 +178,37 @@ function addToShoppingList() {
 
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
-    // removeFromListButton.addEventListener('click', removeFromShoppingList);
-  }
-}
-
-function removeFromShoppingList() {
-  const bookIdToRemove = bookObject._id;
-  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
-  addSuccessMessage.textContent = '';
-  if (indexToRemove !== -1) {
-    bookArray.splice(indexToRemove, 1);
-    localStorage.setItem('shopping-list', JSON.stringify(bookArray));
-    addToListButton.classList.remove('is-hidden');
-    removeFromListButton.classList.add('is-hidden');
   }
 }
 
 closeButton.addEventListener('click', () => {
-  modal.classList.add('is-hidden');
-  modal.classList.remove('show');
+  backdrop.classList.add('modal-hidden');
+  backdrop.classList.remove('show');
   enableBackgroundScroll();
   addToListButton.classList.remove('is-hidden');
   removeFromListButton.classList.add('is-hidden');
   addSuccessMessage.textContent = '';
-    backdrop.classList.remove('is-shown');
 });
 
 window.onclick = function (event) {
   if (event.target === backdrop) {
-    modal.classList.add('is-hidden');
-    modal.classList.remove('show');
+    backdrop.classList.add('modal-hidden');
+    backdrop.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
-    backdrop.classList.remove('is-shown');
   }
 };
 
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
-    modal.classList.add('is-hidden');
-    modal.classList.remove('show');
+    backdrop.classList.add('modal-hidden');
+    backdrop.classList.remove('show');
     enableBackgroundScroll();
     addToListButton.classList.remove('is-hidden');
     removeFromListButton.classList.add('is-hidden');
     addSuccessMessage.textContent = '';
-    backdrop.classList.remove('is-shown');
   }
 });
 
