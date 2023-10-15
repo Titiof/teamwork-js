@@ -4,6 +4,7 @@ import { BooksAPI } from './books-api';
 
 import amazon from '../images/modal/amazon.webp';
 import apple from '../images/modal/amazon-book.webp';
+import { addBooksToUserCart } from './firebase';
 
 const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
@@ -94,7 +95,8 @@ function createMarkup(data) {
 }
 
 function isBookInLocalStorage(bookId) {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   return existingBookArray.some(book => book._id === bookId);
 }
 
@@ -121,7 +123,9 @@ addToListButton.addEventListener('click', async () => {
 removeFromListButton.addEventListener('click', () => {
   // Код для видалення книги з localStorage
   const bookIdToRemove = currentId;
-  const indexToRemove = bookArray.findIndex(book => book._id === bookIdToRemove);
+  const indexToRemove = bookArray.findIndex(
+    book => book._id === bookIdToRemove
+  );
   addSuccessMessage.textContent = '';
   if (indexToRemove !== -1) {
     bookArray.splice(indexToRemove, 1);
@@ -133,7 +137,8 @@ removeFromListButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-  const existingBookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
+  const existingBookArray =
+    JSON.parse(localStorage.getItem('shopping-list')) || [];
   if (existingBookArray.some(book => book._id === currentId)) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -141,7 +146,8 @@ window.addEventListener('load', () => {
 });
 
 function createBookObject(data) {
-  const { _id, list_name, book_image, title, author, buy_links, description } = data;
+  const { _id, list_name, book_image, title, author, buy_links, description } =
+    data;
   bookObject = {
     _id,
     list_name,
@@ -158,6 +164,8 @@ function addToShoppingList() {
   if (bookObject) {
     bookArray.push(bookObject);
     localStorage.setItem('shopping-list', JSON.stringify(bookArray));
+    addBooksToUserCart(bookArray);
+
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
     removeFromListButton.addEventListener('click', removeFromShoppingList);

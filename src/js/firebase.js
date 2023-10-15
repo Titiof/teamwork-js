@@ -92,3 +92,41 @@ export function checkAuthState() {
     }
   });
 }
+
+export function setDarkMode(value) {
+  // if (auth.currentUser) {
+  //   sendEmailVerification(auth.currentUser);
+  //   updateProfile(auth.currentUser, {
+  //     darkMode: value,
+  //   });
+  // }
+  if (auth.currentUser) {
+    const userId = auth.currentUser.uid;
+
+    // Отримайте посилання на документ користувача в Firestore (зазвичай за його ID користувача).
+    const userDoc = firestore().collection('users').doc(userId);
+
+    // Оновіть поле darkMode в документі користувача.
+    userDoc
+      .update({
+        darkMode: value,
+      })
+      .then(() => {
+        console.log('Значення darkMode оновлено в Firestore.');
+      })
+      .catch(error => {
+        console.error('Помилка при оновленні darkMode в Firestore: ', error);
+      });
+  }
+}
+
+export function addBooksToUserCart(cart) {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const userDocRef = db.collection('users').doc(user.uid);
+    userDocRef.update({
+      cart,
+    });
+  }
+  console.log(12314);
+}
