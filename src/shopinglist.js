@@ -1,3 +1,4 @@
+import './js/login/logout';
 import './js/shoppinglist-darkmode';
 import './js/support';
 import './js/shopping-list';
