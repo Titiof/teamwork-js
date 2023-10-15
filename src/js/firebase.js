@@ -1,7 +1,4 @@
 import { initializeApp } from 'firebase/app';
-
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -9,14 +6,8 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  setDoc,
-} from 'firebase/firestore';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { notifyOptions } from './login/global';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -30,8 +21,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
-const usersRef = collection(db, 'users');
 
 export async function signup(email, password, name) {
   try {
@@ -41,15 +30,13 @@ export async function signup(email, password, name) {
       password.value.trim()
     );
 
-    // якщо створено успішно
-
     if (userCredential && auth.currentUser) {
       sendEmailVerification(auth.currentUser);
       updateProfile(auth.currentUser, {
         displayName: name.value.trim(),
         photoURL: 'https://picsum.photos/50/50?random=1',
       });
-      Notify.success('Registration was successful!');
+      Notify.success('Registration was successful!', notifyOptions);
 
       setTimeout(function () {
         window.location.href = '/teamwork-js/';
@@ -58,10 +45,14 @@ export async function signup(email, password, name) {
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
       Notify.warning(
-        'This email address is already registered. Please go to the tab signin.'
+        'This email address is already registered. Please go to the tab signin.',
+        {
+          timeout: 3000,
+          clickToClose: true,
+        }
       );
     } else {
-      Notify.error('An error occurred during registration.');
+      Notify.error('An error occurred during registration.', notifyOptions);
     }
   }
 }
@@ -74,10 +65,7 @@ export async function signin(email, password) {
       password.value.trim()
     );
     const user = userCredential.user;
-    console.log(user); // повертається  url, name, email
-    // refs.form.reset();
-    error = '';
-    Notify.success('Authorization was successful!');
+    Notify.success('Authorization was successful!', notifyOptions);
 
     setTimeout(function () {
       window.location.href = '/teamwork-js/';
@@ -85,54 +73,7 @@ export async function signin(email, password) {
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(error);
     error = 'Invalid user email or password';
-    Notify.failure(error);
+    Notify.failure(error, notifyOptions);
   }
-}
-
-export function checkAuthState() {
-  auth.onAuthStateChanged(function (user) {
-    console.log('perevirka', user);
-
-    if (user) {
-      Notify.success(
-        `Successful authorized! You will be redirected to the home page`
-      );
-    } else {
-      Notify.info('Need authorized');
-    }
-  });
-}
-
-export async function addBooksToUserCart(bookArray) {
-  const user = auth.currentUser;
-
-  if (user) {
-    await setDoc(doc(db, 'userCarts', user.uid), { cart: bookArray });
-  } else {
-    console.log('User is not authenticated.');
-  }
-}
-
-export async function getUserCarts() {
-  const user = auth.currentUser;
-  if (user) {
-    const userCartRef = collection(db, 'userCarts');
-    const docs = await getDocs(userCartRef);
-    console.log(docs, 'docs');
-  }
-
-  const ref = doc(db, 'userCarts', user.uid);
-  const docSnap = await getDoc(ref);
-  if (docSnap.exists()) {
-    const cartData = docSnap.data().cart;
-    console.log(cartData, 'cartData');
-  } else {
-    console.log('No such document!');
-  }
-}
-
-export function getUser() {
-  return auth;
 }

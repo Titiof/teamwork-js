@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { notifyOptions } from './global';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcETIWRzdvvBXoViQftnTvFFLpHkebOhw',
@@ -23,9 +24,9 @@ async function onLogoutClick() {
     const user = await auth.currentUser;
     if (user) {
       await auth.signOut();
-      Notify.info('The user has logged out of the account');
+      Notify.info('The user has logged out of the account', notifyOptions);
     } else {
-      Notify.info('The user is not authorized');
+      Notify.info('The user is not authorized', notifyOptions);
     }
   } catch (error) {
     console.log('Error:', error);
@@ -34,11 +35,7 @@ async function onLogoutClick() {
 
 auth.onAuthStateChanged(function (user) {
   if (user) {
-    Notify.success(`Authorized user: ${user.displayName}`, {
-      timeout: 3000,
-      clickToClose: true
-    } );
+    Notify.success(`Authorized user: ${user.displayName}`, notifyOptions);
   } else {
-    // Notify.info('The user is not authorized');
   }
 });

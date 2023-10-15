@@ -1,3 +1,4 @@
+
 import amazon from '../images/shopping-list/amazon-logo@2x.webp';
 import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
@@ -33,6 +34,7 @@ function bookTemplate({
   author,
   buy_links,
 }) {
+
   const shopDescription = description || 'Description will be added later';
   return ` <li class="shopping-border">
   <button class="shopping-button" type="button" id="${_id}">
@@ -67,6 +69,7 @@ function bookTemplate({
       </a>
     </li>
   </ul>
+
 </li>`;
 }
 
@@ -88,6 +91,7 @@ function loadFromLS(key) {
       return [];
     }
   }
+
 }
 
 refs.shoppingList.addEventListener('click', onDeleteFromLS);
