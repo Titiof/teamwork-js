@@ -121,7 +121,7 @@ export function setDarkMode(value) {
 }
 
 export function addBooksToUserCart(cart) {
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
   if (user) {
     const userDocRef = db.collection('users').doc(user.uid);
     userDocRef.update({
