@@ -590,3 +590,6 @@ label:active:after {
     padding: 13px 24px;
   }
 }
+.burger-icon-stroke {
+  stroke: none;
+}
