@@ -481,7 +481,7 @@ label:active:after {
     margin-left: 0;
     background-color: var(--color-blue);
     border-radius: 36px;
-    min-width: 100%;
+    width: 100%;
     height: 45px;
     cursor: pointer;
   }
