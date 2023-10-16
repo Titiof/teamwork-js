@@ -21,14 +21,3 @@ function scrollTop() {
   }
 }
 scrollTop();
-
-function onScroll(evt) {
-  lastScrollY = window.scrollY;
-
-  if (scheduledAnimationFrame) return;
-
-  scheduledAnimationFrame = true;
-  requestAnimationFrame(readAndUpdatePage);
-}
-
-window.addEventListener('scroll', onScroll);
