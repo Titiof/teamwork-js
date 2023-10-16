@@ -47,14 +47,8 @@ auth.onAuthStateChanged(user => {
 
   if (user) {
     userContainer.classList.remove('is-hidden');
+    signupContainer.classList.add('is-hidden');
 
-    if (windowWidth < 768) {
-      signupContainer.classList.add('is-hidden');
-    } else {
-      signupContainer.classList.remove('is-hidden');
-    }
-
-    // const userImageURL = user.photoURL;
     const userImageURL = '';
 
     if (userImageURL) {
@@ -90,7 +84,6 @@ auth.onAuthStateChanged(user => {
     } else {
       signupContainer.classList.remove('is-hidden');
     }
-
     userContainer.classList.add('is-hidden');
     logoutButton.classList.add('is-hidden');
     navList.classList.add('is-hidden');
