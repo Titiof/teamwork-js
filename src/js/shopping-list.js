@@ -1,7 +1,7 @@
 import amazon from '../images/shopping-list/amazon-logo@2x.webp';
 import apple from '../images/shopping-list/amazon-book@2x.webp';
 import sprite from '../images/sprite.svg';
-import { toggleLoader } from './loader';
+// import { toggleLoader } from './loader';
 
 const refs = {
   shoppingList: document.querySelector('.shopping-list-selector'),
@@ -12,14 +12,14 @@ const refs = {
 const localStorageKey = 'shopping-list';
 
 function onLoadPage() {
-  toggleLoader();
+  // toggleLoader();
   const loadedData = loadFromLS(localStorageKey);
   if (loadedData.length > 0) {
     renderShoppingList(loadedData);
     refs.header.classList.add('is-hidden');
     refs.container.classList.add('is-hidden');
   }
-  toggleLoader();
+  // toggleLoader();
 }
 
 onLoadPage();
