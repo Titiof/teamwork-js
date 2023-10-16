@@ -452,6 +452,7 @@ label:active:after {
     align-items: center;
     justify-content: space-between;
     padding: 15px 14px 15px 14px;
+    gap: 100px;
   }
   .user-icon {
     display: flex;

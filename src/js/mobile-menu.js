@@ -13,6 +13,7 @@ const auth = getAuth();
       mobileMenu.classList.remove('is-hidden');
       setTimeout(() => {
         mobileMenu.classList.add('is-open');
+        document.body.style.overflow = 'hidden'
       }, 400);
     } else {
       setTimeout(() => {
@@ -20,6 +21,7 @@ const auth = getAuth();
       }, 500);
       setTimeout(() => {
         mobileMenu.classList.add('is-hidden');
+        document.body.style.overflow = 'auto'
       }, 800);
     }
   };
@@ -39,9 +41,9 @@ const auth = getAuth();
     if (!e.matches) {
       mobileMenu.classList.remove('is-open');
       openMenuBtn.setAttribute('aria-expanded', false);
-      document.body.style.overflow = 'hidden';
+      // document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      // document.body.style.overflow = 'auto';
     }
   });
 
