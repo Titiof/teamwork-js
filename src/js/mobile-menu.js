@@ -13,7 +13,7 @@ const auth = getAuth();
       mobileMenu.classList.remove('is-hidden');
       setTimeout(() => {
         mobileMenu.classList.add('is-open');
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden';
       }, 400);
     } else {
       setTimeout(() => {
@@ -21,7 +21,7 @@ const auth = getAuth();
       }, 500);
       setTimeout(() => {
         mobileMenu.classList.add('is-hidden');
-        document.body.style.overflow = 'auto'
+        document.body.style.overflow = 'auto';
       }, 800);
     }
   };
@@ -119,10 +119,13 @@ auth.onAuthStateChanged(user => {
     const userName = user.displayName || 'User';
     userMobNameBtn.textContent = `${userName}`;
     menuList.classList.remove('is-hidden');
+
+    logoutButton.classList.remove('is-hidden');
   } else {
     loginContainer.classList.remove('is-hidden');
     mobProContainer.classList.add('is-hidden');
     menuList.classList.add('is-hidden');
+    logoutButton.classList.add('is-hidden');
   }
 });
 

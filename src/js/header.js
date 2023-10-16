@@ -43,9 +43,16 @@ const navList = document.querySelector('.nav-list');
 let hideTimeout;
 
 auth.onAuthStateChanged(user => {
+  const windowWidth = window.innerWidth;
+
   if (user) {
-    signupContainer.classList.add('is-hidden');
     userContainer.classList.remove('is-hidden');
+
+    if (windowWidth < 768) {
+      signupContainer.classList.add('is-hidden');
+    } else {
+      signupContainer.classList.remove('is-hidden');
+    }
 
     // const userImageURL = user.photoURL;
     const userImageURL = '';
@@ -78,7 +85,12 @@ auth.onAuthStateChanged(user => {
 
     navList.classList.remove('is-hidden');
   } else {
-    signupContainer.classList.remove('is-hidden');
+    if (windowWidth < 768) {
+      signupContainer.classList.add('is-hidden');
+    } else {
+      signupContainer.classList.remove('is-hidden');
+    }
+
     userContainer.classList.add('is-hidden');
     logoutButton.classList.add('is-hidden');
     navList.classList.add('is-hidden');
