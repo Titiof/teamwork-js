@@ -455,7 +455,7 @@ label:active:after {
     padding: 15px 14px 15px 14px;
     cursor: pointer;
   }
-  .space-between {
+  .space-btw {
     justify-content: space-between;
     min-width: 100%;
   }
