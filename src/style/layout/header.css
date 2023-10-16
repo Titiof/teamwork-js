@@ -246,6 +246,7 @@ label:active:after {
   display: none;
   align-items: center;
   gap: 9px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -452,7 +453,11 @@ label:active:after {
     align-items: center;
     justify-content: space-between;
     padding: 15px 14px 15px 14px;
-    gap: 100px;
+    cursor: pointer;
+  }
+  .space-btw {
+    justify-content: space-between;
+    min-width: 100%;
   }
   .user-icon {
     display: flex;
@@ -476,8 +481,9 @@ label:active:after {
     margin-left: 0;
     background-color: var(--color-blue);
     border-radius: 36px;
-    min-width: 185px;
+    min-width: 100%;
     height: 45px;
+    cursor: pointer;
   }
 
   .logout-container:hover,
