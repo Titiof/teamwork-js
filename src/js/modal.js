@@ -4,7 +4,6 @@ import { BooksAPI } from './books-api';
 import apple from '../images/modal/amazon-book.webp';
 import amazon from '../images/modal/amazon.webp';
 
-// const modal = document.querySelector('.modal-shown');
 const closeButton = document.querySelector('.close');
 const addToListButton = document.querySelector('.add-button');
 const removeFromListButton = document.querySelector('.remove-button');
@@ -12,6 +11,7 @@ const modalBookCard = document.querySelector('.modal-book-card');
 const addSuccessMessage = document.querySelector('.add-success-message');
 const backdrop = document.querySelector('.modal-backdrop');
 const scrollUpBut = document.querySelector('#button-scroll-up');
+const profileContainer = document.querySelector('.profile-container');
 
 let bookArray = JSON.parse(localStorage.getItem('shopping-list')) || [];
 let bookObject = {};
@@ -31,6 +31,7 @@ export function openModalFromBookCard(bookId) {
   currentId = bookId;
   fetchBookData(bookId);
   disableBackgroundScroll();
+  updateAddButtonState()
   if (isBookInLocalStorage()) {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
@@ -54,6 +55,7 @@ async function onCardClick(event) {
     addSuccessMessage.textContent =
       'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
   }
+  updateAddButtonState();
 }
 
 async function fetchBookData(bookId) {
@@ -154,6 +156,7 @@ window.addEventListener('load', () => {
     addToListButton.classList.add('is-hidden');
     removeFromListButton.classList.remove('is-hidden');
   }
+  updateAddButtonState()
 });
 
 function createBookObject(data) {
@@ -221,3 +224,26 @@ shopLinks.forEach(shopLink => {
     window.open(url, '_blank');
   });
 });
+
+// Функція для перевірки стану profileContainer і встановлення стану кнопки add-button
+function updateAddButtonState() {
+  const isProfileContainerHidden = profileContainer.classList.contains('is-hidden');
+  
+  if (isProfileContainerHidden) {
+  addToListButton.setAttribute('disabled', 'disabled');
+    addSuccessMessage.textContent = 'For buying books please log in.';
+    removeFromListButton.classList.add('is-hidden');// Hide the "Remove" button
+  } else {
+    if (!isBookInLocalStorage(currentId)) {
+      addToListButton.removeAttribute('disabled');
+      addSuccessMessage.textContent = '';
+      removeFromListButton.classList.add('is-hidden'); // Hide the "Remove" button
+    } else {
+      addToListButton.removeAttribute('disabled');
+      addSuccessMessage.textContent = 'For buying books please log in.'
+      removeFromListButton.classList.remove('is-hidden');
+    }
+  }
+}
+// Викликаємо функцію для перевірки стану кнопки після завантаження сторінки
+window.addEventListener('DOMContentLoaded', updateAddButtonState);
